@@ -18,6 +18,8 @@ namespace _18ghostsExam
 
         public Map()
         {
+            positions = new MapElement[MaxX, MaxY];
+
             MapElement[] portals = {
                
                 new YellowPortal(),
@@ -37,11 +39,12 @@ namespace _18ghostsExam
             {
                 positions[portal.Pos.X, portal.Pos.Y] = portal;
             }
-
+            /*
             foreach (Mirrors mirror in mirrors)
             {
                 positions[mirror.Pos.X, mirror.Pos.Y] = mirror;
             }
+            */
         }
     }
 }

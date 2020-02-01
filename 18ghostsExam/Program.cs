@@ -12,7 +12,7 @@ namespace _18ghostsExam
             {
                 for (int x = 0; x < map.MaxX; x++)
                 {
-                    Console.Write(map.positions[x,y].Character);
+                    Console.Write((char)map.positions[x,y].Character);
                 }
                 Console.WriteLine();
             }
