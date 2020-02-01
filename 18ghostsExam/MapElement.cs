@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace _18ghostsExam
 {
 
     public class MapElement
     {
-        public Positions Pos;
-        public Colours Colour;
-        public Characters Character;
+        public Positions Pos { get; set; }
+        public Colours Colour { get; set; }
+        public Characters Character { get; set; }
 
-        public MapElement(Positions pos, Colours colour, Characters character)
+        public MapElement()
         {
-            Pos = pos;
-            Colour = colour;
-            Character = character;
+
         }
 
     }
 
 }
-

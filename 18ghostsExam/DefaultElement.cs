@@ -5,11 +5,8 @@ using System.Text;
 namespace _18ghostsExam
 {
 
-    public class DefaultElement
+    public class DefaultElement : MapElement
     {
-        public Positions Pos;
-        public Colours Colour;
-        public Characters Character;
         public DefaultElement(int x, int y)
         {
             Pos = new Positions(x, y);
@@ -20,4 +17,3 @@ namespace _18ghostsExam
     }
 
 }
-

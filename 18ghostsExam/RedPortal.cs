@@ -1,7 +1,7 @@
 ﻿using System;
 namespace _18ghostsExam
 {
-    public class RedPortal 
+    public class RedPortal : MapElement
     {
         public Positions Pos;
         public Colours Colour;
