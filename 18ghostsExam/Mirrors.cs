@@ -7,10 +7,10 @@ namespace _18ghostsExam
         /// this class allows us to create and set the mirrors on their right 
         /// positions and character inside the game
         /// </summary>
-        public Mirrors(Positions pos, Colours colour)
+        public Mirrors(Positions pos)
         {
             Pos = pos;
-            Colour = colour;
+            Colour = Colours.white;
             Character = Characters.mirror;
         }
     }
