@@ -16,35 +16,35 @@ namespace _18ghostsExam
 
         public MapElement[,] positions;
 
-        BluePortal bluePortal;
-
-        YellowPortal yellowPortal;
-
-        RedPortal RedPortal;
-
         public Map()
         {
+            positions = new MapElement[MaxX, MaxY];
 
-            bluePortal = new BluePortal();
-            yellowPortal = new YellowPortal();
-            RedPortal = new RedPortal();
+            MapElement[] portals = {
+               
+                new YellowPortal(),
+                new BluePortal(),
+                new RedPortal()
+            };
 
-            positions = new MapElement[MaxX,MaxY];
-
-            for (int y = 0; y< MaxY; y++)
+            for(int y = 0; y< MaxY; y++)
             {
                 for(int x = 0; x < MaxX; x++)
                 {
-                    positions[x, y] = new MapElement
-                        (new Positions(x,y), Colours.white, Characters.map);
+                    positions[x, y] = new DefaultElement(x,y);
                 }
             }
 
-            positions[bluePortal.Pos.X, bluePortal.Pos.Y] = new MapElement
-                (new Positions(bluePortal.Pos.X, bluePortal.Pos.Y),
-                Colours.blue, Characters.portal);
-
-            
+            foreach(MapElement portal in portals)
+            {
+                positions[portal.Pos.X, portal.Pos.Y] = portal;
+            }
+            /*
+            foreach (Mirrors mirror in mirrors)
+            {
+                positions[mirror.Pos.X, mirror.Pos.Y] = mirror;
+            }
+            */
         }
     }
 }
