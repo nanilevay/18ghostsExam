@@ -9,8 +9,13 @@ namespace _18ghostsExam
         /// </summary>
         public Mirrors(Positions pos)
         {
+            // mirror position
             Pos = pos;
+
+            // mirror colour
             Colour = Colours.white;
+
+            // mirror character
             Character = Characters.mirror;
         }
     }
