@@ -63,7 +63,7 @@ namespace _18ghostsExam
             positions = new MapElement[MaxX, MaxY];
 
             // define portals 
-            MapElement[] portals = {
+            Portals[] portals = {
                
                 new YellowPortal(),
                 new BluePortal(),

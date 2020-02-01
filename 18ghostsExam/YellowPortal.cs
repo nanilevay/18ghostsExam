@@ -1,7 +1,7 @@
 ﻿using System;
 namespace _18ghostsExam
 {
-    public class YellowPortal : MapElement
+    public class YellowPortal : Portals
     {
         public YellowPortal()
         {   
