@@ -9,23 +9,48 @@ namespace _18ghostsExam
     public class Map
     {
       
-
+        /// <summary>
+        /// getting the maximum x for the map dimension
+        /// </summary>
         public int MaxX = 5;
 
+        /// <summary>
+        /// getting the maximum y for the map dimension
+        /// </summary>
         public int MaxY = 5;
 
+        /// <summary>
+        /// setting all the positions of the map
+        /// </summary>
         public MapElement[,] positions;
 
+        /// <summary>
+        /// setting the upper right mirror position
+        /// </summary>
         private Positions UpperRightMirror = new Positions(1,1);
 
+        /// <summary>
+        /// setting the upper left mirror position
+        /// </summary>
         private Positions UpperLeftMirror = new Positions(1, 3);
 
+        /// <summary>
+        /// setting the lower left mirror position
+        /// </summary>
         private Positions LowerLeftMirror = new Positions(3,1);
 
+        /// <summary>
+        /// setting the lower right mirror position
+        /// </summary>
         private Positions LowerRightMirror = new Positions(3,3);
 
+        /// <summary>
+        /// this constructor let's us set the initial map with everything
+        /// in it's right position and with it's right representation
+        /// </summary>
         public Map()
         {
+            // array to set all the mirrors
             Mirrors[] mirrors =
             {
                 new Mirrors(UpperRightMirror),
@@ -34,8 +59,10 @@ namespace _18ghostsExam
                 new Mirrors(LowerRightMirror)
             };
 
+            // define map array with set size
             positions = new MapElement[MaxX, MaxY];
 
+            // define portals 
             MapElement[] portals = {
                
                 new YellowPortal(),
@@ -43,6 +70,7 @@ namespace _18ghostsExam
                 new RedPortal()
             };
 
+            // set the map with the default chars and colours
             for(int y = 0; y< MaxY; y++)
             {
                 for(int x = 0; x < MaxX; x++)
@@ -51,11 +79,13 @@ namespace _18ghostsExam
                 }
             }
 
+            // set the portals in the map
             foreach(MapElement portal in portals)
             {
                 positions[portal.Pos.X, portal.Pos.Y] = portal;
             }
             
+            // set the mirrors in the map
             foreach (Mirrors mirror in mirrors)
             {
                 positions[mirror.Pos.X, mirror.Pos.Y] = mirror;
