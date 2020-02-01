@@ -8,7 +8,7 @@ namespace _18ghostsExam
     /// </summary>
     public class Map
     {
-        public Mirrors[] mirrors;
+       // public Mirrors[] mirrors;
 
         public int MaxX = 25;
 
@@ -16,32 +16,35 @@ namespace _18ghostsExam
 
         public MapElement[,] positions;
 
+        BluePortal bluePortal;
+
+        YellowPortal yellowPortal;
+
+        RedPortal RedPortal;
+
         public Map()
         {
-            MapElement[] portals = {
-               
-                new YellowPortal(),
-                new BluePortal(),
-                new RedPortal()
-            };
 
-            for(int y = 0; y< MaxY; y++)
+            bluePortal = new BluePortal();
+            yellowPortal = new YellowPortal();
+            RedPortal = new RedPortal();
+
+            positions = new MapElement[MaxX,MaxY];
+
+            for (int y = 0; y< MaxY; y++)
             {
                 for(int x = 0; x < MaxX; x++)
                 {
-                    positions[x, y] = new DefaultElement(x,y);
+                    positions[x, y] = new MapElement
+                        (new Positions(x,y), Colours.white, Characters.map);
                 }
             }
 
-            foreach(MapElement portal in portals)
-            {
-                positions[portal.Pos.X, portal.Pos.Y] = portal;
-            }
+            positions[bluePortal.Pos.X, bluePortal.Pos.Y] = new MapElement
+                (new Positions(bluePortal.Pos.X, bluePortal.Pos.Y),
+                Colours.blue, Characters.portal);
 
-            foreach (Mirrors mirror in mirrors)
-            {
-                positions[mirror.Pos.X, mirror.Pos.Y] = mirror;
-            }
+            
         }
     }
 }

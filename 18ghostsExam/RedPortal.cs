@@ -1,8 +1,11 @@
 ﻿using System;
 namespace _18ghostsExam
 {
-    public class RedPortal : MapElement
+    public class RedPortal 
     {
+        public Positions Pos;
+        public Colours Colour;
+        public Characters Character;
         public RedPortal()
         {   
             Pos = new Positions(2, 0); 

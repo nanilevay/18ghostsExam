@@ -1,9 +1,11 @@
 ﻿using System;
 namespace _18ghostsExam
 {
-    public class BluePortal : MapElement
+    public class BluePortal
     {
+        public Positions Pos;
         public Colours Colour;
+        public Characters Character;
 
         public BluePortal()
         {   
