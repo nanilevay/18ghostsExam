@@ -5,8 +5,11 @@ namespace _18ghostsExam
     public class Player
     {
         public List<GhostBase> Ghosts;
-        public Player()
+
+        public string Name;
+        public Player(string name)
         {
+            Name = name;
             Ghosts = new List<GhostBase>();
 
             for (int i = 0; i < 9; i++)

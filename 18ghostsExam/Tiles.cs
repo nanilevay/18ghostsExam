@@ -57,7 +57,5 @@ namespace _18ghostsExam
             RedTileList.Add(new RedTiles(new Positions(1, 4)));
 
         }
-
-
     }
 }

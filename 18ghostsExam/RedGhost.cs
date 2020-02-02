@@ -6,7 +6,7 @@ namespace _18ghostsExam
         public RedGhost(Positions pos)
         {
             Pos = pos;
-            Colour = Colours.blue;
+            Colour = Colours.red;
             Character = Characters.ghost;
         }
     }

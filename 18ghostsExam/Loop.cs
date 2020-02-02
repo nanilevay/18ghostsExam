@@ -13,13 +13,27 @@ namespace _18ghostsExam
         public Map map;
 
         /// <summary>
-        /// get player
+        /// name of the current player being called
         /// </summary>
-        public Player player;
+        private string playerName;
+
+        /// <summary>
+        /// sets player 1
+        /// </summary>
+        public Player player1;
+
+        /// <summary>
+        /// sets player 2
+        /// </summary>
+        public Player player2;
+
+
+        public Player currentPlayer;
 
         public Loop()
         {
-            
+            player1 = new Player("player 1");
+            player2 = new Player("player 2");
         }
 
         /// <summary>
@@ -46,12 +60,11 @@ namespace _18ghostsExam
         /// </summary>
         public void GameLoop()
         {
+            currentPlayer = player1;
+
             // initiates the map
             map = new Map();
             
-            // initiates the player
-            player = new Player();       
-
             // print the map
             for (int y = 0; y < map.MaxY; y++)
             {
@@ -74,7 +87,17 @@ namespace _18ghostsExam
             }
 
             // debug
-            Console.WriteLine(player.Ghosts[0].Colour);
+            Console.WriteLine(player1.Ghosts[0].Colour);
+
+            //ask player which ghost they wanna place
+            Console.WriteLine(currentPlayer.Name + ", what colour of ghost would you like to place?"
+                + "\n 1.yellow"
+                + "\n 2.red"
+                + "\n 3.blue");
+
+            int colourAnswer = int.Parse(Console.ReadLine());
+
+            Console.WriteLine(colourAnswer);
 
             // asks player where to put their ghost
             Console.WriteLine("input coordinates you wish to put ghost");
