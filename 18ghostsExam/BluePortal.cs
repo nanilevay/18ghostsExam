@@ -3,7 +3,9 @@ namespace _18ghostsExam
 {
     public class BluePortal : Portals
     {
+        public Positions Pos;
         public Colours Colour;
+        public Characters Character;
 
         public BluePortal()
         {   

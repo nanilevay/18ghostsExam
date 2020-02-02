@@ -1,6 +1,8 @@
 ﻿using System;
+/*
 namespace _18ghostsExam
 {
+    
     public class Mirrors : MapElement
     {
         /// <summary>
@@ -20,3 +22,4 @@ namespace _18ghostsExam
         }
     }
 }
+*/

@@ -3,6 +3,9 @@ namespace _18ghostsExam
 {
     public class RedPortal : Portals
     {
+        public Positions Pos;
+        public Colours Colour;
+        public Characters Character;
         public RedPortal()
         {   
             Pos = new Positions(2, 0); 

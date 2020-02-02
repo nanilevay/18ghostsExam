@@ -13,6 +13,7 @@ namespace _18ghostsExam
         /// getting the maximum x for the map dimension
         /// </summary>
         public int MaxX = 5;
+       // public Mirrors[] mirrors;
 
         /// <summary>
         /// getting the maximum y for the map dimension

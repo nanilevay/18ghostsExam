@@ -12,10 +12,9 @@ namespace _18ghostsExam
 
         public MapElement()
         {
-            
+
         }
 
     }
 
 }
-

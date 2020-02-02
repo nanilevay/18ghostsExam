@@ -6,7 +6,7 @@ namespace _18ghostsExam
 {
 
     public class DefaultElement : MapElement
-    {      
+    {
         public DefaultElement(int x, int y)
         {
             Pos = new Positions(x, y);
@@ -17,4 +17,3 @@ namespace _18ghostsExam
     }
 
 }
-
