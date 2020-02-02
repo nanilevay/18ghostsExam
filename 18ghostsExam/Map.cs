@@ -44,12 +44,18 @@ namespace _18ghostsExam
         /// </summary>
         private Positions LowerRightMirror = new Positions(3,3);
 
+        public Tiles tiles;
+
         /// <summary>
         /// this constructor let's us set the initial map with everything
         /// in it's right position and with it's right representation
         /// </summary>
         public Map()
         {
+            tiles = new Tiles();
+
+            tiles.SetYellowTiles();
+
             // array to set all the mirrors
             Mirrors[] mirrors =
             {
@@ -90,7 +96,14 @@ namespace _18ghostsExam
             {
                 positions[mirror.Pos.X, mirror.Pos.Y] = mirror;
             }
-            
+
+            // set the mirrors in the map
+            foreach (Tiles tile in tiles.YellowTileList)
+            {
+                positions[tile.Pos.X, tile.Pos.Y] = tile;
+            }
+
+            //positions[0,0] = new YellowGhost(new Positions(0,0));
         }
 
         public void UpdateMap(MapElement previousElement, MapElement nextElement)
