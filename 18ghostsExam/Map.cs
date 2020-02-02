@@ -55,6 +55,8 @@ namespace _18ghostsExam
             tiles = new Tiles();
 
             tiles.SetYellowTiles();
+            tiles.SetBlueTiles();
+            tiles.SetRedTiles();
 
             // array to set all the mirrors
             Mirrors[] mirrors =
@@ -103,7 +105,19 @@ namespace _18ghostsExam
                 positions[tile.Pos.X, tile.Pos.Y] = tile;
             }
 
-            //positions[0,0] = new YellowGhost(new Positions(0,0));
+            // set the mirrors in the map
+            foreach (Tiles tile in tiles.RedTileList)
+            {
+                positions[tile.Pos.X, tile.Pos.Y] = tile;
+            }
+
+            // set the mirrors in the map
+            foreach (Tiles tile in tiles.BlueTileList)
+            {
+                positions[tile.Pos.X, tile.Pos.Y] = tile;
+            }
+
+          
         }
 
         public void UpdateMap(MapElement previousElement, MapElement nextElement)
