@@ -57,9 +57,11 @@ namespace _18ghostsExam
             {
                 for (int x = 0; x < map.MaxX; x++)
                 {
-                    if (map.positions[x, y] is BluePortal)
+                    if (map.positions[x, y] is BluePortal ||
+                        map.positions[x, y] is BlueTiles)
                         Console.ForegroundColor = ConsoleColor.Blue;
-                    if (map.positions[x, y] is RedPortal)
+                    if (map.positions[x, y] is RedPortal ||
+                        map.positions[x, y] is RedTiles)
                         Console.ForegroundColor = ConsoleColor.Red;
                     if (map.positions[x, y] is YellowPortal ||
                         map.positions[x, y] is YellowTiles)
