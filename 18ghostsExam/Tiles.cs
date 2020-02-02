@@ -16,7 +16,6 @@ namespace _18ghostsExam
             BlueTileList = new List<Tiles>();
             YellowTileList = new List<Tiles>();
         }
-
         public void SetYellowTiles()
         {
             YellowTileList.Add(new YellowTiles(new Positions(0, 1)));
