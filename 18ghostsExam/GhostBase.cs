@@ -1,19 +1,11 @@
 ﻿using System;
 namespace _18ghostsExam
 {
-    public class GhostBase
+    public class GhostBase : MapElement
     {
-        Positions Pos;
-
-        Characters Img;
-
-        Colours Colour;
-
-        public GhostBase(Positions pos, Characters img, Colours colour)
+        public GhostBase()
         {
-            Pos = pos;
-            Img = img;
-            Colour = colour;
+            
         }
     }
 }

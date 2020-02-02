@@ -92,5 +92,14 @@ namespace _18ghostsExam
             }
             
         }
+
+        public void UpdateMap(MapElement previousElement, MapElement nextElement)
+        {
+            MapElement auxElement = previousElement;
+            previousElement = nextElement;
+            nextElement = auxElement;
+
+            positions[nextElement.Pos.X, nextElement.Pos.Y] = new YellowGhost(new Positions(nextElement.Pos.X, nextElement.Pos.Y));
+        }
     }
 }
