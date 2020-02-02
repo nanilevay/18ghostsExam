@@ -4,7 +4,6 @@ using System.Text;
 
 namespace _18ghostsExam
 {
-
     public class MapElement
     {
         public Positions Pos { get; set; }

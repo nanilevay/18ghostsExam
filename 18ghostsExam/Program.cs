@@ -6,16 +6,9 @@ namespace _18ghostsExam
     {
         static void Main(string[] args)
         {
-            Map map = new Map();
+            Loop gameLoop = new Loop();
 
-            for (int y = 0; y < map.MaxY; y++)
-            {
-                for (int x = 0; x < map.MaxX; x++)
-                {
-                    Console.Write((char)map.positions[x,y].Character);
-                }
-                Console.WriteLine();
-            }
+            gameLoop.GameLoop();
         }
     }
 }
