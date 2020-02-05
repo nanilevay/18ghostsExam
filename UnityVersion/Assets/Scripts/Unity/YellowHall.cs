@@ -1,18 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using _18ghostsExam;
 
-public class YellowHall : MonoBehaviour
+public class YellowHall : Pickable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void PlacePiece(Pickable piece)
     {
-        
+        if(piece.colour == this.colour)
+            piece.transform.position = this.transform.position;
     }
 }

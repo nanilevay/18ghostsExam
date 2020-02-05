@@ -5,6 +5,8 @@ using _18ghostsExam;
 
 public class Pickable : MonoBehaviour, IMapElement
 {
+    public Dungeon dungeon;
+
     public virtual string Type 
     { 
         get
@@ -54,6 +56,24 @@ public class Pickable : MonoBehaviour, IMapElement
         }
     }
 
+    public virtual void Fight(Pickable other)
+    {
+        
+    }
+
+    public virtual void SendToDungeon(Pickable dungeonGhost)
+    {
+       dungeonGhost.transform.position = dungeon.transform.GetChild(0).position;
+        dungeon.transform.GetChild(0).gameObject.GetComponent<DungeonSlot>().empty = false;
+
+        /*
+        foreach(DungeonSlot slot in dungeon.Slots)
+        {
+            //if(slot != null)
+               dungeonGhost.transform.position = slot.transform.position;
+        }
+        */
+    }
 
     public virtual void Place()
     {
@@ -62,7 +82,7 @@ public class Pickable : MonoBehaviour, IMapElement
 
     public virtual void PickPiece()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public virtual void DropPiece()

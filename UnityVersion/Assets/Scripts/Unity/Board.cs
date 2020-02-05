@@ -21,7 +21,7 @@ public class Board : MonoBehaviour
 
     public void Start()
     {
-        boardSpaces = map.MaxX * map.MaxY;
+        boardSpaces = 25;//map.MaxX * map.MaxY;
     }
 
     public void GrabPiece(IMapElement piece)

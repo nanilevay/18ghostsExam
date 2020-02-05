@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\Unity\BluePortal.cs" />
     <Compile Include="Assets\Scripts\Unity\Board.cs" />
     <Compile Include="Assets\Scripts\Unity\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\Unity\Dungeon.cs" />
+    <Compile Include="Assets\Scripts\Unity\DungeonSlot.cs" />
     <Compile Include="Assets\Scripts\Unity\Mirror.cs" />
     <Compile Include="Assets\Scripts\Unity\Pickable.cs" />
     <Compile Include="Assets\Scripts\Unity\PlayerPieceHandler.cs" />

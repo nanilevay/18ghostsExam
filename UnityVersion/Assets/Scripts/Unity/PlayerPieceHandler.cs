@@ -15,16 +15,16 @@ public class PlayerPieceHandler : MonoBehaviour
 
     public IMapElement currentPiece = null;
 
-    voud Start()
+    void Start()
     {
         board.pieceGrab += boardGrabPiece;
 
     }
 
 
-    boardGrabPiece(object sender, MapEventArgs eventSend)
+    public void boardGrabPiece(object sender, MapEventArgs eventSend)
     {
-        IMapElement piece = eventSent.Piece;
+        IMapElement piece = eventSend.Piece;
 
         GameObject chosenPiece;
 
