@@ -101,8 +101,9 @@ public class Player : MonoBehaviour, IPlayer
         else
         {
             Debug.Log("occupied piece");
+            (ChosenPiece as MonoBehaviour).transform.position =
+                        tile.transform.position;
             ChosenPiece.Fight(tile.GetComponent<IMapElement>().PieceOnTile);
-
         }
 
         HoldingYellowPiece = false;

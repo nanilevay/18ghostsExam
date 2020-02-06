@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
 using _18ghostsExam;
+using UnityEngine;
 
-public class BluePortals : PortalBase
+public class YellowPortals : PortalBase
 {
-    
-    
 
 }

@@ -21,12 +21,14 @@ public class YellowGhostPickable : Pickable
         {
             other.SendToDungeon(other);
             other.inDungeon = true;
+            GhostDied = other;
         }
 
         else
         {
             SendToDungeon(this);
             inDungeon = true;
+            GhostDied = this;
         }
 
     }

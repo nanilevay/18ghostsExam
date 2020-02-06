@@ -74,6 +74,8 @@ public class Pickable : MonoBehaviour, IGhostBase
         }
     }
 
+    public IGhostBase GhostDied { get; set; }
+
     public virtual void Fight(IGhostBase other)
     {
 

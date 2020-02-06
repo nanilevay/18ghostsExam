@@ -1,6 +1,7 @@
 ﻿using System;
 namespace _18ghostsExam
 {
+    /*
     public class YellowPortal //: IPortals
     {
         public PortalDir CurrentRot
@@ -24,4 +25,5 @@ namespace _18ghostsExam
 
         }
     }
+    */
 }

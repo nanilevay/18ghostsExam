@@ -18,10 +18,17 @@ public class BlueGhostPickable : Pickable
     public override void Fight(IGhostBase other)
     {
         if (other.colour == Colours.yellow)
+        {
             other.SendToDungeon(other);
+            other.inDungeon = true;
+            GhostDied = other;
+        }
 
         else
+        {
             SendToDungeon(this);
-
+            inDungeon = true;
+            GhostDied = this;
+        }
     }
 }

@@ -17,12 +17,19 @@ public class RedGhostPickable : Pickable
 
     public override void Fight(IGhostBase other)
     {
-       // bluePortal.GetComponent<BluePortals>().Direction.text = "" + (char)PortalDir.up;
         if (other.colour == Colours.blue)
+        {
             other.SendToDungeon(other);
+            other.inDungeon = true;
+            GhostDied = other;
+        }
 
         else
+        {
             SendToDungeon(this);
+            inDungeon = true;
+            GhostDied = this;
+        }
 
     }
 }

@@ -4,10 +4,10 @@ namespace _18ghostsExam
 {
     public interface IPortals
     {
-        PortalDir CurrentRot { get; }
+        PortalDir CurrentRot { get; set; }
 
         Positions Position { get; }
 
-        void Rotate();
+        PortalDir Rotate();
     }
 }

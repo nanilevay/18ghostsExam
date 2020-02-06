@@ -39,6 +39,12 @@ namespace _18ghostsExam
         void Fight(IGhostBase other);
 
         /// <summary>
+        /// to determine which ghost lost the fight to rotate the portal
+        /// </summary>
+        /// /// <param name="deadGhost">ghost that lost fight</param>
+        IGhostBase GhostDied { get; set; }
+
+        /// <summary>
         /// sending the loser ghost to the dungeon
         /// </summary>
         /// <param name="dungeonGhost">ghost to be sent to dungeon</param>

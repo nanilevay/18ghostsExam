@@ -4,9 +4,9 @@ using UnityEngine;
 using TMPro;
 using _18ghostsExam;
 
-public class BluePortals : PortalBase
+public class RedPortals : PortalBase
 {
-    
-    
 
 }
+
+

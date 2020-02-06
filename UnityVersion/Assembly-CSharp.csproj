@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Model\MapElement.cs" />
     <Compile Include="Assets\Scripts\Model\Mirrors.cs" />
     <Compile Include="Assets\Scripts\Model\PieceType.cs" />
+    <Compile Include="Assets\Scripts\Model\PortalBase.cs" />
     <Compile Include="Assets\Scripts\Model\PortalDir.cs" />
     <Compile Include="Assets\Scripts\Model\Positions.cs" />
     <Compile Include="Assets\Scripts\Model\RedGhost.cs" />
@@ -97,11 +98,11 @@
     <Compile Include="Assets\Scripts\Unity\Player.cs" />
     <Compile Include="Assets\Scripts\Unity\RedGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Unity\RedHall.cs" />
-    <Compile Include="Assets\Scripts\Unity\RedPortal.cs" />
+    <Compile Include="Assets\Scripts\Unity\RedPortals.cs" />
     <Compile Include="Assets\Scripts\Unity\RoundManager.cs" />
     <Compile Include="Assets\Scripts\Unity\YellowGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Unity\YellowHall.cs" />
-    <Compile Include="Assets\Scripts\Unity\YellowPortal.cs" />
+    <Compile Include="Assets\Scripts\Unity\YellowPortals.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
