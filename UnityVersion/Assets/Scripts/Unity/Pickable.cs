@@ -17,7 +17,17 @@ public class Pickable : MonoBehaviour, IGhostBase
         }
     }
 
-    public bool inDungeon = false;
+    public bool inDungeon
+    {
+        get
+        {
+            return false;
+        }
+        set
+        {
+
+        }
+    }
 
     public virtual string Type 
     { 
@@ -37,13 +47,13 @@ public class Pickable : MonoBehaviour, IGhostBase
         }
     }
 
-    public char character;
+    public char Character;
 
-    public char Character
+    public char character
     {
         get
         {
-            return character;
+            return Character;
         }
     }
 
@@ -54,6 +64,11 @@ public class Pickable : MonoBehaviour, IGhostBase
         get
         {
             return new Positions(0,0);
+        }
+
+        set
+        {
+
         }
     }
 
@@ -68,18 +83,18 @@ public class Pickable : MonoBehaviour, IGhostBase
         }
     }
 
-    public virtual void Fight(Pickable other)
+    public virtual void Fight(IGhostBase other)
     {
         bluePortal.GetComponent<BluePortals>().Direction.text = "" + (char)PortalDir.up;
     }
 
-    public virtual void SendToDungeon(Pickable dungeonGhost)
+    public virtual void SendToDungeon(IGhostBase dungeonGhost)
     {     
         foreach(Transform slot in dungeon.transform)
         {
             if(slot.gameObject.GetComponent<DungeonSlot>().empty == true)
             {
-                dungeonGhost.transform.position = slot.position;
+                (dungeonGhost as MonoBehaviour).transform.position = slot.position;
                 slot.gameObject.GetComponent<DungeonSlot>().empty = false;
                 break;
             }            

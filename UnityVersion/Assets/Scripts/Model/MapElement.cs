@@ -7,16 +7,13 @@ using _18ghostsExam;
 
     public interface IMapElement
     {
-        bool empty { get; }
+        bool empty { get; set; }
         string Type { get; }
         char Character { get; }
         Positions Pos { get; }
         Colours colour { get; }
         Sprite Img { get; }
-
-        void Place(Player player);
-        void PickPiece();
-        void DropPiece();
+        IGhostBase PieceOnTile { get; set; }
 
     }
 

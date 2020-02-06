@@ -5,6 +5,20 @@ using _18ghostsExam;
 
 public class BlueHall : MonoBehaviour, IMapElement
 {
+    public IGhostBase pieceOnTile;
+
+    public IGhostBase PieceOnTile
+    {
+        get
+        {
+            return pieceOnTile;
+        }
+
+        set
+        {
+
+        }
+    }
 
     public string Type { get; set; }
 
@@ -22,12 +36,6 @@ public class BlueHall : MonoBehaviour, IMapElement
 
     public Sprite Img { get; }
 
-    public void PickPiece()
-    { }
-
-    public void DropPiece()
-    { }
-
     public Positions Pos { get; set; }
 
     public bool empty
@@ -36,15 +44,12 @@ public class BlueHall : MonoBehaviour, IMapElement
         {
             return true;
         }
-    }
 
-    public void Place(Player player)
-    {
-        Debug.Log("ouch");
-        if (player.HoldingBluePiece)
+        set
         {
-            player.ChosenPiece.transform.position = this.transform.position;
-            player.HoldingBluePiece = false;
+
         }
     }
+
+    
 }

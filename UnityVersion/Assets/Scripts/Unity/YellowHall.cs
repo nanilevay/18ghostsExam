@@ -5,6 +5,20 @@ using _18ghostsExam;
 
 public class YellowHall : MonoBehaviour, IMapElement
 {
+    public IGhostBase pieceOnTile;
+
+    public IGhostBase PieceOnTile
+    {
+        get
+        {
+            return pieceOnTile;
+        }
+
+        set
+        {
+
+        }
+    }
 
     public string Type { get; set; }
     
@@ -37,12 +51,16 @@ public class YellowHall : MonoBehaviour, IMapElement
             return true;
         }
 
+        set
+        {
+
+        }
     }
 
     public void Place(Player player)
     {
         Debug.Log("ouch");
         if (player.HoldingYellowPiece)
-            player.ChosenPiece.transform.position = this.transform.position;
+            (player.ChosenPiece as MonoBehaviour).transform.position = this.transform.position;
     }
 }

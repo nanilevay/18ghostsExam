@@ -5,6 +5,22 @@ using _18ghostsExam;
 
 public class RedHall : MonoBehaviour, IMapElement
 {
+    
+    public IGhostBase pieceOnTile;
+
+    public IGhostBase PieceOnTile
+    {
+        get
+        {
+            return pieceOnTile;
+        }
+
+        set
+        {
+
+        }
+    }
+  
 
     public string Type { get; set; }
 
@@ -37,12 +53,17 @@ public class RedHall : MonoBehaviour, IMapElement
             return true;
         }
 
+        set
+        {
+
+        }
+
     }
 
     public void Place(Player player)
     {
         Debug.Log("ouch");
         if (player.HoldingRedPiece)
-            player.ChosenPiece.transform.position = this.transform.position;
+            (player.ChosenPiece as MonoBehaviour).gameObject.transform.position = this.transform.position;
     }
 }

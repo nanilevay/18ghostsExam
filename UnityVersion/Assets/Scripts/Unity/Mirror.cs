@@ -20,6 +20,21 @@ public class Mirror : MonoBehaviour, IMapElement
         }
     }
 
+    public IGhostBase pieceOnTile;
+
+    public IGhostBase PieceOnTile
+    {
+        get
+        {
+            return pieceOnTile;
+        }
+
+        set
+        {
+
+        }
+    }
+
     public Sprite Img { get; }
 
     public void PickPiece()
@@ -36,6 +51,11 @@ public class Mirror : MonoBehaviour, IMapElement
         {
             return true;
         }
+
+        set
+        {
+
+        }
     }
 
     public void Place(Player player)
@@ -43,7 +63,7 @@ public class Mirror : MonoBehaviour, IMapElement
         Debug.Log("ouch");
         if (player.HoldingBluePiece)
         {
-            player.ChosenPiece.transform.position = this.transform.position;
+            (player.ChosenPiece as MonoBehaviour).gameObject.transform.position = this.transform.position;
             player.HoldingBluePiece = false;
         }
     }

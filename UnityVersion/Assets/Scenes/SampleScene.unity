@@ -1160,9 +1160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeon: {fileID: 1715106487}
   bluePortal: {fileID: 0}
-  inDungeon: 0
   img: {fileID: 0}
-  character: 103
+  Character: 103
   colours: 0
   Player: {fileID: 1100170431}
 --- !u!1 &414618290
@@ -4658,9 +4657,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeon: {fileID: 1715106487}
   bluePortal: {fileID: 1047677994}
-  inDungeon: 0
   img: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  character: 103
+  Character: 103
   colours: 2
   Player: {fileID: 1100170431}
 --- !u!61 &1387083373
@@ -7414,9 +7412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeon: {fileID: 1715106487}
   bluePortal: {fileID: 0}
-  inDungeon: 0
   img: {fileID: 0}
-  character: 103
+  Character: 103
   colours: 1
   Player: {fileID: 1100170431}
 --- !u!222 &7701062672168359472

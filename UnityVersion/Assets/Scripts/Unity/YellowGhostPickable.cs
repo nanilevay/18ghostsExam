@@ -18,11 +18,11 @@ public class YellowGhostPickable : Pickable
     public virtual void PickPiece()
     {
         Debug.Log("picked yellow piece");
-        Player.ChosenPiece = this.gameObject;
+        Player.ChosenPiece = this;
         Player.HoldingYellowPiece = true;
     }
 
-    public override void Fight(Pickable other)
+    public override void Fight(IGhostBase other)
     {
         if (other.colour == Colours.red)
             other.SendToDungeon(other);
