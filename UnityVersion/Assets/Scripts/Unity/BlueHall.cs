@@ -5,20 +5,7 @@ using _18ghostsExam;
 
 public class BlueHall : MonoBehaviour, IMapElement
 {
-    public IGhostBase pieceOnTile;
-
-    public IGhostBase PieceOnTile
-    {
-        get
-        {
-            return pieceOnTile;
-        }
-
-        set
-        {
-
-        }
-    }
+    public IGhostBase PieceOnTile { get; set; }
 
     public string Type { get; set; }
 

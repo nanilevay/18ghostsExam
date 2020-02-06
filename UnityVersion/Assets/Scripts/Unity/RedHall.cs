@@ -38,12 +38,6 @@ public class RedHall : MonoBehaviour, IMapElement
 
     public Sprite Img { get; }
 
-    public void PickPiece()
-    { }
-
-    public void DropPiece()
-    { }
-
     public Positions Pos { get; set; }
 
     public bool empty
@@ -58,12 +52,5 @@ public class RedHall : MonoBehaviour, IMapElement
 
         }
 
-    }
-
-    public void Place(Player player)
-    {
-        Debug.Log("ouch");
-        if (player.HoldingRedPiece)
-            (player.ChosenPiece as MonoBehaviour).gameObject.transform.position = this.transform.position;
     }
 }

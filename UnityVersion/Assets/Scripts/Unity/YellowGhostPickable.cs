@@ -15,13 +15,6 @@ public class YellowGhostPickable : Pickable
         }
     }
 
-    public virtual void PickPiece()
-    {
-        Debug.Log("picked yellow piece");
-        Player.ChosenPiece = this;
-        Player.HoldingYellowPiece = true;
-    }
-
     public override void Fight(IGhostBase other)
     {
         if (other.colour == Colours.red)
@@ -29,11 +22,6 @@ public class YellowGhostPickable : Pickable
 
         else
             SendToDungeon(this);
-
-    }
-
-    public virtual void DropPiece()
-    {
 
     }
 }
