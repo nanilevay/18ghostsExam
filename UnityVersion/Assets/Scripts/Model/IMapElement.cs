@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using _18ghostsExam;
 
-/// <summary>
-/// this interface lets us define a generic map element in order to know its
-/// state during the game and assign its values
-/// </summary>
+    /// <summary>
+    /// this interface lets us define a generic map element in order to know its
+    /// state during the game and assign its values
+    /// </summary>
     public interface IMapElement
     {
         /// <summary>

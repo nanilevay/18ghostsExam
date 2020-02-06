@@ -8,8 +8,6 @@ using _18ghostsExam;
 
 public class BoardManager : MonoBehaviour
 {
-   // public //Board Board;
-
     public GameObject PlayerActionsPanel;
 
     public TextMeshProUGUI PlayerActionsTexts;

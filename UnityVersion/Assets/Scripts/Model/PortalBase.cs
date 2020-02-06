@@ -19,6 +19,7 @@ public class PortalBase : MonoBehaviour, IPortals
     void Update()
     {
         UpdateDir();
+        CheckAdjacents();
     }
     
     //public List<GameObject> AdjacentTiles;
@@ -56,7 +57,7 @@ public class PortalBase : MonoBehaviour, IPortals
         return PortalDir.left;
     }
 
-    public void CheckAdjacents()
+    public virtual void CheckAdjacents()
     {
         /*
         foreach(GameObject piece in AdjacentTiles)

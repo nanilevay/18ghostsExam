@@ -2784,12 +2784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoldingPiece: 0
-  HoldingBluePiece: 0
-  HoldingRedPiece: 0
-  HoldingYellowPiece: 0
-  OnMirror: 0
-  ColourRestriction: 0
   name: 
 --- !u!1 &1047677994
 GameObject:
@@ -2842,7 +2836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47a0287f633c142a0fa7f060719954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Direction: {fileID: 803382456}
   Direction: {fileID: 803382456}
 --- !u!114 &1047677997
 MonoBehaviour:
@@ -3162,12 +3155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoldingPiece: 0
-  HoldingBluePiece: 0
-  HoldingRedPiece: 0
-  HoldingYellowPiece: 0
-  OnMirror: 0
-  ColourRestriction: 0
   name: 
 --- !u!4 &1100170432
 Transform:
@@ -3304,7 +3291,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1100170431}
+      objectReference: {fileID: 1100170430}
+    - target: {fileID: 3200304248737211494, guid: 2786af698438dbe4596b5c6e9ce68646,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2786af698438dbe4596b5c6e9ce68646, type: 3}
 --- !u!224 &1282678124 stripped
@@ -3666,12 +3658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoldingPiece: 0
-  HoldingBluePiece: 0
-  HoldingRedPiece: 0
-  HoldingYellowPiece: 0
-  OnMirror: 0
-  ColourRestriction: 0
   name: Player A
 --- !u!1001 &1505347407
 PrefabInstance:
@@ -3803,6 +3789,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1505347407}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1526826006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4105873596520306909, guid: bd7e008333351e24d91a74327b46cff0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1578824371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06116f5136eac4d4bab0d174699c0294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1532230989
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,12 +3844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoldingPiece: 0
-  HoldingBluePiece: 0
-  HoldingRedPiece: 0
-  HoldingYellowPiece: 0
-  OnMirror: 0
-  ColourRestriction: 0
   name: Player B
 --- !u!1001 &1570104959
 PrefabInstance:
@@ -4104,7 +4096,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1100170431}
+      objectReference: {fileID: 1526826006}
+    - target: {fileID: 4105873596520306910, guid: bd7e008333351e24d91a74327b46cff0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnItemClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105873596520306910, guid: bd7e008333351e24d91a74327b46cff0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105873596520306910, guid: bd7e008333351e24d91a74327b46cff0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105873596520306910, guid: bd7e008333351e24d91a74327b46cff0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd7e008333351e24d91a74327b46cff0, type: 3}
 --- !u!224 &1578824372 stripped

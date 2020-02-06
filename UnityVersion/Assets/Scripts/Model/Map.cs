@@ -2,6 +2,7 @@
 
 namespace _18ghostsExam
 {
+    /*
     /// <summary>
     /// this class allows us to set our map for the game with the initial
     /// mirrors and portals positions
@@ -131,6 +132,7 @@ namespace _18ghostsExam
                 new YellowGhost(
                     new Positions(nextElement.Pos.X, nextElement.Pos.Y));
         }
-        */
+        
     }
+*/
 }
