@@ -1,18 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using _18ghostsExam;
 
-public class BlueHall : MonoBehaviour
+public class BlueHall : MonoBehaviour, IMapElement
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public string Type { get; set; }
+
+    public char Character { get; }
+
+    public Colours colours;
+
+    public Colours colour
     {
-        
+        get
+        {
+            return colours;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Sprite Img { get; }
+
+    public void PickPiece()
+    { }
+
+    public void DropPiece()
+    { }
+
+    public Positions Pos { get; set; }
+
+    public bool empty
     {
-        
+        get
+        {
+            return true;
+        }
+    }
+
+    public void Place(Player player)
+    {
+        Debug.Log("ouch");
+        if (player.HoldingBluePiece)
+        {
+            player.ChosenPiece.transform.position = this.transform.position;
+            player.HoldingBluePiece = false;
+        }
     }
 }

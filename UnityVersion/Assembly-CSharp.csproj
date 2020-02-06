@@ -71,12 +71,12 @@
     <Compile Include="Assets\Scripts\Model\DefaultElement.cs" />
     <Compile Include="Assets\Scripts\Model\Dungeon.cs" />
     <Compile Include="Assets\Scripts\Model\GhostBase.cs" />
+    <Compile Include="Assets\Scripts\Model\IPlayer.cs" />
     <Compile Include="Assets\Scripts\Model\IPortals.cs" />
     <Compile Include="Assets\Scripts\Model\Map.cs" />
     <Compile Include="Assets\Scripts\Model\MapElement.cs" />
     <Compile Include="Assets\Scripts\Model\Mirrors.cs" />
     <Compile Include="Assets\Scripts\Model\PieceType.cs" />
-    <Compile Include="Assets\Scripts\Model\Player.cs" />
     <Compile Include="Assets\Scripts\Model\PortalDir.cs" />
     <Compile Include="Assets\Scripts\Model\Positions.cs" />
     <Compile Include="Assets\Scripts\Model\RedGhost.cs" />
@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\Unity\RedGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Unity\RedHall.cs" />
     <Compile Include="Assets\Scripts\Unity\RedPortal.cs" />
+    <Compile Include="Assets\Scripts\Unity\RoundManager.cs" />
     <Compile Include="Assets\Scripts\Unity\YellowGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Unity\YellowHall.cs" />
     <Compile Include="Assets\Scripts\Unity\YellowPortal.cs" />

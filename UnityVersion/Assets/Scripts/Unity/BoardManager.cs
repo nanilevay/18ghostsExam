@@ -13,18 +13,27 @@ public class BoardManager : MonoBehaviour
 
     public TextMeshProUGUI PlayerActionsTexts;
 
+    public TextMeshProUGUI CurrentPlayerText;
+
+    public Player CurrentPlayer;
+
     public Player PlayerOne;
 
     public Player PlayerTwo;
 
+    public Pickable[] Pieces;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        CurrentPlayer = PlayerOne;
+        CurrentPlayerText.text = CurrentPlayer.Name;
     }
 
     void Update()
     {
+        CurrentPlayerText.text = CurrentPlayer.Name;
 
+       
     }
 }

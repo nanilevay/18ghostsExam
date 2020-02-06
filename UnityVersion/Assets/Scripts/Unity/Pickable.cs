@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
 
-public class Pickable : MonoBehaviour
+public class Pickable : MonoBehaviour, IMapElement
 {
 
     public Dungeon dungeon;
 
     public GameObject bluePortal;
+
+    public bool empty
+    {
+        get
+        {
+            return true;
+        }
+    }
 
     public bool inDungeon = false;
 
@@ -81,7 +89,7 @@ public class Pickable : MonoBehaviour
         inDungeon = true;
     }
 
-    public virtual void Place()
+    public virtual void Place(Player player)
     {
 
     }

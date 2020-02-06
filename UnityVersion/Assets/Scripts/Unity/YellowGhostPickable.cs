@@ -26,7 +26,10 @@ public class YellowGhostPickable : Pickable
     {
         if (other.colour == Colours.red)
             other.SendToDungeon(other);
-        
+
+        else
+            SendToDungeon(this);
+
     }
 
     public virtual void DropPiece()

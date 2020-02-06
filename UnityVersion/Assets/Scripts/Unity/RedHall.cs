@@ -42,7 +42,7 @@ public class RedHall : MonoBehaviour, IMapElement
     public void Place(Player player)
     {
         Debug.Log("ouch");
-        if (player.HoldingYellowPiece)
+        if (player.HoldingRedPiece)
             player.ChosenPiece.transform.position = this.transform.position;
     }
 }
