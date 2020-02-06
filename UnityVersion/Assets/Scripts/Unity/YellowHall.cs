@@ -3,12 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
 
-public class YellowHall : Pickable
+public class YellowHall : MonoBehaviour, IMapElement
 {
 
-    public void PlacePiece(Pickable piece)
+    public string Type { get; set; }
+    
+    public char Character { get; }
+
+    public Colours colours;
+
+    public Colours colour 
+    { 
+        get
+        {
+            return colours;
+        } 
+    }
+    
+    public Sprite Img { get; }
+
+    public void PickPiece()
+    { }
+
+    public void DropPiece()
+    {}
+
+    public Positions Pos { get; set; }
+
+    public bool empty
     {
-        if(piece.colour == this.colour)
-            piece.transform.position = this.transform.position;
+        get
+        {
+            return true;
+        }
+
+    }
+
+    public void Place(Player player)
+    {
+        Debug.Log("ouch");
+        if (player.HoldingYellowPiece)
+            player.ChosenPiece.transform.position = this.transform.position;
     }
 }

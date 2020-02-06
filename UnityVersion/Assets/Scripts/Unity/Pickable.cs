@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
 
-public class Pickable : MonoBehaviour, IMapElement
+public class Pickable : MonoBehaviour
 {
+
     public Dungeon dungeon;
+
+    public GameObject bluePortal;
+
+    public bool inDungeon = false;
 
     public virtual string Type 
     { 
@@ -35,13 +40,13 @@ public class Pickable : MonoBehaviour, IMapElement
         }
     }
 
-    public Positions position;
+//    public Positions position;
 
     public Positions Pos
     {
         get
         {
-            return position;
+            return new Positions(0,0);
         }
     }
 
@@ -58,21 +63,22 @@ public class Pickable : MonoBehaviour, IMapElement
 
     public virtual void Fight(Pickable other)
     {
-        
+        bluePortal.GetComponent<BluePortals>().Direction.text = "" + (char)PortalDir.up;
     }
 
     public virtual void SendToDungeon(Pickable dungeonGhost)
-    {
-       dungeonGhost.transform.position = dungeon.transform.GetChild(0).position;
-        dungeon.transform.GetChild(0).gameObject.GetComponent<DungeonSlot>().empty = false;
-
-        /*
-        foreach(DungeonSlot slot in dungeon.Slots)
+    {     
+        foreach(Transform slot in dungeon.transform)
         {
-            //if(slot != null)
-               dungeonGhost.transform.position = slot.transform.position;
+            if(slot.gameObject.GetComponent<DungeonSlot>().empty == true)
+            {
+                dungeonGhost.transform.position = slot.position;
+                slot.gameObject.GetComponent<DungeonSlot>().empty = false;
+                break;
+            }            
         }
-        */
+
+        inDungeon = true;
     }
 
     public virtual void Place()

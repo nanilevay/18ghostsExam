@@ -5,9 +5,11 @@ namespace _18ghostsExam
     {
         public YellowTiles(Positions pos)
         {
+            /*
             Pos = pos;
             Colour = Colours.yellow;
             Character = Characters.map;
+            */
         }
     }
 }

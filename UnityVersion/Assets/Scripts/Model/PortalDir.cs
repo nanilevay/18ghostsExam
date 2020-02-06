@@ -6,10 +6,10 @@ namespace _18ghostsExam
     /// </summary>
     public enum PortalDir
     {
-        up,
-        down,
-        left,
-        right
+        up = 'u',
+        down = 'd',
+        left = 'l',
+        right = 'r'
     }
 
 }

@@ -5,6 +5,8 @@ using _18ghostsExam;
 
 public class YellowGhostPickable : Pickable
 {
+    public Player Player;
+
     public override string Type
     {
         get
@@ -15,13 +17,16 @@ public class YellowGhostPickable : Pickable
 
     public virtual void PickPiece()
     {
-        //gameObject.SetActive(false);
+        Debug.Log("picked yellow piece");
+        Player.ChosenPiece = this.gameObject;
+        Player.HoldingYellowPiece = true;
     }
 
     public override void Fight(Pickable other)
     {
         if (other.colour == Colours.red)
             other.SendToDungeon(other);
+        
     }
 
     public virtual void DropPiece()

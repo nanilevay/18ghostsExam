@@ -21,7 +21,7 @@ namespace _18ghostsExam
         /// <summary>
         /// setting all the positions of the map
         /// </summary>
-        public MapElement[,] positions;
+       // public MapElement[,] positions;
 
         /// <summary>
         /// setting the upper right mirror position
@@ -70,57 +70,58 @@ namespace _18ghostsExam
             };
 
             // define map array with set size
-            positions = new MapElement[MaxX, MaxY];
+            //positions = new MapElement[MaxX, MaxY];
 
-            // define portals 
-            Portals[] portals = {
+            //// define portals 
+            //Portals[] portals = {
                
-                new YellowPortal(),
-                new BluePortal(),
-                new RedPortal()
-            };
+            //    new YellowPortal(),
+            //    new BluePortal(),
+            //    new RedPortal()
+            //};
 
             // set the map with the default chars and colours
             for(int y = 0; y< MaxY; y++)
             {
                 for(int x = 0; x < MaxX; x++)
                 {
-                    positions[x, y] = new DefaultElement(x,y);
+                    //positions[x, y] = new DefaultElement(x,y);
                 }
             }
 
-            // set the portals in the map
-            foreach(MapElement portal in portals)
-            {
-                positions[portal.Pos.X, portal.Pos.Y] = portal;
-            }
+            //// set the portals in the map
+            //foreach(MapElement portal in portals)
+            //{
+            //    positions[portal.Pos.X, portal.Pos.Y] = portal;
+            //}
             
             // set the mirrors in the map
             foreach (Mirrors mirror in mirrors)
             {
-                positions[mirror.Pos.X, mirror.Pos.Y] = mirror;
+                //positions[mirror.Pos.X, mirror.Pos.Y] = mirror;
             }
 
             // set the mirrors in the map
             foreach (Tiles tile in tiles.YellowTileList)
             {
-                positions[tile.Pos.X, tile.Pos.Y] = tile;
+                //positions[tile.Pos.X, tile.Pos.Y] = tile;
             }
 
             // set the mirrors in the map
             foreach (Tiles tile in tiles.RedTileList)
             {
-                positions[tile.Pos.X, tile.Pos.Y] = tile;
+                //positions[tile.Pos.X, tile.Pos.Y] = tile;
             }
 
             // set the mirrors in the map
             foreach (Tiles tile in tiles.BlueTileList)
             {
-                positions[tile.Pos.X, tile.Pos.Y] = tile;
+                //positions[tile.Pos.X, tile.Pos.Y] = tile;
             }        
         }
 
-        public void UpdateMap(MapElement previousElement, MapElement nextElement)
+        /*
+        public void UpdateMap(MapElement previousElement)//, MapElement nextElement)
         {
             MapElement auxElement = previousElement;
             previousElement = nextElement;
@@ -130,5 +131,6 @@ namespace _18ghostsExam
                 new YellowGhost(
                     new Positions(nextElement.Pos.X, nextElement.Pos.Y));
         }
+        */
     }
 }

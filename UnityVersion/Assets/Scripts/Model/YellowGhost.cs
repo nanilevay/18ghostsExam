@@ -5,9 +5,11 @@ namespace _18ghostsExam
     {
         public YellowGhost(Positions pos)
         {
+            /*
             Pos = pos;
             Colour = Colours.yellow;
             Character = Characters.ghost;
+            */
         }
     }
 }

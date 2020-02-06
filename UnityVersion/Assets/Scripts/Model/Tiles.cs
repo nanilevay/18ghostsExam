@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace _18ghostsExam
 {  
-    public class Tiles : MapElement
+    public class Tiles //: IMapElement
     {
         public List <Tiles> RedTileList;
 

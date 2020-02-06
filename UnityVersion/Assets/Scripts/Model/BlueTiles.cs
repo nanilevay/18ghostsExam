@@ -5,9 +5,11 @@ namespace _18ghostsExam
     {
         public BlueTiles(Positions pos)
         {
+            /*
             Pos = pos;
             Colour = Colours.blue;
             Character = Characters.map;
+            */
         }
     }
 }
