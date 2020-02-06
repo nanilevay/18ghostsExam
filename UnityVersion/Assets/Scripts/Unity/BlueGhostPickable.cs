@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
 
-public class YellowGhostPickable : Pickable
+public class BlueGhostPickable : Pickable
 {
     public Player Player;
 
@@ -11,23 +11,17 @@ public class YellowGhostPickable : Pickable
     {
         get
         {
-            return "yellow Ghost";
+            return "blue Ghost";
         }
     }
 
     public override void Fight(IGhostBase other)
     {
-        if (other.colour == Colours.red)
-        {
+        if (other.colour == Colours.yellow)
             other.SendToDungeon(other);
-            other.inDungeon = true;
-        }
 
         else
-        {
             SendToDungeon(this);
-            inDungeon = true;
-        }
 
     }
 }

@@ -17,17 +17,9 @@ public class Pickable : MonoBehaviour, IGhostBase
         }
     }
 
-    public bool inDungeon
-    {
-        get
-        {
-            return false;
-        }
-        set
-        {
+    public bool inDungeon { get; set; }
 
-        }
-    }
+    public bool inStart { get; set; }
 
     public virtual string Type 
     { 
@@ -72,7 +64,6 @@ public class Pickable : MonoBehaviour, IGhostBase
         }
     }
 
-
     public Colours colours;
 
     public Colours colour
@@ -85,7 +76,7 @@ public class Pickable : MonoBehaviour, IGhostBase
 
     public virtual void Fight(IGhostBase other)
     {
-        bluePortal.GetComponent<BluePortals>().Direction.text = "" + (char)PortalDir.up;
+
     }
 
     public virtual void SendToDungeon(IGhostBase dungeonGhost)
@@ -99,22 +90,6 @@ public class Pickable : MonoBehaviour, IGhostBase
                 break;
             }            
         }
-
         inDungeon = true;
-    }
-
-    public virtual void Place(Player player)
-    {
-
-    }
-
-    public virtual void PickPiece()
-    {
-        //gameObject.SetActive(false);
-    }
-
-    public virtual void DropPiece()
-    {
-
     }
 }
