@@ -1,7 +1,8 @@
 ﻿using System;
 namespace _18ghostsExam
 {
-    public class BlueGhost : GhostBase
+    /*
+    public class BlueGhost : IGhostBase
     {
         public BlueGhost(Positions pos)
         {
@@ -9,7 +10,8 @@ namespace _18ghostsExam
             Pos = pos;
             Colour = Colours.blue;
             Character = Characters.ghost;
-            */
+            
         }
     }
+*/
 }

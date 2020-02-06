@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
 
-public class Pickable : MonoBehaviour, IMapElement
+public class Pickable : MonoBehaviour, IGhostBase
 {
-
     public Dungeon dungeon;
 
     public GameObject bluePortal;

@@ -70,7 +70,7 @@
     <Compile Include="Assets\Scripts\Model\Colours.cs" />
     <Compile Include="Assets\Scripts\Model\DefaultElement.cs" />
     <Compile Include="Assets\Scripts\Model\Dungeon.cs" />
-    <Compile Include="Assets\Scripts\Model\GhostBase.cs" />
+    <Compile Include="Assets\Scripts\Model\IGhostBase.cs" />
     <Compile Include="Assets\Scripts\Model\IPlayer.cs" />
     <Compile Include="Assets\Scripts\Model\IPortals.cs" />
     <Compile Include="Assets\Scripts\Model\Map.cs" />
