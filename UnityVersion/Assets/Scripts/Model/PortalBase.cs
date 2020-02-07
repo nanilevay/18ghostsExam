@@ -4,17 +4,39 @@ using UnityEngine;
 using TMPro;
 using _18ghostsExam;
 
-public class PortalBase : MonoBehaviour, IPortals
+public class PortalBase : MonoBehaviour, IPortals, IMapElement
 {
-    public PortalDir CurrentRot { get; set; }
+    /// <summary>
+    /// Check if tile is empty
+    /// </summary>
+    public bool empty { get; set; }
 
-    public Positions Position
-    {
-        get
-        {
-            return new Positions(4, 3);
-        }
-    }
+    /// <summary>
+    /// Type of tile
+    /// </summary>
+    public string Type { get; }
+
+    /// <summary>
+    /// Character to represent tile
+    /// </summary>
+    public char Character { get; }
+
+    /// <summary>
+    /// Position of tile in map
+    /// </summary>
+    public Positions Pos { get; set; }
+
+    /// <summary>
+    /// Colour of tile
+    /// </summary>
+    public Colours colour { get; set; }
+
+    /// <summary>
+    /// To check what piece is currently in the tile
+    /// </summary>
+    public IGhostBase PieceOnTile { get; set; }
+
+    public PortalDir CurrentRot { get; set; }
 
     void Update()
     {
@@ -40,7 +62,6 @@ public class PortalBase : MonoBehaviour, IPortals
 
     public PortalDir Rotate()
     {
-        Debug.Log(CurrentRot);
 
         if (CurrentRot == PortalDir.down)
             return PortalDir.left;

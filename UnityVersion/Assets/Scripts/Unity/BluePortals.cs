@@ -6,7 +6,8 @@ using _18ghostsExam;
 
 public class BluePortals : PortalBase
 {
-    
-    
-
+    public BluePortals()
+    {
+        CurrentRot = PortalDir.down;
+    }
 }

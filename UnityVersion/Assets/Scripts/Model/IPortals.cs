@@ -2,12 +2,12 @@
 
 namespace _18ghostsExam
 {
-    public interface IPortals
+    public interface IPortals : IMapElement
     {
         PortalDir CurrentRot { get; set; }
 
-        Positions Position { get; }
-
         PortalDir Rotate();
+
+        void UpdateDir();
     }
 }

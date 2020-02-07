@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
 
+
 public class Player : MonoBehaviour, IPlayer
 {
     public bool HoldingPiece { get; set; }
@@ -11,11 +12,21 @@ public class Player : MonoBehaviour, IPlayer
     public bool HoldingRedPiece { get; set; }
     public bool HoldingYellowPiece { get; set; }
 
-    public bool OnMirror { get; set; }
-
     public bool ColourRestriction { get; set; }
 
     public IGhostBase ChosenPiece { get; set; }
+
+    void start()
+    {
+        HoldingBluePiece = false;
+        HoldingYellowPiece = false;
+        HoldingRedPiece = false;
+        HoldingPiece = false;
+
+        ColourRestriction = true;
+
+        ChosenPiece = null;
+    }
 
     public List<IGhostBase> Ghosts
     {
@@ -53,73 +64,6 @@ public class Player : MonoBehaviour, IPlayer
             HoldingPiece = true;
         }
 
+        //if piece in that position occupied, make it empty
     }
-
-    public virtual void PlacePiece(IMapElement tile)
-    {
-        if (ChosenPiece.inDungeon) // || piece.inStart)
-        {
-            if (tile.colour == ChosenPiece.colour)
-                (ChosenPiece as MonoBehaviour).transform.position =
-                    (tile as MonoBehaviour).transform.position;          
-        }
-
-        if (tile.colour == Colours.white)
-            OnMirror = true;
-
-        if (tile.PieceOnTile == null)
-        {
-            Debug.Log("move to empty piece");
-
-            if (!OnMirror)
-            {
-                tile.PieceOnTile = ChosenPiece;
-                tile.empty = false;
-                (ChosenPiece as MonoBehaviour).transform.position = 
-                    (tile as MonoBehaviour).transform.position;
-                if ((ChosenPiece as MonoBehaviour).
-                    GetComponent<Pickable>().colour == Colours.yellow)
-                    HoldingYellowPiece = false;
-                if ((ChosenPiece as MonoBehaviour).
-                    GetComponent<Pickable>().colour == Colours.blue)
-                    HoldingBluePiece = false;
-                if ((ChosenPiece as MonoBehaviour).
-                    GetComponent<Pickable>().colour == Colours.red)
-                    HoldingRedPiece = false;
-                if ((ChosenPiece as MonoBehaviour).
-                    GetComponent<Pickable>().colour == Colours.white)
-                    OnMirror = true;
-            }
-
-            else
-            {
-                if (tile.colour == Colours.white)
-                    (ChosenPiece as MonoBehaviour).transform.position =
-                        (tile as MonoBehaviour).transform.position;
-                OnMirror = false;
-            }
-
-            tile.PieceOnTile = ChosenPiece;
-        }
-
-        else
-        {
-            Debug.Log("occupied piece");
-            (ChosenPiece as MonoBehaviour).transform.position =
-                        (tile as MonoBehaviour).transform.position;
-            ChosenPiece.Fight(tile.PieceOnTile);
-        }
-
-        HoldingYellowPiece = false;
-        HoldingBluePiece = false;
-        HoldingRedPiece = false;
-        HoldingPiece = false;
-    }
-
-    public void RemoveFromDungeon(GameObject tile)
-    {
-
-    }
-
-
 }

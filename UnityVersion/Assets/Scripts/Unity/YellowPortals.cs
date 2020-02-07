@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class YellowPortals : PortalBase
 {
+
+    public YellowPortals()
+    {
+        CurrentRot = PortalDir.right;
+    }
+
     // change this to IMapElement when new classes done
     public IMapElement TileDown;
 

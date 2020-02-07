@@ -5,5 +5,8 @@ using _18ghostsExam;
 
 public class RedHall : Tiles
 {
-
+    public RedHall()
+    {
+        colour = Colours.red;
+    }
 }

@@ -19,6 +19,8 @@ public class Pickable : MonoBehaviour, IGhostBase
 
     public bool inDungeon { get; set; }
 
+    public bool OnMirror { get; set; }
+
     public bool inStart { get; set; }
 
     public virtual string Type 
@@ -77,6 +79,11 @@ public class Pickable : MonoBehaviour, IGhostBase
     public IGhostBase GhostDied { get; set; }
 
     public virtual void Fight(IGhostBase other)
+    {
+
+    }
+
+    public void RemoveFromDungeon()
     {
 
     }

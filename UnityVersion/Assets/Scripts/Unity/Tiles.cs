@@ -8,124 +8,109 @@ namespace _18ghostsExam
 {  
     public class Tiles : MonoBehaviour, IMapElement
     {
-
-        private Button _button;
-
-        private IPlayer player;
-
-        void Awake()
-        { 
-            _button = GetComponent<Button>();
-            player = GameObject.Find("CurrentPlayer").GetComponent<IPlayer>();
-        }
-
-        public void OnItemClicked()
-        {
-            if (player.ChosenPiece.inDungeon) // || piece.inStart)
-            {
-                if (this.colour == player.ChosenPiece.colour)
-                    (player.ChosenPiece as MonoBehaviour).transform.position =
-                        (this as MonoBehaviour).transform.position;
-            }
-
-            if (this.colour == Colours.white)
-                player.OnMirror = true;
-
-            if (this.PieceOnTile == null)
-            {
-                Debug.Log("move to empty piece");
-
-                if (!player.OnMirror)
-                {
-                    this.PieceOnTile = player.ChosenPiece;
-                    this.empty = false;
-                    (player.ChosenPiece as MonoBehaviour).transform.position =
-                        (this as MonoBehaviour).transform.position;
-                    if ((player.ChosenPiece as MonoBehaviour).
-                        GetComponent<Pickable>().colour == Colours.yellow)
-                        player.HoldingYellowPiece = false;
-                    if ((player.ChosenPiece as MonoBehaviour).
-                        GetComponent<Pickable>().colour == Colours.blue)
-                        player.HoldingBluePiece = false;
-                    if ((player.ChosenPiece as MonoBehaviour).
-                        GetComponent<Pickable>().colour == Colours.red)
-                        player.HoldingRedPiece = false;
-                    if ((player.ChosenPiece as MonoBehaviour).
-                        GetComponent<Pickable>().colour == Colours.white)
-                        player.OnMirror = true;
-                }
-
-                else
-                {
-                    if (this.colour == Colours.white)
-                        (player.ChosenPiece as MonoBehaviour).transform.position =
-                            (this as MonoBehaviour).transform.position;
-                    player.OnMirror = false;
-                }
-
-                this.PieceOnTile = player.ChosenPiece;
-            }
-
-            else
-            {
-                Debug.Log("occupied piece");
-                (player.ChosenPiece as MonoBehaviour).transform.position =
-                            (this as MonoBehaviour).transform.position;
-                player.ChosenPiece.Fight(this.PieceOnTile);
-            }
-
-            player.HoldingYellowPiece = false;
-            player.HoldingBluePiece = false;
-            player.HoldingRedPiece = false;
-            player.HoldingPiece = false;
-
-        }
-        
-        public IGhostBase pieceOnTile;
-
-        public IGhostBase PieceOnTile
-        {
-            get
-            {
-                return pieceOnTile;
-            }
-
-            set
-            {
-
-            }
-        }
-
         public string Type { get; set; }
 
         public char Character { get; }
 
-        public Colours colours;
-
-        public Colours colour
-        {
-            get
-            {
-                return colours;
-            }
-        }
+        public Colours colour { get; set; }
 
         public Sprite Img { get; }
 
         public Positions Pos { get; set; }
 
-        public bool empty
-        {
-            get
-            {
-                return true;
-            }
+        public bool empty { get; set; }
 
-            set
-            {
+        private IPlayer Player;
 
-            }
+        void Awake()
+        { 
+            Player = GameObject.Find("CurrentPlayer").GetComponent<IPlayer>();
+
+            if (colour == Colours.white)
+                this.GetComponent<Image>().color = Color.white;
+            if (colour == Colours.yellow)
+                this.GetComponent<Image>().color = Color.yellow;
+            if (colour == Colours.blue)
+                this.GetComponent<Image>().color = Color.blue;
+            if (colour == Colours.red)
+                this.GetComponent<Image>().color = Color.red;
         }
 
+        public void OnItemClicked()
+        {
+            Debug.Log(Player.ChosenPiece.Type);
+            Debug.Log(Player.ChosenPiece.OnMirror);
+
+            Debug.Log(Player.HoldingYellowPiece);
+
+            if (PieceOnTile == null)
+            {                          
+                Debug.Log("move" + Player.ChosenPiece.colour + "to empty"
+                    + colour + "piece");
+
+                if (Player.ChosenPiece.OnMirror)
+                {
+                    Debug.Log("onMirror");
+
+                    if (colour == Colours.white)
+                        (Player.ChosenPiece as MonoBehaviour).transform.position =
+                                (this as MonoBehaviour).transform.position;
+
+                    Player.ChosenPiece.OnMirror = false;
+                }
+
+                else if (Player.ChosenPiece.inDungeon)
+                {
+                    Debug.Log("Jailed");
+
+                    if (colour == Player.ChosenPiece.colour)
+                    {
+                        (Player.ChosenPiece as MonoBehaviour).transform.position =
+                                (this as MonoBehaviour).transform.position;
+                        Player.ChosenPiece.inDungeon = false;
+                    }                  
+                }
+
+                else
+                {
+                    if (Player.ChosenPiece.colour == Colours.yellow)
+                        Player.HoldingYellowPiece = false;
+
+                    if (Player.ChosenPiece.colour == Colours.blue)
+                        Player.HoldingBluePiece = false;
+
+                    if (Player.ChosenPiece.colour == Colours.red)
+                        Player.HoldingRedPiece = false;
+
+                    if (colour == Colours.white && !Player.ChosenPiece.OnMirror)
+                        Player.ChosenPiece.OnMirror = true;
+
+                    (Player.ChosenPiece as MonoBehaviour).transform.position =
+                                this.transform.position;
+
+                }
+               
+                empty = false;
+
+                PieceOnTile = Player.ChosenPiece;
+            }
+            
+            else
+            {
+                Debug.Log("occupied piece");
+
+                (Player.ChosenPiece as MonoBehaviour).transform.position =
+                            (this as MonoBehaviour).transform.position;
+
+                Player.ChosenPiece.Fight(this.PieceOnTile);
+
+                PieceOnTile = Player.ChosenPiece;
+            }
+
+            Player.HoldingPiece = false;
+            
+        }
+        
+        public IGhostBase PieceOnTile{ get; set; }
     }
 }
