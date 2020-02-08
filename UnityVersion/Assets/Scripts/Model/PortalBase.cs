@@ -38,6 +38,11 @@ public class PortalBase : MonoBehaviour, IPortals, IMapElement
 
     public PortalDir CurrentRot { get; set; }
 
+    public void PlacePiece(IPlayer CurrentPlayer)
+    {
+        ///
+    }
+
     void Update()
     {
         UpdateDir();

@@ -14,8 +14,6 @@ namespace _18ghostsExam
 
         public Colours colour { get; set; }
 
-        public Sprite Img { get; }
-
         public Positions Pos { get; set; }
 
         public bool empty { get; set; }
@@ -36,81 +34,77 @@ namespace _18ghostsExam
                 this.GetComponent<Image>().color = Color.red;
         }
 
-        public void OnItemClicked()
+        public virtual void PlacePiece(IPlayer CurrentPlayer)
         {
-            Debug.Log(Player.ChosenPiece.Type);
-            Debug.Log(Player.ChosenPiece.OnMirror);
-
-            Debug.Log(Player.HoldingYellowPiece);
+            Debug.Log(CurrentPlayer.ChosenPiece.Type);
+            Debug.Log(CurrentPlayer.ChosenPiece.OnMirror);
 
             if (PieceOnTile == null)
-            {                          
-                Debug.Log("move" + Player.ChosenPiece.colour + "to empty"
+            {
+                Debug.Log("move" + CurrentPlayer.ChosenPiece.colour + "to empty"
                     + colour + "piece");
 
-                if (Player.ChosenPiece.OnMirror)
+                if (CurrentPlayer.ChosenPiece.OnMirror)
                 {
                     Debug.Log("onMirror");
 
                     if (colour == Colours.white)
-                        (Player.ChosenPiece as MonoBehaviour).transform.position =
+                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                                 (this as MonoBehaviour).transform.position;
 
-                    Player.ChosenPiece.OnMirror = false;
+                    CurrentPlayer.ChosenPiece.OnMirror = false;
                 }
 
-                else if (Player.ChosenPiece.inDungeon)
+                else if (CurrentPlayer.ChosenPiece.inDungeon)
                 {
                     Debug.Log("Jailed");
 
-                    if (colour == Player.ChosenPiece.colour)
+                    if (colour == CurrentPlayer.ChosenPiece.colour)
                     {
-                        (Player.ChosenPiece as MonoBehaviour).transform.position =
+                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                                 (this as MonoBehaviour).transform.position;
-                        Player.ChosenPiece.inDungeon = false;
-                    }                  
+                        CurrentPlayer.ChosenPiece.inDungeon = false;
+                    }
                 }
 
                 else
                 {
-                    if (Player.ChosenPiece.colour == Colours.yellow)
-                        Player.HoldingYellowPiece = false;
+                    if (CurrentPlayer.ChosenPiece.colour == Colours.yellow)
+                        CurrentPlayer.HoldingYellowPiece = false;
 
-                    if (Player.ChosenPiece.colour == Colours.blue)
-                        Player.HoldingBluePiece = false;
+                    if (CurrentPlayer.ChosenPiece.colour == Colours.blue)
+                        CurrentPlayer.HoldingBluePiece = false;
 
-                    if (Player.ChosenPiece.colour == Colours.red)
-                        Player.HoldingRedPiece = false;
+                    if (CurrentPlayer.ChosenPiece.colour == Colours.red)
+                        CurrentPlayer.HoldingRedPiece = false;
 
-                    if (colour == Colours.white && !Player.ChosenPiece.OnMirror)
-                        Player.ChosenPiece.OnMirror = true;
+                    if (colour == Colours.white && !CurrentPlayer.ChosenPiece.OnMirror)
+                        CurrentPlayer.ChosenPiece.OnMirror = true;
 
-                    (Player.ChosenPiece as MonoBehaviour).transform.position =
-                                this.transform.position;
+                    (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+                                (this as MonoBehaviour).transform.position;
 
                 }
-               
+
                 empty = false;
 
-                PieceOnTile = Player.ChosenPiece;
+                PieceOnTile = CurrentPlayer.ChosenPiece;
             }
-            
+
             else
             {
                 Debug.Log("occupied piece");
 
-                (Player.ChosenPiece as MonoBehaviour).transform.position =
+                (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                             (this as MonoBehaviour).transform.position;
 
-                Player.ChosenPiece.Fight(this.PieceOnTile);
+                CurrentPlayer.ChosenPiece.Fight(PieceOnTile);
 
-                PieceOnTile = Player.ChosenPiece;
+                PieceOnTile = CurrentPlayer.ChosenPiece;
             }
-
-            Player.HoldingPiece = false;
-            
+            CurrentPlayer.HoldingPiece = false;
         }
-        
+
         public IGhostBase PieceOnTile{ get; set; }
     }
 }

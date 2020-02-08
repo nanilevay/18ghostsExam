@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
+using TMPro;
 
 
 public class Player : MonoBehaviour, IPlayer
 {
+
     public bool HoldingPiece { get; set; }
 
     public bool HoldingBluePiece { get; set; }
@@ -16,7 +18,11 @@ public class Player : MonoBehaviour, IPlayer
 
     public IGhostBase ChosenPiece { get; set; }
 
-    void start()
+    
+    public bool start { get; set; }
+
+    /*
+    void Start()
     {
         HoldingBluePiece = false;
         HoldingYellowPiece = false;
@@ -27,6 +33,7 @@ public class Player : MonoBehaviour, IPlayer
 
         ChosenPiece = null;
     }
+    */
 
     public List<IGhostBase> Ghosts
     {
@@ -36,34 +43,6 @@ public class Player : MonoBehaviour, IPlayer
         }
     }
 
-    public string name;
-
-    public string Name
-    {
-        get
-        {
-            return name;
-        }
-    }
-
-    public virtual void PickPiece(IGhostBase piece)
-    {
-        if (piece.inDungeon) //|| piece.inStart)
-            Debug.Log("In Dungeon");
-
-        if (!HoldingPiece)
-        {
-            Debug.Log("picked piece");
-            ChosenPiece = piece;
-            if (piece.colour == Colours.yellow)
-                HoldingYellowPiece = true;
-            if (piece.colour == Colours.blue)
-                HoldingBluePiece = true;
-            if (piece.colour == Colours.red)
-                HoldingRedPiece = true;
-            HoldingPiece = true;
-        }
-
-        //if piece in that position occupied, make it empty
-    }
+  
+    public string Name { get; set; }
 }

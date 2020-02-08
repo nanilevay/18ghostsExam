@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class YellowPortals : PortalBase
 {
-
     public YellowPortals()
     {
         CurrentRot = PortalDir.right;

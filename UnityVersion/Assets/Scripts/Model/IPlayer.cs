@@ -6,7 +6,7 @@ namespace _18ghostsExam
     {
         List<IGhostBase> Ghosts { get; }
 
-        string Name { get; }
+        string Name { get; set; }
 
         bool HoldingPiece { get; set; }
 
@@ -16,6 +16,8 @@ namespace _18ghostsExam
         bool ColourRestriction { get; set; }
 
         IGhostBase ChosenPiece { get; set; }
+
+        bool start { get; set; }
 
         //  add stuff from player
     }

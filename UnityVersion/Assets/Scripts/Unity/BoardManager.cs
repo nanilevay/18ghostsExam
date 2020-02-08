@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using _18ghostsExam;
 
+
 public class BoardManager : MonoBehaviour
 {
     /// <summary>
@@ -29,25 +30,18 @@ public class BoardManager : MonoBehaviour
     /// <summary>
     /// Getting the current player
     /// </summary>
-    public Player CurrentPlayer;
+    public IPlayer CurrentPlayer;
 
-    /// <summary>
-    /// Getting our player A
-    /// </summary>
-    public Player PlayerOne;
+    private IPlayer PlayerOne;
 
-    /// <summary>
-    /// Getting our player B
-    /// </summary>
-    public Player PlayerTwo;
-
+    private IPlayer PlayerTwo;
 
     /// <summary>
     /// Getting the prefabs of the tiles
     /// </summary>
     public GameObject[] Pieces;
 
-    public GameObject[] Mirrors;
+    public GameObject Mirror;
 
     public IPortals yellowPortal;
 
@@ -95,6 +89,37 @@ public class BoardManager : MonoBehaviour
     /// Getting the board game object to set everything in a grid inside it
     /// </summary>
     public GameObject BoardObject;
+
+
+    public string ActionText
+    {     
+        get
+        {
+            return
+            "It's " + CurrentPlayer.Name + "'s turn!"
+            + "\n You can either:" +
+            " \n Move a Piece to any adjacent tile that isn't a portal."
+            + "\n Fight a ghost if the chamber is occupied (can be your own)." +
+            "\n Remove a ghost in the dungeon if you have one, this can only be done" +
+            "if there's an available tile matching the colour of your chosen ghost" +
+            "and the other player will be the one to set it.";
+        }
+    }
+
+    
+
+    public string HoldingPieceText
+    {
+        get
+        {
+            return
+            "holding" + CurrentPlayer.ChosenPiece.colour + " piece";
+        }
+    }
+
+    public TextMeshProUGUI ActionTextDisplay;
+
+    public GameObject GhostPanel;
 
     void InitialiseList()
     {
@@ -199,7 +224,7 @@ public class BoardManager : MonoBehaviour
 
                 if (positions[x, y] is Mirror)
                 {
-                    GameObject toInstantiate = Mirrors[0];
+                    GameObject toInstantiate = Mirror;
 
                     GameObject instance = Instantiate(toInstantiate) as GameObject;
 
@@ -250,29 +275,179 @@ public class BoardManager : MonoBehaviour
         positions = new IMapElement[MaxX, MaxY];
         InitialiseList();
         BoardSetup();
+
+        foreach (IMapElement tile in positions)
+        {
+            if (!(tile is IPortals))
+            {
+                Button button = (tile as MonoBehaviour).GetComponent<Button>();
+                button.onClick.AddListener(() => PlacePiece(tile));
+
+                //if (Input.GetMouseButtonDown(0))
+                //    if (EventSystemManager.currentSystem.IsPointerOverEventSystemObject())
+                //        Debug.Log("clicked tile");
+                // tile.PlacePiece(CurrentPlayer);
+            }
+        }
     }
-    
+
+
     void Start()
     {
+        PlayerOne = new Player();
+        PlayerTwo = new Player();
+
+        PlayerOne.Name = "Player A";
+        PlayerTwo.Name = "Player B";
+
+        PlayerOne.start = true;
+
+        //CurrentPlayer = GameObject.Find("CurrentPlayer").GetComponent<IPlayer>();
+
         bluePortal = BluePortal.GetComponent<IPortals>();
         yellowPortal = YellowPortal.GetComponent<IPortals>();
         redPortal = RedPortal.GetComponent<IPortals>();
 
         SetUpScene();
+
         CurrentPlayer = PlayerOne;
         CurrentPlayerText.text = CurrentPlayer.Name;    
     }
 
+    /// <summary>
+    /// /////////// THIS WORKS SEE LOGIC
+    
+    public virtual void PickPiece(IGhostBase piece)
+    {
+        if (piece.inDungeon) //|| piece.inStart)
+            Debug.Log("In Dungeon");
+
+        if (!CurrentPlayer.HoldingPiece)
+        {
+            Debug.Log("picked piece");
+
+            CurrentPlayer.ChosenPiece = piece;
+
+            if (piece.colour == Colours.yellow)
+                CurrentPlayer.HoldingYellowPiece = true;
+            if (piece.colour == Colours.blue)
+                CurrentPlayer.HoldingBluePiece = true;
+            if (piece.colour == Colours.red)
+                CurrentPlayer.HoldingRedPiece = true;
+            CurrentPlayer.HoldingPiece = true;
+        }
+        //if piece in that position occupied, make it empty
+    }
+
+
+    public virtual void PlacePiece(IMapElement ChosenTile)
+    {
+        Debug.Log(CurrentPlayer.ChosenPiece.Type);
+        Debug.Log(CurrentPlayer.ChosenPiece.OnMirror);
+
+        if (ChosenTile.PieceOnTile == null)
+        {
+            Debug.Log("move" + CurrentPlayer.ChosenPiece.colour + "to empty"
+                + ChosenTile.colour + "piece");
+
+            if (CurrentPlayer.ChosenPiece.OnMirror)
+            {
+                Debug.Log("onMirror");
+
+                if (ChosenTile.colour == Colours.white)
+                    (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+                            (ChosenTile as MonoBehaviour).transform.position;
+
+                CurrentPlayer.ChosenPiece.OnMirror = false;
+            }
+
+            else if (CurrentPlayer.ChosenPiece.inDungeon)
+            {
+                Debug.Log("Jailed");
+
+                if (ChosenTile.colour == CurrentPlayer.ChosenPiece.colour)
+                {
+                    (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+                            (ChosenTile as MonoBehaviour).transform.position;
+                    CurrentPlayer.ChosenPiece.inDungeon = false;
+                }
+            }
+
+            else
+            {
+                if (CurrentPlayer.ChosenPiece.colour == Colours.yellow)
+                    CurrentPlayer.HoldingYellowPiece = false;
+
+                if (CurrentPlayer.ChosenPiece.colour == Colours.blue)
+                    CurrentPlayer.HoldingBluePiece = false;
+
+                if (CurrentPlayer.ChosenPiece.colour == Colours.red)
+                    CurrentPlayer.HoldingRedPiece = false;
+
+                if (ChosenTile.colour == Colours.white && !CurrentPlayer.ChosenPiece.OnMirror)
+                    CurrentPlayer.ChosenPiece.OnMirror = true;
+
+                (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+                            (ChosenTile as MonoBehaviour).transform.position;
+
+            }
+
+            ChosenTile.empty = false;
+
+            ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+        }
+
+        else
+        {
+            Debug.Log("occupied piece");
+
+            (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+                        (ChosenTile as MonoBehaviour).transform.position;
+
+            CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
+
+            ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+        }
+        CurrentPlayer.HoldingPiece = false;
+    }
+
     void Update()
     {
+        
+       // Debug.Log(CurrentPlayer.ChosenPiece?.Type);
+
         CurrentPlayerText.text = CurrentPlayer.Name;
+
+        //Debug.Log(CurrentPlayer.ChosenPiece?.colour);
+
+        if (CurrentPlayer.ChosenPiece != null)
+        {
+            ActionTextDisplay.text = HoldingPieceText;
+        }
+
+        ActionTextDisplay.text = ActionText;
+
+        if (CurrentPlayer.start)
+        {
+            GhostPanel.SetActive(true);
+        }
+
+        /*
+        if (CurrentPlayer == PlayerTwo)
+            CurrentPlayer = PlayerOne;
+
+        /// INVERT
+        if (CurrentPlayer == PlayerTwo)
+            CurrentPlayer = PlayerOne;
+            */
+
 
         foreach (IMapElement position in positions)
         {
             if (position is YellowHall)
             {
-                if (position.PieceOnTile is YellowGhostPickable)
-                    Debug.Log("yeah");
+                //if (position.PieceOnTile is YellowGhostPickable)
+                    //Debug.Log("yeah");
             }
         }
 
