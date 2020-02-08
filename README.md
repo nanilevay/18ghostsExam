@@ -6,11 +6,13 @@
 
 ### Task list
 
-### Project's Git Repository
+### Project's Git Repository:
 
 <https://github.com/nanilevay/18ghosts_lp2_exam>
 
-### Describing Solution approach
+### Solution Architecture:
+
+## Solution Description:
 
 The first solution was going to be implemented on the console and then adapted to unity, however after studying the PATTERN and seeing tutorials, it was changed so that the unity version was the "base" to create the model for both. Thus, the project is organised in the following way:
 
@@ -26,9 +28,7 @@ Each ghost piece implements the INTERFACE in order to know what colour it is and
 
 The players implement the IPlayer interface and during the loop there's a rotation between player A and player B done by having a third instance of a player, the "CurrentPlayer" that stores the current play being made by each and then is equated to the other in each play.
 
-### Flow Chart
-DESC
-![name](img)
+The  board is setup so that in the unity version, each tile is defined inside the common array and then each object is instanciated where it's due, whereas in the console version a tile of each type is printed on the map for the checking.
 
 ### UML Diagram
 
