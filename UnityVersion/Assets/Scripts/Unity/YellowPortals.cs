@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using _18ghostsExam;
 using UnityEngine;
 
+/// <summary>
+/// this class allows us to define a yellow portal with its initial rotation
+/// and colour
+/// </summary>
 public class YellowPortals : PortalBase
 {
+    /// <summary>
+    /// sets the portal with the initial direction facing right
+    /// </summary>
     public YellowPortals()
     {
+        // current starting rotation of the portal
         CurrentRot = PortalDir.right;
     }
-
-    // change this to IMapElement when new classes done
-    public IMapElement TileDown;
-
-    public IMapElement TileUp;
-
-    public IMapElement TileLeft;
-
     
+    /// <summary>
+    /// this method allows us to check the tiles adjacent to the portal
+    /// </summary>
     public override void CheckAdjacents()
     {
         /*

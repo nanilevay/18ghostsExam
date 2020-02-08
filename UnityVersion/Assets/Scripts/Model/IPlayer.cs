@@ -13,7 +13,6 @@ namespace _18ghostsExam
         bool HoldingBluePiece { get; set; }
         bool HoldingRedPiece { get; set; }
         bool HoldingYellowPiece { get; set; }
-        bool ColourRestriction { get; set; }
 
         IGhostBase ChosenPiece { get; set; }
 

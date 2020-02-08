@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using _18ghostsExam;
 
+/// <summary>
+/// This class allows us to set a default pickable piece element for the ghosts
+/// </summary>
 public class Pickable : MonoBehaviour, IGhostBase
 {
+
     public Dungeon dungeon;
 
     public GameObject bluePortal;

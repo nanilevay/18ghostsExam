@@ -36,7 +36,6 @@ using _18ghostsExam;
         /// </summary>
         Colours colour { get; set; }
 
-        void PlacePiece(IPlayer CurrentPlayer);
         /// <summary>
         /// To check what piece is currently in the tile
         /// </summary>

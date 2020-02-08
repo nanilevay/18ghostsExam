@@ -6,105 +6,63 @@ using UnityEngine.UI;
 
 namespace _18ghostsExam
 {  
+    /// <summary>
+    /// This class lets us set the different tiles in the map, implementing the
+    /// IMapElement interface in order to have all its properties and always
+    /// be aware of its state within the current round on the board
+    /// </summary>
     public class Tiles : MonoBehaviour, IMapElement
     {
+        /// <summary>
+        /// Type of tile
+        /// </summary>
         public string Type { get; set; }
 
+        /// <summary>
+        /// Character to represent the tile
+        /// </summary>
         public char Character { get; }
 
+        /// <summary>
+        /// Colour of the tile
+        /// </summary>
         public Colours colour { get; set; }
 
+        /// <summary>
+        /// Position of the tile on the map
+        /// </summary>
         public Positions Pos { get; set; }
 
+        /// <summary>
+        /// checking if the tile is empty or occupied
+        /// </summary>
         public bool empty { get; set; }
 
-        private IPlayer Player;
+        /// <summary>
+        /// Gets the ghost contained in the tile if any
+        /// </summary>
+        public IGhostBase PieceOnTile { get; set; }
 
+        /// <summary>
+        /// To set the colours in the unity version of the game
+        /// </summary>
         void Awake()
         { 
-            Player = GameObject.Find("CurrentPlayer").GetComponent<IPlayer>();
-
-            if (colour == Colours.white)
+            // If the tile is white set the sprite colour to white
+            if (this is Mirror)
                 this.GetComponent<Image>().color = Color.white;
-            if (colour == Colours.yellow)
+
+            // If the tile is yellow set the sprite colour to white
+            if (this is YellowHall)
                 this.GetComponent<Image>().color = Color.yellow;
-            if (colour == Colours.blue)
+
+            // If the tile is blue set the sprite colour to white
+            if (this is BlueHall)
                 this.GetComponent<Image>().color = Color.blue;
-            if (colour == Colours.red)
+
+            // If the tile is red set the sprite colour to white
+            if (this is RedHall)
                 this.GetComponent<Image>().color = Color.red;
         }
-
-        public virtual void PlacePiece(IPlayer CurrentPlayer)
-        {
-            Debug.Log(CurrentPlayer.ChosenPiece.Type);
-            Debug.Log(CurrentPlayer.ChosenPiece.OnMirror);
-
-            if (PieceOnTile == null)
-            {
-                Debug.Log("move" + CurrentPlayer.ChosenPiece.colour + "to empty"
-                    + colour + "piece");
-
-                if (CurrentPlayer.ChosenPiece.OnMirror)
-                {
-                    Debug.Log("onMirror");
-
-                    if (colour == Colours.white)
-                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
-                                (this as MonoBehaviour).transform.position;
-
-                    CurrentPlayer.ChosenPiece.OnMirror = false;
-                }
-
-                else if (CurrentPlayer.ChosenPiece.inDungeon)
-                {
-                    Debug.Log("Jailed");
-
-                    if (colour == CurrentPlayer.ChosenPiece.colour)
-                    {
-                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
-                                (this as MonoBehaviour).transform.position;
-                        CurrentPlayer.ChosenPiece.inDungeon = false;
-                    }
-                }
-
-                else
-                {
-                    if (CurrentPlayer.ChosenPiece.colour == Colours.yellow)
-                        CurrentPlayer.HoldingYellowPiece = false;
-
-                    if (CurrentPlayer.ChosenPiece.colour == Colours.blue)
-                        CurrentPlayer.HoldingBluePiece = false;
-
-                    if (CurrentPlayer.ChosenPiece.colour == Colours.red)
-                        CurrentPlayer.HoldingRedPiece = false;
-
-                    if (colour == Colours.white && !CurrentPlayer.ChosenPiece.OnMirror)
-                        CurrentPlayer.ChosenPiece.OnMirror = true;
-
-                    (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
-                                (this as MonoBehaviour).transform.position;
-
-                }
-
-                empty = false;
-
-                PieceOnTile = CurrentPlayer.ChosenPiece;
-            }
-
-            else
-            {
-                Debug.Log("occupied piece");
-
-                (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
-                            (this as MonoBehaviour).transform.position;
-
-                CurrentPlayer.ChosenPiece.Fight(PieceOnTile);
-
-                PieceOnTile = CurrentPlayer.ChosenPiece;
-            }
-            CurrentPlayer.HoldingPiece = false;
-        }
-
-        public IGhostBase PieceOnTile{ get; set; }
     }
 }

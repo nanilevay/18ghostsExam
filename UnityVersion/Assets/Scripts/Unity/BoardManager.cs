@@ -324,16 +324,8 @@ public class BoardManager : MonoBehaviour
 
         if (!CurrentPlayer.HoldingPiece)
         {
-            Debug.Log("picked piece");
-
             CurrentPlayer.ChosenPiece = piece;
 
-            if (piece.colour == Colours.yellow)
-                CurrentPlayer.HoldingYellowPiece = true;
-            if (piece.colour == Colours.blue)
-                CurrentPlayer.HoldingBluePiece = true;
-            if (piece.colour == Colours.red)
-                CurrentPlayer.HoldingRedPiece = true;
             CurrentPlayer.HoldingPiece = true;
         }
         //if piece in that position occupied, make it empty
@@ -341,10 +333,7 @@ public class BoardManager : MonoBehaviour
 
 
     public virtual void PlacePiece(IMapElement ChosenTile)
-    {
-        Debug.Log(CurrentPlayer.ChosenPiece.Type);
-        Debug.Log(CurrentPlayer.ChosenPiece.OnMirror);
-
+    {      
         if (ChosenTile.PieceOnTile == null)
         {
             Debug.Log("move" + CurrentPlayer.ChosenPiece.colour + "to empty"
@@ -354,11 +343,21 @@ public class BoardManager : MonoBehaviour
             {
                 Debug.Log("onMirror");
 
-                if (ChosenTile.colour == Colours.white)
-                    (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
-                            (ChosenTile as MonoBehaviour).transform.position;
+                if (ChosenTile is Mirror)
+                {
+                    (CurrentPlayer.ChosenPiece as MonoBehaviour).transform
+                        .position = (ChosenTile as MonoBehaviour).transform.
+                        position;
+                    ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+                    CurrentPlayer.ChosenPiece.OnMirror = false;
 
-                CurrentPlayer.ChosenPiece.OnMirror = false;
+                    ChosenTile.empty = false;
+
+                    CurrentPlayer.HoldingPiece = false;
+                }
+
+                else
+                    ActionTextDisplay.text = "You have to move to another mirror!";             
             }
 
             else if (CurrentPlayer.ChosenPiece.inDungeon)
@@ -369,8 +368,18 @@ public class BoardManager : MonoBehaviour
                 {
                     (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                             (ChosenTile as MonoBehaviour).transform.position;
+                    
+                    ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+                    
                     CurrentPlayer.ChosenPiece.inDungeon = false;
+
+                    ChosenTile.empty = false;
+
+                    CurrentPlayer.HoldingPiece = false;
                 }
+
+                else
+                    ActionTextDisplay.text = "Move to a tile of your colour!";
             }
 
             else
@@ -390,11 +399,13 @@ public class BoardManager : MonoBehaviour
                 (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                             (ChosenTile as MonoBehaviour).transform.position;
 
+                ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+
+                ChosenTile.empty = false;
+
+                CurrentPlayer.HoldingPiece = false;
+
             }
-
-            ChosenTile.empty = false;
-
-            ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
         }
 
         else
@@ -407,8 +418,9 @@ public class BoardManager : MonoBehaviour
             CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
 
             ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+
+            CurrentPlayer.HoldingPiece = false;
         }
-        CurrentPlayer.HoldingPiece = false;
     }
 
     void Update()
