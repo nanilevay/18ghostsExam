@@ -4,7 +4,7 @@ namespace _18ghostsExam
 {
     public interface IPlayer
     {
-        List<IGhostBase> Ghosts { get; }
+        List<IGhostBase> Ghosts { get; set; }
 
         string Name { get; set; }
 

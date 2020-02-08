@@ -26,14 +26,13 @@ public class BlueGhostPickable : Pickable
     /// determine the winner based on their colour and this ghost's colour
     /// </summary>
     /// <param name="other">ghost to be fought</param>
-    public override void Fight(IGhostBase other)
+    public override IGhostBase Fight(IGhostBase other)
     {
+        Debug.Log("PUNCH");
         // Check if other ghost is yellow
         if (other is YellowGhostPickable)
         {
-            // Send other ghost to dungeon
-            other.SendToDungeon(other);
-            other.inDungeon = true;
+ 
             GhostDied = other;
         }
 
@@ -41,9 +40,9 @@ public class BlueGhostPickable : Pickable
         else
         {
             // Send this ghost to dungeon
-            SendToDungeon(this);
-            inDungeon = true;
             GhostDied = this;
         }
+
+        return GhostDied;
     }
 }

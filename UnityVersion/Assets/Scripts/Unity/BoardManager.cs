@@ -52,7 +52,9 @@ public class BoardManager : MonoBehaviour
     /// <summary>
     /// Array of all our ghosts in-game
     /// </summary>
-    public Pickable[] Ghosts;
+    public GameObject[] Ghosts;
+
+    public IGhostBase[] GhostsInBoard;
 
     /// <summary>
     /// Blue portal to instantiate
@@ -68,6 +70,10 @@ public class BoardManager : MonoBehaviour
     /// Yellow portal to instantiate
     /// </summary>
     public GameObject YellowPortal;
+
+    public GameObject DungeonPanel;
+
+    public GameObject DungeonSlot;
 
     /// <summary>
     /// Max number of rows
@@ -90,6 +96,11 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public GameObject BoardObject;
 
+    public IGhostBase DeadGhost;
+
+    public GameObject PlayerOnePanel;
+
+    public DungeonSlot[,] DungeonSlots;
 
     public string ActionText
     {     
@@ -107,7 +118,6 @@ public class BoardManager : MonoBehaviour
     }
 
     
-
     public string HoldingPieceText
     {
         get
@@ -120,6 +130,67 @@ public class BoardManager : MonoBehaviour
     public TextMeshProUGUI ActionTextDisplay;
 
     public GameObject GhostPanel;
+
+    void SetPlayerGhosts()
+    {
+        PlayerOne.Ghosts = new List<IGhostBase>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject instantiateBlueGhost = Ghosts[0];
+
+            GameObject instanceBlue =
+                Instantiate(instantiateBlueGhost) as GameObject;
+
+            instanceBlue.transform.SetParent(PlayerOnePanel.transform);        
+
+            GhostsInBoard[0 + i] = instanceBlue.GetComponent<IGhostBase>();
+
+            Button buttonBlue = instanceBlue.GetComponent<Button>();
+            
+            buttonBlue.onClick.AddListener(() => PickPiece
+            (instanceBlue.GetComponent<IGhostBase>()));
+
+            //
+
+            GameObject instantiateRedGhost = Ghosts[1];
+
+            GameObject instanceRed =
+                Instantiate(instantiateRedGhost) as GameObject;
+
+            instanceRed.transform.SetParent(PlayerOnePanel.transform);
+
+            GhostsInBoard[1 + i] = instanceRed.GetComponent<IGhostBase>();
+
+
+            Button buttonRed = instanceRed.GetComponent<Button>();
+
+            buttonRed.onClick.AddListener(() => PickPiece
+            (instanceRed.GetComponent<IGhostBase>()));
+
+            //
+            GameObject instantiateYellowGhost = Ghosts[2];
+
+            GameObject instanceYellow =
+                Instantiate(instantiateYellowGhost) as GameObject;
+
+            instanceYellow.transform.SetParent(PlayerOnePanel.transform);
+
+            GhostsInBoard[2 + i] = instanceYellow.GetComponent<IGhostBase>();
+
+
+            Button buttonYellow = instanceBlue.GetComponent<Button>();
+
+            buttonYellow.onClick.AddListener(() => PickPiece
+            (instanceYellow.GetComponent<IGhostBase>()));
+
+        }
+
+        foreach (IGhostBase ghost in GhostsInBoard)
+        {
+            PlayerOne.Ghosts.Add(ghost);
+        }
+    }
 
     void InitialiseList()
     {
@@ -188,7 +259,6 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = 0; y < MaxY; y++)
             {
-
                 if (positions[x, y] is BlueHall)
                 {
                     GameObject toInstantiate = Pieces[0];
@@ -269,7 +339,23 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    
+    void SetupDungeon()
+    {
+        for (int a = 0; a < 2; a++)
+        {
+            for (int b = 0; b < 9; b++)
+            {               
+                GameObject slotToInstantiate = DungeonSlot;
+
+                GameObject slotInstance = Instantiate(slotToInstantiate) as GameObject;
+
+                slotInstance.transform.SetParent(DungeonPanel.transform);
+
+                DungeonSlots[a, b] = slotInstance.GetComponent<DungeonSlot>();
+            }
+        }
+    }
+
     public void SetUpScene()
     {
         positions = new IMapElement[MaxX, MaxY];
@@ -282,11 +368,6 @@ public class BoardManager : MonoBehaviour
             {
                 Button button = (tile as MonoBehaviour).GetComponent<Button>();
                 button.onClick.AddListener(() => PlacePiece(tile));
-
-                //if (Input.GetMouseButtonDown(0))
-                //    if (EventSystemManager.currentSystem.IsPointerOverEventSystemObject())
-                //        Debug.Log("clicked tile");
-                // tile.PlacePiece(CurrentPlayer);
             }
         }
     }
@@ -302,21 +383,25 @@ public class BoardManager : MonoBehaviour
 
         PlayerOne.start = true;
 
+        GhostsInBoard = new IGhostBase[18];
+
         //CurrentPlayer = GameObject.Find("CurrentPlayer").GetComponent<IPlayer>();
 
         bluePortal = BluePortal.GetComponent<IPortals>();
         yellowPortal = YellowPortal.GetComponent<IPortals>();
         redPortal = RedPortal.GetComponent<IPortals>();
 
-        SetUpScene();
+        DungeonSlots = new DungeonSlot[2, 10];
+        SetupDungeon();
 
+        SetUpScene();
+        
+        SetPlayerGhosts();
+        
         CurrentPlayer = PlayerOne;
         CurrentPlayerText.text = CurrentPlayer.Name;    
     }
 
-    /// <summary>
-    /// /////////// THIS WORKS SEE LOGIC
-    
     public virtual void PickPiece(IGhostBase piece)
     {
         if (piece.inDungeon) //|| piece.inStart)
@@ -384,16 +469,9 @@ public class BoardManager : MonoBehaviour
 
             else
             {
-                if (CurrentPlayer.ChosenPiece.colour == Colours.yellow)
-                    CurrentPlayer.HoldingYellowPiece = false;
-
-                if (CurrentPlayer.ChosenPiece.colour == Colours.blue)
-                    CurrentPlayer.HoldingBluePiece = false;
-
-                if (CurrentPlayer.ChosenPiece.colour == Colours.red)
-                    CurrentPlayer.HoldingRedPiece = false;
-
-                if (ChosenTile.colour == Colours.white && !CurrentPlayer.ChosenPiece.OnMirror)
+                
+                if (ChosenTile.colour == Colours.white && 
+                    !CurrentPlayer.ChosenPiece.OnMirror)
                     CurrentPlayer.ChosenPiece.OnMirror = true;
 
                 (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
@@ -415,7 +493,7 @@ public class BoardManager : MonoBehaviour
             (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                         (ChosenTile as MonoBehaviour).transform.position;
 
-            CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
+            DeadGhost = CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
 
             ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
 
@@ -423,15 +501,25 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    public void SendToDungeon(IGhostBase dungeonGhost)
+    {
+        foreach (DungeonSlot slot in DungeonSlots)
+        {
+            if (slot.empty == true)
+            {
+                (dungeonGhost as MonoBehaviour).transform.position = 
+                    (slot as MonoBehaviour).transform.position;
+                slot.empty = false;
+                break;
+            }
+        }
+        dungeonGhost.inDungeon = true;
+        dungeonGhost.inDungeon = true;
+    }
+
     void Update()
     {
         
-       // Debug.Log(CurrentPlayer.ChosenPiece?.Type);
-
-        CurrentPlayerText.text = CurrentPlayer.Name;
-
-        //Debug.Log(CurrentPlayer.ChosenPiece?.colour);
-
         if (CurrentPlayer.ChosenPiece != null)
         {
             ActionTextDisplay.text = HoldingPieceText;
@@ -453,7 +541,6 @@ public class BoardManager : MonoBehaviour
             CurrentPlayer = PlayerOne;
             */
 
-
         foreach (IMapElement position in positions)
         {
             if (position is YellowHall)
@@ -463,26 +550,25 @@ public class BoardManager : MonoBehaviour
             }
         }
 
-        foreach (IGhostBase ghost in Ghosts)
-       {
-            if (ghost.GhostDied != null)
-            {
-                Debug.Log(redPortal.CurrentRot);
-                Debug.Log(bluePortal.CurrentRot);
-                Debug.Log(yellowPortal.CurrentRot);
+        if (DeadGhost != null)
+        {
+            SendToDungeon(DeadGhost);
+            Debug.Log(redPortal.CurrentRot);
+            Debug.Log(bluePortal.CurrentRot);
+            Debug.Log(yellowPortal.CurrentRot);
 
-                if (ghost.GhostDied.colour == Colours.blue)
-                    bluePortal.CurrentRot = bluePortal.Rotate();
+            if (DeadGhost is BlueGhostPickable)
+                bluePortal.CurrentRot = bluePortal.Rotate();
 
-                if (ghost.GhostDied.colour == Colours.red)
-                    redPortal.CurrentRot = redPortal.Rotate();
+            if (DeadGhost is RedGhostPickable)
+                redPortal.CurrentRot = redPortal.Rotate();
 
-                if (ghost.GhostDied.colour == Colours.yellow)
-                    yellowPortal.CurrentRot = yellowPortal.Rotate();
+            if (DeadGhost is YellowGhostPickable)
+                yellowPortal.CurrentRot = yellowPortal.Rotate();
 
-                ghost.inDungeon = true;
-                ghost.GhostDied = null;
-            }
-       }
+            DeadGhost.inDungeon = true;
+            DeadGhost = null;
+        }   
+        
     }
 }

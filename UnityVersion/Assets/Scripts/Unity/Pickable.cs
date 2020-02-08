@@ -9,8 +9,6 @@ using _18ghostsExam;
 public class Pickable : MonoBehaviour, IGhostBase
 {
 
-    public Dungeon dungeon;
-
     public GameObject bluePortal;
 
     public bool empty
@@ -82,9 +80,10 @@ public class Pickable : MonoBehaviour, IGhostBase
 
     public IGhostBase GhostDied { get; set; }
 
-    public virtual void Fight(IGhostBase other)
+    public virtual IGhostBase Fight(IGhostBase other)
     {
-
+        Debug.Log("fight");
+        return null;
     }
 
     public void RemoveFromDungeon()
@@ -92,17 +91,4 @@ public class Pickable : MonoBehaviour, IGhostBase
 
     }
 
-    public virtual void SendToDungeon(IGhostBase dungeonGhost)
-    {     
-        foreach(Transform slot in dungeon.transform)
-        {
-            if(slot.gameObject.GetComponent<DungeonSlot>().empty == true)
-            {
-                (dungeonGhost as MonoBehaviour).transform.position = slot.position;
-                slot.gameObject.GetComponent<DungeonSlot>().empty = false;
-                break;
-            }            
-        }
-        inDungeon = true;
-    }
 }
