@@ -6,6 +6,8 @@ namespace _18ghostsExam
     {
         List<IGhostBase> Ghosts { get; set; }
 
+        List<IGhostBase> EscapedGhosts { get; set; }
+
         string Name { get; set; }
 
         bool HoldingPiece { get; set; }

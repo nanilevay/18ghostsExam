@@ -40,6 +40,11 @@ public class Player : MonoBehaviour, IPlayer
     public List<IGhostBase> Ghosts { get; set; }
 
     /// <summary>
+    /// The list of escaped ghosts of the player
+    /// </summary>
+    public List<IGhostBase> EscapedGhosts { get; set; }
+
+    /// <summary>
     /// The player's name to be displayed in the game
     /// </summary>
     public string Name { get; set; }

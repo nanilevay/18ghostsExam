@@ -28,11 +28,9 @@ public class BlueGhostPickable : Pickable
     /// <param name="other">ghost to be fought</param>
     public override IGhostBase Fight(IGhostBase other)
     {
-        Debug.Log("PUNCH");
         // Check if other ghost is yellow
         if (other is YellowGhostPickable)
         {
- 
             GhostDied = other;
         }
 
