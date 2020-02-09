@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
 using _18ghostsExam;
 
 /// <summary>
 /// This class allows us to define a general portal that can rotate when a
 /// ghost is killed depending on the direction it was facing previously
 /// </summary>
-public class PortalBase : MonoBehaviour, IPortals, IMapElement
+public class PortalBase : IPortals, IMapElement
 {
     /// <summary>
     /// Check if tile is empty
@@ -21,9 +19,16 @@ public class PortalBase : MonoBehaviour, IPortals, IMapElement
     public string Type { get; }
 
     /// <summary>
-    /// Character to represent tile
+    /// Character to represent portal
     /// </summary>
-    public char Character { get; }
+    public char Character
+    {
+        get
+
+        {
+            return (char)Characters.portal;
+        }
+    }
 
     /// <summary>
     /// Position of tile in map
@@ -56,7 +61,7 @@ public class PortalBase : MonoBehaviour, IPortals, IMapElement
     /// <summary>
     /// Text displaying the direction being faced
     /// </summary>
-    public TextMeshProUGUI Direction;
+    public string Direction;
 
     /// <summary>
     /// This method let's us update the direcion text displayed to the user
@@ -66,19 +71,19 @@ public class PortalBase : MonoBehaviour, IPortals, IMapElement
     {
         // If portal is facing down write "down"
         if (CurrentRot == PortalDir.down)
-            Direction.text = "Down";
+            Direction = "Down";
 
         // If portal is facing left write "left"
         if (CurrentRot == PortalDir.left)
-            Direction.text = "Left";
+            Direction = "Left";
 
         // If portal is facing right write "right"
         if (CurrentRot == PortalDir.right)
-            Direction.text = "Right";
+            Direction = "Right";
 
         // If portal is facing up write "up"
         if (CurrentRot == PortalDir.up)
-            Direction.text = "Up";
+            Direction = "Up";
     }
 
     /// <summary>

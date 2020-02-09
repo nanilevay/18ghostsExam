@@ -8,22 +8,11 @@ using _18ghostsExam;
 /// </summary>
 public class Pickable : MonoBehaviour, IGhostBase
 {
-
-    public GameObject bluePortal;
-
-    public bool empty
-    {
-        get
-        {
-            return true;
-        }
-    }
+    public bool empty { get; set; }
 
     public bool inDungeon { get; set; }
 
     public bool OnMirror { get; set; }
-
-    public bool inStart { get; set; }
 
     public virtual string Type 
     { 
@@ -32,16 +21,6 @@ public class Pickable : MonoBehaviour, IGhostBase
             return "default piece";
         }
      }
-
-    public Sprite img;
-
-    public Sprite Img
-    {
-        get 
-        { 
-            return img;
-        }
-    }
 
     public char Character;
 
@@ -53,20 +32,7 @@ public class Pickable : MonoBehaviour, IGhostBase
         }
     }
 
-//    public Positions position;
-
-    public Positions Pos
-    {
-        get
-        {
-            return new Positions(0,0);
-        }
-
-        set
-        {
-
-        }
-    }
+    public Positions Pos { get; set; }
 
     public Colours colours;
 
@@ -82,13 +48,6 @@ public class Pickable : MonoBehaviour, IGhostBase
 
     public virtual IGhostBase Fight(IGhostBase other)
     {
-        Debug.Log("fight");
         return null;
     }
-
-    public void RemoveFromDungeon()
-    {
-
-    }
-
 }

@@ -6,9 +6,9 @@ namespace _18ghostsExam
     {
         static void Main(string[] args)
         {
-            Loop gameLoop = new Loop();
+            GameLoop gameLoop = new GameLoop();
 
-            gameLoop.GameLoop();
+            gameLoop.Start();
         }
     }
 }

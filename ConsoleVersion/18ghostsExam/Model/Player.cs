@@ -1,27 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using _18ghostsExam;
-using TMPro;
 
 /// <summary>
 /// This class allows us to set our players for the game, by giving them their
 /// ghost pieces and checking what action is being done in each state of the
 /// game in the main loop
 /// </summary>
-public class Player : MonoBehaviour, IPlayer
+public class Player : IPlayer
 {
     /// <summary>
     /// Check if character is holding a piece
     /// </summary>
     public bool HoldingPiece { get; set; }
-
-    ///////////////////////////////////////////////////// CHECK IF NEEDED
-    public bool HoldingBluePiece { get; set; }
-    public bool HoldingRedPiece { get; set; }
-    public bool HoldingYellowPiece { get; set; }
-    ///////////////////////////////////////////////////
-
 
     /// <summary>
     /// The current piece chosen by the player in a round
