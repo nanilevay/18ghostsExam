@@ -19,6 +19,11 @@ public class RedGhostPickable : Pickable
         }
     }
 
+    public RedGhostPickable()
+    {
+        colour = Colours.red;
+    }
+
     /// <summary>
     /// This method allows us to fight another ghost and determine the winner
     /// based on the colour of this ghost and the other

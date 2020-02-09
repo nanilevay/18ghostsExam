@@ -31,15 +31,7 @@ public class Pickable : IGhostBase
 
     public Positions Pos { get; set; }
 
-    public Colours colours;
-
-    public Colours colour
-    {
-        get
-        {
-            return colours;
-        }
-    }
+    public Colours colour { get; set; }
 
     public IGhostBase GhostDied { get; set; }
 

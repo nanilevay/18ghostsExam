@@ -10,4 +10,6 @@ public class DungeonSlot
     public bool empty = true;
 
     public char Character = (char)Characters.map;
+
+    public IGhostBase GhostInSlot;
 }

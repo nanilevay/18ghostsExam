@@ -26,7 +26,6 @@ namespace _18ghostsExam
             get
             {
                 return (char)Characters.ghost;
-
             }
         }
 
@@ -38,7 +37,7 @@ namespace _18ghostsExam
         /// <summary>
         /// Ghost's colour
         /// </summary>
-        Colours colour { get; }
+        Colours colour { get; set; }
 
         /// <summary>
         /// Checking if ghost is on mirror

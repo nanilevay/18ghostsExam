@@ -6,6 +6,21 @@
 /// </summary>
 public class BlueGhostPickable : Pickable
 {
+
+    public BlueGhostPickable()
+    {
+        colour = Colours.blue;
+    }
+
+    /*
+    public Colours colour
+    {
+        get
+        {
+            return Colours.blue;
+        }
+    }
+    */
     /// <summary>
     /// For identifying the type of piece
     /// </summary>
