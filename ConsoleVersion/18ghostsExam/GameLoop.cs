@@ -120,7 +120,7 @@ namespace _18ghostsExam
         /// This method allows us to set each player's ghosts list
         /// </summary>
         void SetPlayerGhosts()
-        {          
+        {
             for (int i = 0; i < 3; i++)
             {
                 IGhostBase instantiateBlueGhost = new BlueGhostPickable();
@@ -150,7 +150,7 @@ namespace _18ghostsExam
                 IGhostBase instantiateYellowGhost = new YellowGhostPickable();
 
                 PlayerTwo.Ghosts.Add(instantiateYellowGhost);
-            }          
+            }
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace _18ghostsExam
             {
                 for (int y = 0; y < MaxY; y++)
                 {
-                    if(y == 0)
+                    if (y == 0)
                     {
                         Console.Write("_" + x + "_");
                     }
@@ -254,7 +254,7 @@ namespace _18ghostsExam
                             Console.ForegroundColor = ConsoleColor.Blue;
                         }
 
-                        Console.Write("|_" + positions[x, y].PieceOnTile.character + "_|");            
+                        Console.Write("|_" + positions[x, y].PieceOnTile.character + "_|");
                     }
 
                     else
@@ -294,7 +294,7 @@ namespace _18ghostsExam
                             Console.ForegroundColor = ConsoleColor.Yellow;
                         }
 
-                        
+
                         Console.Write("|_" + positions[x, y].Character + "_|");
 
                     }
@@ -313,14 +313,14 @@ namespace _18ghostsExam
         /// This void allows us to set up the dungeon for when ghosts die
         /// </summary>
         void SetupDungeon()
-        {         
+        {
             for (int a = 0; a < 2; a++)
             {
                 for (int b = 0; b < 9; b++)
                 {
                     DungeonSlots[a, b] = new DungeonSlot();
                 }
-            }      
+            }
         }
 
         public void SetUpScene()
@@ -396,18 +396,18 @@ namespace _18ghostsExam
 
             SetupDungeon();
 
-            SetUpScene();         
+            SetUpScene();
 
             PlayerOne.Ghosts = new List<IGhostBase>();
 
             PlayerTwo.Ghosts = new List<IGhostBase>();
 
             SetPlayerGhosts();
-            
+
             CurrentPlayer = PlayerOne;
 
             Loop();
-            
+
         }
 
         /// <summary>
@@ -473,7 +473,7 @@ namespace _18ghostsExam
             CurrentMoveIsValid = ValidMove(ChosenTile);
 
             if (!(ChosenTile is IPortals))
-            { 
+            {
                 if (ChosenTile.PieceOnTile == null)
                 {
                     if (CurrentPlayer.ChosenPiece.OnMirror)
@@ -583,7 +583,7 @@ namespace _18ghostsExam
                         Console.WriteLine("invalid move!");
 
                 }
-        }
+            }
             else
             {
                 Console.WriteLine("Any tile that isn't a portal!");
@@ -592,7 +592,7 @@ namespace _18ghostsExam
 
         public void SendToDungeon(IGhostBase dungeonGhost)
         {
-            
+
             foreach (DungeonSlot slot in DungeonSlots)
             {
                 if (slot.empty == true)
@@ -602,7 +602,7 @@ namespace _18ghostsExam
                     break;
                 }
             }
-            dungeonGhost.inDungeon = true;          
+            dungeonGhost.inDungeon = true;
         }
 
         void CheckRedSurrounding()
@@ -674,13 +674,81 @@ namespace _18ghostsExam
         {
             Console.WriteLine(CurrentPlayer.Name + " , pick one of your ghosts!");
 
-            int input = Int32.Parse(Console.ReadLine());
+            string input = Console.ReadLine();
 
-            CurrentPlayer.ChosenPiece = CurrentPlayer.Ghosts[input];
+            int validInput;
+            
+            bool InputIsValid = Int32.TryParse(input, out validInput);
 
-            Console.WriteLine(CurrentPlayer.ChosenPiece.colour);
+            if (InputIsValid)
+            {
+                CurrentPlayer.ChosenPiece = CurrentPlayer.Ghosts[validInput];
 
-            PickPiece(CurrentPlayer.ChosenPiece);            
+                CurrentPlayer.Ghosts.RemoveAt(validInput);
+
+                Console.WriteLine(CurrentPlayer.ChosenPiece.colour);
+
+                PickPiece(CurrentPlayer.ChosenPiece);
+            }
+
+            else
+                PlaceStartGhosts();
+        }
+
+        public void MoveGhosts()
+        {
+            Console.WriteLine
+                (CurrentPlayer.Name + " , Make your move! You can either:");
+            Console.WriteLine
+                ("- Move a ghost to any adjacent tile (besides portals)");
+            Console.WriteLine
+                ("- Remove a ghost from the dungeon (other player places it");
+            Console.WriteLine
+                ("- Fight a ghost in another tile by moving to its position");
+
+            Console.WriteLine("Write the (x,y) coordinates to select piece");
+
+            string input = Console.ReadLine();
+
+            string[] inputSplit = input.Split(",");
+
+            int validInputOne;
+            int validInputTwo;
+
+            bool InputIsValidOne = Int32.TryParse(inputSplit[0], out validInputOne);
+            bool InputIsValidTwo = Int32.TryParse(inputSplit[1], out validInputTwo);
+
+            if (InputIsValidOne && InputIsValidTwo)
+            {
+                PreviousTile = positions[validInputOne, validInputTwo];
+
+                CurrentPlayer.ChosenPiece = PreviousTile.PieceOnTile;
+            }
+
+            else
+                MoveGhosts();
+
+            Console.WriteLine("Selected" + CurrentPlayer.ChosenPiece.colour + "ghost");
+
+                Console.WriteLine("Input coordinates to move to");
+
+            string newinput = Console.ReadLine();
+
+            string[] newinputSplit = newinput.Split(",");
+
+            int newvalidInputOne;
+            int newvalidInputTwo;
+
+            bool newInputIsValidOne = Int32.TryParse(newinputSplit[0], out newvalidInputOne);
+            bool newInputIsValidTwo = Int32.TryParse(newinputSplit[1], out newvalidInputTwo);
+
+                IMapElement NextTile = positions[newvalidInputOne,newvalidInputTwo];
+
+            if (newInputIsValidOne && newInputIsValidTwo)
+                PlacePiece(NextTile);
+            else
+                MoveGhosts();
+            
         }
 
         public void Loop()
@@ -692,7 +760,7 @@ namespace _18ghostsExam
                 Console.WriteLine("Dungeon:____________________________________");
                 for (int a = 0; a < 2; a++)
                 {
-                    
+
                     for (int b = 0; b < 9; b++)
                     {
                         Console.Write("|_" + DungeonSlots[a, b].Character + "_|");
@@ -701,6 +769,7 @@ namespace _18ghostsExam
                 }
 
                 int i = 0;
+
                 foreach (IGhostBase ghost in CurrentPlayer.Ghosts)
                 {
                     Console.Write("ghost #" + i + ": ");
@@ -715,8 +784,11 @@ namespace _18ghostsExam
                     i++;
                 }
 
-                if(CurrentPlayer.start)
+                if (CurrentPlayer.start)
                     PlaceStartGhosts();
+
+                else
+                    MoveGhosts();
 
                 if (PlayDone)
                     Play();
@@ -735,27 +807,28 @@ namespace _18ghostsExam
                     && CurrentPlayer.EscapedGhosts.OfType<YellowGhostPickable>().Any()
                     && CurrentPlayer.EscapedGhosts.OfType<BlueGhostPickable>().Any())
                     Finish = true;
-                
-            /*
-            if (DeadGhost != null)
-            {
-                SendToDungeon(DeadGhost);
 
-                if (DeadGhost is BlueGhostPickable)
-                    bluePortal.CurrentRot = bluePortal.Rotate();
+                /*
+                if (DeadGhost != null)
+                {
+                    SendToDungeon(DeadGhost);
 
-                if (DeadGhost is RedGhostPickable)
-                    redPortal.CurrentRot = redPortal.Rotate();
+                    if (DeadGhost is BlueGhostPickable)
+                        bluePortal.CurrentRot = bluePortal.Rotate();
 
-                if (DeadGhost is YellowGhostPickable)
-                    yellowPortal.CurrentRot = yellowPortal.Rotate();
+                    if (DeadGhost is RedGhostPickable)
+                        redPortal.CurrentRot = redPortal.Rotate();
 
-                DeadGhost.inDungeon = true;
-                DeadGhost = null;
+                    if (DeadGhost is YellowGhostPickable)
+                        yellowPortal.CurrentRot = yellowPortal.Rotate();
+
+                    DeadGhost.inDungeon = true;
+                    DeadGhost = null;
+                }
+                */
+                Console.Clear();
+
             }
-            */
-
-        }
         }
     }
 }
