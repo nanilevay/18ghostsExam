@@ -42,12 +42,24 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public GameObject[] Pieces;
 
+    /// <summary>
+    /// To get the prefab of the mirror
+    /// </summary>
     public GameObject Mirror;
 
+    /// <summary>
+    /// To get the prefab of the yellow portal
+    /// </summary>
     public IPortals yellowPortal;
 
+    /// <summary>
+    /// To get the prefab of the blue portal
+    /// </summary>
     public IPortals bluePortal;
 
+    /// <summary>
+    /// To get the prefab of the red portal
+    /// </summary>
     public IPortals redPortal;
 
     /// <summary>
@@ -75,8 +87,14 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public GameObject YellowPortal;
 
+    /// <summary>
+    /// To get the dungeon panel
+    /// </summary>
     public GameObject DungeonPanel;
 
+    /// <summary>
+    /// To get the prefab for the dungeon slots
+    /// </summary>
     public GameObject DungeonSlot;
 
     /// <summary>
@@ -100,20 +118,54 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public GameObject BoardObject;
 
+    /// <summary>
+    /// To check what ghost died to rotate portals
+    /// </summary>
     public IGhostBase DeadGhost;
 
+    /// <summary>
+    /// Getting a list of the slots in the dungeon for their positions
+    /// </summary>
     public DungeonSlot[,] DungeonSlots;
 
+    /// <summary>
+    /// The tile where a ghost was previously
+    /// </summary>
     public IMapElement PreviousTile;
 
+    /// <summary>
+    /// If the turn is over, switch the players
+    /// </summary>
     private bool PlayDone = false;
 
+    /// <summary>
+    /// Player one's ghost panel
+    /// </summary>
     public GameObject PlayerOnePanel;
 
+    /// <summary>
+    /// Player two's ghost panel
+    /// </summary>
     public GameObject PlayerTwoPanel;
 
+    /// <summary>
+    /// To count until all ghosts are set
+    /// </summary>
     private int counter;
 
+    /// <summary>
+    /// To check the order of play at the start
+    /// </summary>
+    private bool TwoHandicap = true;
+
+    /// <summary>
+    /// To check whether a move is valid or not
+    /// </summary>
+    private bool CurrentMoveIsValid;
+
+    /// <summary>
+    /// Text displayed to the players to show which actions are valid
+    /// </summary>
     public string ActionText
     {     
         get
@@ -129,7 +181,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    
+    /// <summary>
+    /// When a player is holding a piece
+    /// </summary>
     public string HoldingPieceText
     {
         get
@@ -139,6 +193,9 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method allows us to set each player's ghosts list
+    /// </summary>
     void SetPlayerGhosts()
     {
         
@@ -241,14 +298,12 @@ public class BoardManager : MonoBehaviour
             (instanceYellow.GetComponent<IGhostBase>()));
 
             PlayerTwo.Ghosts.Add(instanceYellow.GetComponent<IGhostBase>());
-
-            foreach (IGhostBase ghost in PlayerTwo.Ghosts)
-                Debug.Log("ghost1");
-            foreach (IGhostBase ghost in PlayerTwo.Ghosts)
-                Debug.Log("ghost2");
         }
     }
 
+    /// <summary>
+    /// This method allows us to set the main map with all the given positions
+    /// </summary>
     void InitialiseList()
     {
         for(int x = 0; x < MaxX; x++)
@@ -283,6 +338,7 @@ public class BoardManager : MonoBehaviour
                     if (y == 4)
                         positions[x, y] = yellowPortal;
                 }
+                
                 if(x == 3)
                 {
                     if (y == 0)
@@ -293,8 +349,8 @@ public class BoardManager : MonoBehaviour
                         positions[x, y] = new Mirror();
                     if (y == 4)
                         positions[x, y] = new RedHall();
-
                 }
+
                 if(x == 4)
                 {
                     if (y == 3)
@@ -306,10 +362,16 @@ public class BoardManager : MonoBehaviour
                     if (y == 2)
                         positions[x, y] = bluePortal;
                 }
+
+                positions[x, y].Pos = new Positions(x, y);
             }
         }
     }
 
+    /// <summary>
+    /// This method allows us to set up the board by defining each tile in 
+    /// its specified position for a new game according to its type
+    /// </summary>
     void BoardSetup()
     {
         for (int x = 0; x < MaxX; x++)
@@ -371,6 +433,8 @@ public class BoardManager : MonoBehaviour
                     positions[x, y] = instance.GetComponent<IPortals>();
 
                     redPortal = instance.GetComponent<IPortals>();
+
+                    redPortal.Pos = new Positions(x, y);
                 }
 
                 if (positions[x, y] is BluePortals)
@@ -384,6 +448,8 @@ public class BoardManager : MonoBehaviour
                     positions[x, y] = instance.GetComponent<IPortals>();
 
                     bluePortal = instance.GetComponent<IPortals>();
+
+                    bluePortal.Pos = new Positions(x, y);
                 }
 
                 if (positions[x, y] is YellowPortals)
@@ -396,12 +462,16 @@ public class BoardManager : MonoBehaviour
 
                     positions[x, y] = instance.GetComponent<IPortals>();
 
-                    yellowPortal = instance.GetComponent<IPortals>();
+                    yellowPortal.Pos = new Positions(x, y);
                 }
+
+                positions[x, y].Pos = new Positions(x, y);
             }
         }
     }
-
+    /// <summary>
+    /// This void allows us to set up the dungeon for when ghosts die
+    /// </summary>
     void SetupDungeon()
     {
         for (int a = 0; a < 2; a++)
@@ -435,37 +505,54 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method allows us to change the current player
+    /// </summary>
     public void Play()
-    {            
+    {       
+            // check if current player is player A
             if (CurrentPlayer == PlayerOne)
             {
-            Debug.Log("player switch from B to A");
-            CurrentPlayerText.text = PlayerTwo.Name;
+                // Change current player name display
+                CurrentPlayerText.text = PlayerTwo.Name;
+                
+            // Change current player
                 CurrentPlayer = PlayerTwo;
+
+            // Change action text
                 PlayerActionsTexts.text = ActionText;
+
+            // Count to check how many ghosts have been placed
                 counter++;
-            PlayDone = false;
-        }
+
+            // For new checking
+                PlayDone = false;
+            }
 
             else if (CurrentPlayer == PlayerTwo)
             {
-                
-                Debug.Log("player switch from A to B");
-                CurrentPlayerText.text = PlayerTwo.Name;
-                CurrentPlayer = PlayerOne;
-                PlayerActionsTexts.text = ActionText;
-                counter++;
-            PlayDone = false;
-        }
+                //if (TwoHandicap)
+                //{
 
-        Debug.Log(CurrentPlayer.Name);
+                    CurrentPlayerText.text = PlayerOne.Name;
+                    CurrentPlayer = PlayerOne;
+                    PlayerActionsTexts.text = ActionText;
+                    counter++;
+                    PlayDone = false;
+                //}
 
+                //TwoHandicap = false;
+
+            }
         
     }
 
-
-    void Start()
+    /// <summary>
+    /// This method allows us to set the Current level's initial state
+    /// </summary>
+    private void Start()
     {
+        PreviousTile = null;
 
         PlayerOne = new Player();
         PlayerTwo = new Player();
@@ -503,40 +590,72 @@ public class BoardManager : MonoBehaviour
         PlayerActionsTexts.text = ActionText;
     }
 
+    /// <summary>
+    /// This method allows us to pick a piece from the board and get its info
+    /// </summary>
+    /// <param name="piece">piece being selected by player</param>
     public virtual void PickPiece(IGhostBase piece)
     {
+        // Check if piece belongs to current player
         if (CurrentPlayer.Ghosts.Contains(piece))
-        {
-            if (!CurrentPlayer.HoldingPiece)
+        {           
+            CurrentPlayer.ChosenPiece = piece;
+
+            PlayerActionsTexts.text = HoldingPieceText;
+
+            if (!CurrentPlayer.start)
             {
-                CurrentPlayer.ChosenPiece = piece;
+                if(!piece.inDungeon)
+                {
+                    PreviousTile = (piece as MonoBehaviour).transform.parent.
+                        gameObject.GetComponent<IMapElement>();
 
-                CurrentPlayer.HoldingPiece = true;
-
-                PlayerActionsTexts.text = HoldingPieceText;
+                    PreviousTile.PieceOnTile = null;
+                }
             }
+            
         }
 
         else
         {
             
-            if (!CurrentPlayer.HoldingPiece)
+            if (CurrentPlayer.ChosenPiece != null)
             {
                 CurrentPlayer.ChosenPiece = null;
-
-                CurrentPlayer.HoldingPiece = false;
 
                 PlayerActionsTexts.text = "not your turn!";
             }
         }
     }
 
+    
+    public bool ValidMove(IMapElement NextTile)
+    {
+        if (PreviousTile != null)
+        {
+            if(NextTile.Pos.X == PreviousTile.Pos.X + 1 
+                && NextTile.Pos.Y == PreviousTile.Pos.Y)
+                return true;
+            if (NextTile.Pos.X == PreviousTile.Pos.X - 1
+            && NextTile.Pos.Y == PreviousTile.Pos.Y)
+                    return true;
+            if (NextTile.Pos.X == PreviousTile.Pos.X
+            && NextTile.Pos.Y == PreviousTile.Pos.Y + 1)
+                        return true;
+            if (NextTile.Pos.X == PreviousTile.Pos.X
+            && NextTile.Pos.Y == PreviousTile.Pos.Y - 1)
+                            return true;
+        }
+
+        return false;
+    }
+
     public virtual void PlacePiece(IMapElement ChosenTile)
     {
-        Debug.Log(CurrentPlayer.Name + "placed piece");
+        CurrentMoveIsValid = ValidMove(ChosenTile);
 
         if (ChosenTile.PieceOnTile == null)
-        {
+        {      
             if (CurrentPlayer.ChosenPiece.OnMirror)
             {
                 if (ChosenTile is Mirror)
@@ -546,29 +665,32 @@ public class BoardManager : MonoBehaviour
                         .position = (ChosenTile as MonoBehaviour).transform.
                         position;
 
-                    //(CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
-                    //    = (ChosenTile as MonoBehaviour).transform;
-
+                    (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
+                        = (ChosenTile as MonoBehaviour).transform;
 
                     ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
-                    
+
                     CurrentPlayer.ChosenPiece.OnMirror = false;
 
-                    ChosenTile.empty = false;
-
-                    CurrentPlayer.HoldingPiece = false;
-
                     PlayDone = true;
+
+                    PreviousTile = ChosenTile;
                 }
 
                 else
-                    PlayerActionsTexts.text = 
-                        "You have to move to another mirror!";             
+                {
+                    PlayerActionsTexts.text =
+                        "You have to move to another mirror!";
+
+                    CurrentPlayer.ChosenPiece = null;
+
+                    PreviousTile = null;
+                }
             }
+            
 
             else if (CurrentPlayer.ChosenPiece.inDungeon || CurrentPlayer.start)
             {
-
                 if (ChosenTile.colour == CurrentPlayer.ChosenPiece.colour)
                 {
                     (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
@@ -577,69 +699,100 @@ public class BoardManager : MonoBehaviour
                     (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
                         = (ChosenTile as MonoBehaviour).transform;
 
-
                     ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
-                    
+
                     CurrentPlayer.ChosenPiece.inDungeon = false;
 
-                    ChosenTile.empty = false;
-
-                    CurrentPlayer.HoldingPiece = false;
-
                     PlayDone = true;
+
+                    PreviousTile = ChosenTile;
                 }
 
                 else
+                {
                     PlayerActionsTexts.text = "Move to a tile of your colour!";
+
+                    CurrentPlayer.ChosenPiece = null;
+
+                    PreviousTile = null;
+                }
             }
 
             else
             {
-
-                if (ChosenTile is Mirror &&
-                    !CurrentPlayer.ChosenPiece.OnMirror)
+                if (CurrentMoveIsValid)
                 {
-                    CurrentPlayer.ChosenPiece.OnMirror = true;
-                    PlayerActionsTexts.text = "You're on a mirror! You can" +
-                        "teleport.";
-                }
+                    if (ChosenTile is Mirror &&
+                    !CurrentPlayer.ChosenPiece.OnMirror)
+                    {
+                        CurrentPlayer.ChosenPiece.OnMirror = true;
 
+                        PlayerActionsTexts.text = "You're on a mirror! You can" +
+                            "teleport.";
 
-                (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                             (ChosenTile as MonoBehaviour).transform.position;
 
-                (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
-                        = (ChosenTile as MonoBehaviour).transform;
+                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
+                                = (ChosenTile as MonoBehaviour).transform;
 
-                ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+                        ChosenTile.PieceOnTile = null;                    
+                    }
 
-                ChosenTile.empty = false;
+                    else 
+                    {
 
-                CurrentPlayer.HoldingPiece = false;
+                        PlayerActionsTexts.text = "placed" 
+                            + ChosenTile.PieceOnTile.colour +
+                            "piece on " + ChosenTile.colour + 
+                            "tile (" + ChosenTile.Pos.X +
+                            "," + ChosenTile.Pos.Y + ")";
 
-                PlayDone = true;
+                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+                            (ChosenTile as MonoBehaviour).transform.position;
+
+                        (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
+                                = (ChosenTile as MonoBehaviour).transform;
+
+                        ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+
+                        PreviousTile = ChosenTile;
+
+                        CurrentPlayer.ChosenPiece = null;
+
+                        PlayDone = true;
+                    }
+                }
             }
         }
 
         else
         {
-
-            (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
+            if (CurrentMoveIsValid)
+            {
+                (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                         (ChosenTile as MonoBehaviour).transform.position;
 
-            (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
-                        = (ChosenTile as MonoBehaviour).transform;
+                (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.parent
+                            = (ChosenTile as MonoBehaviour).transform;
 
-            DeadGhost = CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
+                DeadGhost = CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
 
-            ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+                ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
 
-            CurrentPlayer.HoldingPiece = false;
 
-            PlayDone = true;
+                PlayDone = true;
+            }
 
+            else
+                Debug.Log("invalid move!");
             
         }
+
+        Debug.Log("placed" + ChosenTile.PieceOnTile.colour + 
+            "piece on " + ChosenTile.colour + "tile (" + ChosenTile.Pos.X + 
+            "," + ChosenTile.Pos.Y + ")");
+        Debug.Log(counter);
     }
 
     public void SendToDungeon(IGhostBase dungeonGhost)
@@ -727,6 +880,7 @@ public class BoardManager : MonoBehaviour
 
     void Update()
     {
+
         if(PlayDone)
             Play();
 
@@ -745,18 +899,6 @@ public class BoardManager : MonoBehaviour
             && CurrentPlayer.EscapedGhosts.OfType<YellowGhostPickable>().Any()
             && CurrentPlayer.EscapedGhosts.OfType<BlueGhostPickable>().Any())
             Debug.Log("YEAAAAAAAAAAH PLAYER" + CurrentPlayer.Name + "WON");
-
-
-        /*
-          foreach (IMapElement position in positions)
-        {
-            if (position is YellowHall)
-            {
-                //if (position.PieceOnTile is YellowGhostPickable)
-                    //Debug.Log("yeah");
-            }
-        }
-        */
 
         if (DeadGhost != null)
         {
