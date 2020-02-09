@@ -689,25 +689,30 @@ namespace _18ghostsExam
             {
                 BoardSetup();
 
+                Console.WriteLine("Dungeon:____________________________________");
                 for (int a = 0; a < 2; a++)
                 {
+                    
                     for (int b = 0; b < 9; b++)
                     {
-                        Console.Write(DungeonSlots[a, b].Character);
+                        Console.Write("|_" + DungeonSlots[a, b].Character + "_|");
                     }
                     Console.WriteLine();
                 }
 
+                int i = 0;
                 foreach (IGhostBase ghost in CurrentPlayer.Ghosts)
                 {
-                    if(ghost is BlueGhostPickable)
+                    Console.Write("ghost #" + i + ": ");
+                    if (ghost is BlueGhostPickable)
                         Console.ForegroundColor = ConsoleColor.Blue;
                     if (ghost is RedGhostPickable)
                         Console.ForegroundColor = ConsoleColor.Red;
                     if (ghost is YellowGhostPickable)
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(ghost.character);
+                    Console.WriteLine(ghost.character);
                     Console.ResetColor();
+                    i++;
                 }
 
                 if(CurrentPlayer.start)
