@@ -14,9 +14,13 @@ public class Mirror : IMapElement
     public char Character
     {
         get
-
         {
             return (char)Characters.mirror;
+        }
+
+        set
+        {
+
         }
     }
 

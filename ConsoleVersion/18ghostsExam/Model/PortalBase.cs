@@ -28,6 +28,11 @@ public class PortalBase : IPortals, IMapElement
         {
             return (char)Characters.portal;
         }
+
+        set
+        {
+
+        }
     }
 
     /// <summary>

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Dungeon.cs" />
+    <Compile Include="Assets\Scripts\Model\BoardManager.cs" />
     <Compile Include="Assets\Scripts\Model\Characters.cs" />
     <Compile Include="Assets\Scripts\Model\Colours.cs" />
     <Compile Include="Assets\Scripts\Model\Dungeon.cs" />
@@ -80,16 +81,15 @@
     <Compile Include="Assets\Scripts\Model\PortalDir.cs" />
     <Compile Include="Assets\Scripts\Model\Positions.cs" />
     <Compile Include="Assets\Scripts\Model\Tiles.cs" />
+    <Compile Include="Assets\Scripts\Model\YellowPortals.cs" />
     <Compile Include="Assets\Scripts\Unity\BlueGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Unity\BlueHall.cs" />
     <Compile Include="Assets\Scripts\Unity\BluePortals.cs" />
-    <Compile Include="Assets\Scripts\Unity\BoardManager.cs" />
     <Compile Include="Assets\Scripts\Unity\RedGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Unity\RedHall.cs" />
     <Compile Include="Assets\Scripts\Unity\RedPortals.cs" />
     <Compile Include="Assets\Scripts\Unity\YellowGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Unity\YellowHall.cs" />
-    <Compile Include="Assets\Scripts\YellowPortals.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

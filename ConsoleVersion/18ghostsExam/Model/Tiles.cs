@@ -26,6 +26,11 @@ namespace _18ghostsExam
             {
                 return (char)Characters.map;
             }
+
+            set
+            {
+
+            }
         }
 
         /// <summary>

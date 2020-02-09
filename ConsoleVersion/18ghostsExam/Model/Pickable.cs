@@ -21,13 +21,11 @@ public class Pickable : IGhostBase
         }
      }
 
-    public char Character;
-
     public char character
     {
         get
         {
-            return Character;
+            return (char)Characters.ghost;
         }
     }
 

@@ -20,7 +20,15 @@ namespace _18ghostsExam
         /// <summary>
         /// Char to represent ghost in the board
         /// </summary>
-        char character { get; }
+        char character
+        {
+
+            get
+            {
+                return (char)Characters.ghost;
+
+            }
+        }
 
         /// <summary>
         /// Position of ghost in the board
