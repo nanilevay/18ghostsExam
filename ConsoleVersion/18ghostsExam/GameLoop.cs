@@ -9,6 +9,7 @@ namespace _18ghostsExam
     /// </summary>
     public class GameLoop
     {
+
         /// <summary>
         /// Getting the current player
         /// </summary>
@@ -405,6 +406,12 @@ namespace _18ghostsExam
             SetPlayerGhosts();
 
             CurrentPlayer = PlayerOne;
+
+            Texts text = Texts.Instance();
+            
+            Console.WriteLine(text.IntroText());
+
+            Console.ReadLine();
 
             Loop();
 
