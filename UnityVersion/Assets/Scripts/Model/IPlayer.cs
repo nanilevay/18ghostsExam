@@ -17,5 +17,7 @@ namespace _18ghostsExam
         List<IGhostBase> StartGhosts { get; set; }
 
         bool start { get; set; }
+
+        void SetGhosts();
     }
 }

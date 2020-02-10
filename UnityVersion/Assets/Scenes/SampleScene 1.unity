@@ -314,6 +314,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &479246209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479246211}
+  - component: {fileID: 479246210}
+  m_Layer: 0
+  m_Name: P2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &479246210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479246209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerPanel: {fileID: 1476250849609224239}
+  GhostsP1:
+  - {fileID: 7117786603762558590, guid: 412e6d8c5c87b7d41be859e9ee764cad, type: 3}
+  - {fileID: 7815910776371639462, guid: 7af26a3bc7dba2e45a2cd6b1615a4bf6, type: 3}
+  - {fileID: 428614648462683435, guid: 0a447a184711bdd4ba92832eddca41ff, type: 3}
+--- !u!4 &479246211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479246209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 667.33057, y: 647.9076, z: -330.23843}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPanel: {fileID: 0}
+  GhostsP1: []
 --- !u!1 &1061751160
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +881,7 @@ GameObject:
   - component: {fileID: 1061751164}
   - component: {fileID: 1061751163}
   - component: {fileID: 1061751162}
+  - component: {fileID: 1061751165}
   m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
@@ -917,49 +968,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061751160}
   m_CullTransparentMesh: 0
---- !u!1 &1100170430
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1100170432}
-  - component: {fileID: 1100170431}
-  m_Layer: 0
-  m_Name: CurrentPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1100170431
+--- !u!114 &1061751165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100170430}
+  m_GameObject: {fileID: 1061751160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
+  m_Script: {fileID: 11500000, guid: a1ec46aa91e1fb048831f6b8ae719e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1100170432
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100170430}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1197.9728, y: 697.23267, z: -130.28053}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  Mirror: {fileID: 4921740898314749197, guid: 4b95e08af39d73147be7db07e5a20ff6, type: 3}
+  Pieces:
+  - {fileID: 2924670866125662951, guid: 2786af698438dbe4596b5c6e9ce68646, type: 3}
+  - {fileID: 8389648471852089686, guid: bd7e008333351e24d91a74327b46cff0, type: 3}
+  - {fileID: 1714427889788984871, guid: 3b6cdac6f20ee4b49bd9537c9ce70f54, type: 3}
+  BluePortal: {fileID: 4778288381706949099, guid: 186af72d5225a52418f24f239e038540,
+    type: 3}
+  RedPortal: {fileID: 8207841646436596010, guid: 144985021154e104dbacc13b139d66b1,
+    type: 3}
+  YellowPortal: {fileID: 3300041805892992451, guid: d3910c68559fff44e83001963cf9364f,
+    type: 3}
+  DungeonPanel: {fileID: 1715106482}
+  DungeonSlot: {fileID: 4636660705215818766, guid: 67296a7e80d6f6d40b96dad45b1a2fbe,
+    type: 3}
+  BoardObject: {fileID: 1061751160}
 --- !u!1 &1682964017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1248,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715106482}
   m_CullTransparentMesh: 0
+--- !u!1 &1750290837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750290839}
+  - component: {fileID: 1750290838}
+  m_Layer: 0
+  m_Name: P1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1750290838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750290837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerPanel: {fileID: 1017347812}
+  GhostsP1:
+  - {fileID: 8002828906767898653, guid: 66a17826538dc374e91888ac1717fedc, type: 3}
+  - {fileID: 4286500779105579301, guid: 793be423770ca2146b6d75417ec8592e, type: 3}
+  - {fileID: 8908441154150309971, guid: 89d831f0fc1302443a19fbfb8bd1c5ad, type: 3}
+--- !u!4 &1750290839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750290837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 667.33057, y: 647.9076, z: -330.23843}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1838928338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,31 +1637,9 @@ MonoBehaviour:
   PlayerActionsPanel: {fileID: 1017347812}
   PlayerActionsTexts: {fileID: 1011462769}
   CurrentPlayerText: {fileID: 1858790260}
-  Pieces:
-  - {fileID: 2924670866125662951, guid: 2786af698438dbe4596b5c6e9ce68646, type: 3}
-  - {fileID: 8389648471852089686, guid: bd7e008333351e24d91a74327b46cff0, type: 3}
-  - {fileID: 1714427889788984871, guid: 3b6cdac6f20ee4b49bd9537c9ce70f54, type: 3}
-  Mirror: {fileID: 4921740898314749197, guid: 4b95e08af39d73147be7db07e5a20ff6, type: 3}
-  GhostsP1:
-  - {fileID: 8002828906767898653, guid: 66a17826538dc374e91888ac1717fedc, type: 3}
-  - {fileID: 4286500779105579301, guid: 793be423770ca2146b6d75417ec8592e, type: 3}
-  - {fileID: 8908441154150309971, guid: 89d831f0fc1302443a19fbfb8bd1c5ad, type: 3}
-  GhostsP2:
-  - {fileID: 7117786603762558590, guid: 412e6d8c5c87b7d41be859e9ee764cad, type: 3}
-  - {fileID: 4286500779105579301, guid: 793be423770ca2146b6d75417ec8592e, type: 3}
-  - {fileID: 428614648462683435, guid: 0a447a184711bdd4ba92832eddca41ff, type: 3}
-  BluePortal: {fileID: 4778288381706949099, guid: 186af72d5225a52418f24f239e038540,
-    type: 3}
-  RedPortal: {fileID: 8207841646436596010, guid: 144985021154e104dbacc13b139d66b1,
-    type: 3}
-  YellowPortal: {fileID: 3300041805892992451, guid: d3910c68559fff44e83001963cf9364f,
-    type: 3}
-  DungeonPanel: {fileID: 1715106482}
-  DungeonSlot: {fileID: 4636660705215818766, guid: 67296a7e80d6f6d40b96dad45b1a2fbe,
-    type: 3}
-  BoardObject: {fileID: 1061751160}
-  PlayerOnePanel: {fileID: 1017347812}
-  PlayerTwoPanel: {fileID: 1476250849609224239}
+  playerOne: {fileID: 1750290837}
+  playerTwo: {fileID: 479246209}
+  Board: {fileID: 1061751165}
 --- !u!114 &1476250849609224226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1591,6 +1652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPanel: {fileID: 0}
+  GhostsP1: []
 --- !u!222 &1476250849609224227
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -49,5 +49,9 @@ namespace _18ghostsExam
         void BoardSetUp();
 
         void SetUpDungeon();
+
+        bool CheckYellowSurrounding();
+        bool CheckRedSurrounding();
+        bool CheckBlueSurrounding();
     }
 }

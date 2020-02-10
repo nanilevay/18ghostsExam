@@ -55,10 +55,7 @@ namespace _18ghostsExam
         {
             // check if current player is player A
             if (CurrentPlayer == PlayerOne)
-            {
-                // Change current player name display
-                //CurrentPlayerText.text = PlayerTwo.Name;
-
+            { 
                 // Change current player
                 CurrentPlayer = PlayerTwo;
 
@@ -76,10 +73,7 @@ namespace _18ghostsExam
             {
                 //if (TwoHandicap)
                 //{
-
-                //CurrentPlayerText.text = PlayerOne.Name;
                 CurrentPlayer = PlayerOne;
-                //PlayerActionsTexts.text = ActionText;
                 counter++;
                 PlayDone = false;
                 //}
@@ -282,18 +276,19 @@ namespace _18ghostsExam
         {
             if (PreviousTile != null)
             {
-                if (NextTile.Pos.X == PreviousTile.Pos.X + 1
+
+                    if (NextTile.Pos.X == PreviousTile.Pos.X + 1
                     && NextTile.Pos.Y == PreviousTile.Pos.Y)
-                    return true;
-                if (NextTile.Pos.X == PreviousTile.Pos.X - 1
-                && NextTile.Pos.Y == PreviousTile.Pos.Y)
-                    return true;
-                if (NextTile.Pos.X == PreviousTile.Pos.X
-                && NextTile.Pos.Y == PreviousTile.Pos.Y + 1)
-                    return true;
-                if (NextTile.Pos.X == PreviousTile.Pos.X
-                && NextTile.Pos.Y == PreviousTile.Pos.Y - 1)
-                    return true;
+                        return true;
+                    if (NextTile.Pos.X == PreviousTile.Pos.X - 1
+                    && NextTile.Pos.Y == PreviousTile.Pos.Y)
+                        return true;
+                    if (NextTile.Pos.X == PreviousTile.Pos.X
+                    && NextTile.Pos.Y == PreviousTile.Pos.Y + 1)
+                        return true;
+                    if (NextTile.Pos.X == PreviousTile.Pos.X
+                    && NextTile.Pos.Y == PreviousTile.Pos.Y - 1)
+                        return true;
             }
 
             return false;

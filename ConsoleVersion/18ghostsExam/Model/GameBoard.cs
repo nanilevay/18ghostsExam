@@ -78,8 +78,6 @@ namespace _18ghostsExam
             DungeonSlots = new DungeonSlot[2, 10];
 
             SetUpDungeon();
-
-            BoardSetUp();
         }
 
         /// <summary>
