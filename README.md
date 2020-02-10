@@ -32,6 +32,8 @@ The players implement the IPlayer interface and during the loop there's a rotati
 
 The  board is setup so that in the unity version, each tile is defined inside the common array and then each object is instanciated where it's due, whereas in the console version a tile of each type is printed on the map for the checking.
 
+The gameloop pattern was used for the console version, seeing as unity already implements it by default, and there was focus on trying to make the classes depend on eachother as little as possible, altough at times this had to be scratched due to time constraints.
+
 The text to be displayed on the game follows a Singleton pattern, in order to be initialised once and used through both implementations.
 
 ### UML Diagram
