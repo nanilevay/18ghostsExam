@@ -6,7 +6,7 @@ using _18ghostsExam;
 /// <summary>
 /// This class allows us to set the mirror tiles
 /// </summary>
-public class Mirror : IMapElement
+public class Mirror : Tiles
 {
     /// <summary>
     /// Character to represent the tile

@@ -3,7 +3,8 @@
 namespace _18ghostsExam
 {
     /// <summary>
-    /// This enum allows us to set the colours available in our game
+    /// This enum allows us to set the 
+    /// s available in our game
     /// </summary>
     public enum Colours
     {

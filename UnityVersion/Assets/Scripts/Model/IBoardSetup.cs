@@ -1,18 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using _18ghostsExam;
 
-public class IBoardSetup : MonoBehaviour
+namespace _18ghostsExam
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IBoardSetup
     {
-        
-    }
+        /// <summary>
+        /// To get the prefab of the yellow portal
+        /// </summary>
+        IPortals yellowPortal { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        /// <summary>
+        /// To get the prefab of the blue portal
+        /// </summary>
+        IPortals bluePortal { get; set; }
+
+        /// <summary>
+        /// To get the prefab of the red portal
+        /// </summary>
+        IPortals redPortal { get; set; }
+
+        /// <summary>
+        /// Max number of rows
+        /// </summary>
+        int MaxX { get; set; }
+
+        /// <summary>
+        /// Max number of columns
+        /// </summary>
+        int MaxY { get; set; }
+
+        /// <summary>
+        /// Getting all map elements on the board to set
+        /// their positions
+        /// </summary>
+        IMapElement[,] positions { get; set; }
+
+        /// <summary>
+        /// Getting a list of the slots in the dungeon for their positions
+        /// </summary>
+        DungeonSlot[,] DungeonSlots { get; set; }
+
+        void SetUpScene();
+
+        void InitialiseBoard();
+
+        void BoardSetUp();
+
+        void SetUpDungeon();
     }
 }

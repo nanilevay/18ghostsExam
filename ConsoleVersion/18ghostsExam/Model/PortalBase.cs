@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using _18ghostsExam;
+﻿using _18ghostsExam;
 
 /// <summary>
 /// This class allows us to define a general portal that can rotate when a
@@ -117,4 +115,5 @@ public class PortalBase : IPortals, IMapElement
         // Return default in case any of the others fails
         return CurrentRot;
     }
+
 }

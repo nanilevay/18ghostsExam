@@ -61,12 +61,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9949858, b: 0.41037738, a: 1}
+  m_Color: {r: 0.8679245, g: 0.61120987, b: 0.28248486, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b9e012cdca1b12f43ab88715895caa7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -85,15 +85,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8908441154150309971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8c07abab2954443a61e67effe0742b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a6f169c547336a43bbc753679ab5834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeon: {fileID: 4805394783573507369, guid: cfd11d62dd8b08c4d8d2392862e4ab4d, type: 3}
-  bluePortal: {fileID: 4778288381706949099, guid: 186af72d5225a52418f24f239e038540,
-    type: 3}
-  img: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  Character: 103
-  colours: 2
+  Character: 0
 --- !u!61 &8908441154150309974
 BoxCollider2D:
   m_ObjectHideFlags: 0

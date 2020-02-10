@@ -14,6 +14,8 @@ namespace _18ghostsExam
 
         IGhostBase ChosenPiece { get; set; }
 
+        List<IGhostBase> StartGhosts { get; set; }
+
         bool start { get; set; }
     }
 }

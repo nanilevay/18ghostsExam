@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using _18ghostsExam;
-using UnityEngine;
 
 /// <summary>
 /// this class allows us to define a yellow portal with its initial rotation

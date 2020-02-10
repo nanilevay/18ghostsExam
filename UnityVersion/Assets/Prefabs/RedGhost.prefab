@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 6440da4b98851f645ad0d6c26c53e1b5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -154,11 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4286500779105579301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00013a1c56b515749920858897c2ec05, type: 3}
+  m_Script: {fileID: 11500000, guid: edaf5eb7d7c1f9c4b88ac0064eb5d61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeon: {fileID: 4805394783573507369, guid: cfd11d62dd8b08c4d8d2392862e4ab4d, type: 3}
-  bluePortal: {fileID: 0}
-  img: {fileID: 0}
-  Character: 103
-  colours: 0
+  Character: 0
