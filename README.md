@@ -26,6 +26,8 @@ There's also 3 portals, one of each colour, that will receive a "GhostDied" bool
 
 Each ghost piece implements the INTERFACE in order to know what colour it is and how to represent it, as well as if the piece is currently in the dungeon or on a mirror, in order to act accordingly to those rules.
 
+It was attempted to implement the MVC pattern in order to share the model along the unity and console versions of the game, as well as the Template pattern, where a base class with abstract methods was overwritten by its inherited members according to need, though this wasn't fully accomplished due to time restraints.
+
 The players implement the IPlayer interface and during the loop there's a rotation between player A and player B done by having a third instance of a player, the "CurrentPlayer" that stores the current play being made by each and then is equated to the other in each play.
 
 The  board is setup so that in the unity version, each tile is defined inside the common array and then each object is instanciated where it's due, whereas in the console version a tile of each type is printed on the map for the checking.
