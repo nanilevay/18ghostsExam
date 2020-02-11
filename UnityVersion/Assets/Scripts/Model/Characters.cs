@@ -13,6 +13,9 @@ namespace _18ghostsExam
         // ghost tile
         ghost = 'g',
 
+        // ghost tile
+        ghost1 = 'G',
+
         // portal tile
         portal = 'p',
 

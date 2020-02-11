@@ -22,7 +22,7 @@ using _18ghostsExam;
         /// <summary>
         /// Character to represent tile
         /// </summary>
-        char Character { get; }
+        char Character { get; set; }
 
         /// <summary>
         /// Position of tile in map

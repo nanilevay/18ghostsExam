@@ -23,7 +23,7 @@ public class PortalBase : MonoBehaviour, IPortals, IMapElement
     /// <summary>
     /// Character to represent tile
     /// </summary>
-    public char Character { get; }
+    public char Character { get; set; }
 
     /// <summary>
     /// Position of tile in map
@@ -46,7 +46,7 @@ public class PortalBase : MonoBehaviour, IPortals, IMapElement
     public PortalDir CurrentRot { get; set; }
 
     /// <summary>
-    /// ///////////////////////////////////////////////////////
+    /// Updating the direction of the portal along the game
     /// </summary>
     void Update()
     {

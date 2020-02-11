@@ -68,8 +68,9 @@
     <Compile Include="Assets\Scripts\Model\BluePortals.cs" />
     <Compile Include="Assets\Scripts\Model\Characters.cs" />
     <Compile Include="Assets\Scripts\Model\Colours.cs" />
-    <Compile Include="Assets\Scripts\Model\GameBoard.cs" />
     <Compile Include="Assets\Scripts\Model\IBoardSetup.cs" />
+    <Compile Include="Assets\Scripts\Model\IDungeonSlot.cs" />
+    <Compile Include="Assets\Scripts\Model\IGameController.cs" />
     <Compile Include="Assets\Scripts\Model\IGhostBase.cs" />
     <Compile Include="Assets\Scripts\Model\IMapElement.cs" />
     <Compile Include="Assets\Scripts\Model\IPlayer.cs" />
@@ -81,13 +82,12 @@
     <Compile Include="Assets\Scripts\Model\RedHall.cs" />
     <Compile Include="Assets\Scripts\Model\RedPortals.cs" />
     <Compile Include="Assets\Scripts\Model\Texts.cs" />
-    <Compile Include="Assets\Scripts\Model\TurnController.cs" />
     <Compile Include="Assets\Scripts\Model\YellowGhostPickable.cs" />
     <Compile Include="Assets\Scripts\Model\YellowHall.cs" />
     <Compile Include="Assets\Scripts\Model\YellowPortals.cs" />
     <Compile Include="Assets\Scripts\Unity\BoardManager.cs" />
-    <Compile Include="Assets\Scripts\Unity\Dungeon.cs" />
     <Compile Include="Assets\Scripts\Unity\DungeonSlot.cs" />
+    <Compile Include="Assets\Scripts\Unity\GameBoard.cs" />
     <Compile Include="Assets\Scripts\Unity\Pickable.cs" />
     <Compile Include="Assets\Scripts\Unity\Player.cs" />
     <Compile Include="Assets\Scripts\Unity\PortalBase.cs" />

@@ -21,7 +21,7 @@ namespace _18ghostsExam
         /// <summary>
         /// Character to represent the tile
         /// </summary>
-        public char Character { get; }
+        public char Character { get; set; }
 
         /// <summary>
         /// Colour of the tile

@@ -54,53 +54,62 @@ namespace _18ghostsExam
         /// </summary>
         public GameObject PlayerPanel;
 
+        /// <summary>
+        /// Getting the ghosts prefabs
+        /// </summary>
         public GameObject[] GhostsP1;
 
 
-        public Player()
-        {
-            
-        }
-
+        /// <summary>
+        /// This method allows us to set our ghosts on the player ghost panel
+        /// </summary>
         public void SetGhosts()
         {
+            // Creating our ghost list
             Ghosts = new List<IGhostBase>();
 
+            /// Create 9 ghosts for the player
             for (int i = 0; i < 3; i++)
             {
+                // Instantiate the blue ghost prefab
                 GameObject instantiateBlueGhost = GhostsP1[0];
 
+                //  Instantiate the blue ghost 
                 GameObject instanceBlue =
                     Instantiate(instantiateBlueGhost) as GameObject;
 
+                // Set parent to the panel
                 instanceBlue.transform.SetParent(PlayerPanel.transform);
 
+                // Add to player ghost list
                 Ghosts.Add(instanceBlue.GetComponent<IGhostBase>());
 
-                //
-
+                // Instantiate red ghost prefab
                 GameObject instantiateRedGhost = GhostsP1[1];
 
+                // Make game object in the game
                 GameObject instanceRed =
                     Instantiate(instantiateRedGhost) as GameObject;
 
+                // Make the parent the panel
                 instanceRed.transform.SetParent(PlayerPanel.transform);
 
+                // Add to player list
                 Ghosts.Add(instanceRed.GetComponent<IGhostBase>());
 
-
-
-                //
+                // Instantiate yellow ghost from prefab
                 GameObject instantiateYellowGhost = GhostsP1[2];
 
+                // Set yellow ghost in game
                 GameObject instanceYellow =
                     Instantiate(instantiateYellowGhost) as GameObject;
 
+                // Transform ghost parent to the panel
                 instanceYellow.transform.SetParent(PlayerPanel.transform);
 
+                // Add ghost to the list
                 Ghosts.Add(instanceYellow.GetComponent<IGhostBase>());
             }
         }
     }
-
 }

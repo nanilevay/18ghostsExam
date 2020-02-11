@@ -7,8 +7,11 @@ using TMPro;
 using _18ghostsExam;
 using System.Linq;
 
-
-public class BoardManager : MonoBehaviour
+/// <summary>
+/// This class will serve as the main gameloop for our game, and control the
+/// board during each turn
+/// </summary>
+public class BoardManager : MonoBehaviour//, IGameController
 {
     /// <summary>
     /// Gets the action panel to tell player what to
@@ -46,7 +49,7 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     public IGhostBase DeadGhost;
 
-    public IBoardSetup board;
+    public GameBoard board;
 
     public GameBoard Board;
 
@@ -453,6 +456,24 @@ public class BoardManager : MonoBehaviour
         dungeonGhost.inDungeon = true;
     }
 
+    public void WinCheck()
+    {
+        if (board.CheckRedSurrounding())
+            CurrentPlayer.EscapedGhosts.Add(new RedGhostPickable());
+
+        if (board.CheckBlueSurrounding())
+            CurrentPlayer.EscapedGhosts.Add(new BlueGhostPickable());
+
+        if (board.CheckYellowSurrounding())
+            CurrentPlayer.EscapedGhosts.Add(new YellowGhostPickable());
+
+        if (CurrentPlayer.EscapedGhosts.OfType<RedGhostPickable>().Any()
+            && CurrentPlayer.EscapedGhosts.OfType<YellowGhostPickable>().Any()
+            && CurrentPlayer.EscapedGhosts.OfType<BlueGhostPickable>().Any())
+            PlayerActionsTexts.text = "Player one won!!";
+    }
+
+
     void Update()
     {
 
@@ -463,21 +484,9 @@ public class BoardManager : MonoBehaviour
         {
             PlayerOne.start = false;
             PlayerTwo.start = false;
-        }     
+        }
 
-        if(board.CheckYellowSurrounding())
-            CurrentPlayer.EscapedGhosts.Add(new YellowGhostPickable());
-          
-        if(board.CheckRedSurrounding())
-            CurrentPlayer.EscapedGhosts.Add(new RedGhostPickable());
-
-        if (board.CheckBlueSurrounding())
-            CurrentPlayer.EscapedGhosts.Add(new BlueGhostPickable());
-
-        if (CurrentPlayer.EscapedGhosts.OfType<RedGhostPickable>().Any()
-            && CurrentPlayer.EscapedGhosts.OfType<YellowGhostPickable>().Any()
-            && CurrentPlayer.EscapedGhosts.OfType<BlueGhostPickable>().Any())
-            Debug.Log("YEAAAAAAAAAAH PLAYER" + CurrentPlayer.Name + "WON");
+        WinCheck();
             
         if (DeadGhost != null)
         {

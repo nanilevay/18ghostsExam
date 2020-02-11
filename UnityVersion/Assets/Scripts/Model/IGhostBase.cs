@@ -20,7 +20,8 @@ namespace _18ghostsExam
         /// <summary>
         /// Char to represent ghost in the board
         /// </summary>
-        char character { get; }
+        char character
+        { get; set; }
 
         /// <summary>
         /// Position of ghost in the board
@@ -30,7 +31,7 @@ namespace _18ghostsExam
         /// <summary>
         /// Ghost's colour
         /// </summary>
-        Colours colour { get; }
+        Colours colour { get; set; }
 
         /// <summary>
         /// Checking if ghost is on mirror

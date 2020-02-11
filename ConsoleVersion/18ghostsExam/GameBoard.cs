@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace _18ghostsExam
 {
+    /// <summary>
+    /// This class allows us to set up the main board for our game
+    /// </summary>
     public class GameBoard : IBoardSetup
     {
         /// <summary>
@@ -19,10 +22,6 @@ namespace _18ghostsExam
         /// To get the prefab of the red portal
         /// </summary>
         public IPortals redPortal { get; set; }
-
-        public List<IGhostBase> PlayerOnePanel;
-
-        public List<IGhostBase> PlayerTwoPanel;
 
         /// <summary>
         /// Max number of rows

@@ -767,7 +767,6 @@ GameObject:
   - component: {fileID: 1017347816}
   - component: {fileID: 1017347815}
   - component: {fileID: 1017347814}
-  - component: {fileID: 1017347817}
   m_Layer: 5
   m_Name: Player1
   m_TagString: Untagged
@@ -855,20 +854,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017347812}
   m_CullTransparentMesh: 0
---- !u!114 &1017347817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017347812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerPanel: {fileID: 0}
-  GhostsP1: []
 --- !u!1 &1061751160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,8 +1264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPanel: {fileID: 1017347812}
   GhostsP1:
-  - {fileID: 8002828906767898653, guid: 66a17826538dc374e91888ac1717fedc, type: 3}
   - {fileID: 4286500779105579301, guid: 793be423770ca2146b6d75417ec8592e, type: 3}
+  - {fileID: 8002828906767898653, guid: 66a17826538dc374e91888ac1717fedc, type: 3}
   - {fileID: 8908441154150309971, guid: 89d831f0fc1302443a19fbfb8bd1c5ad, type: 3}
 --- !u!4 &1750290839
 Transform:
@@ -1640,20 +1625,6 @@ MonoBehaviour:
   playerOne: {fileID: 1750290837}
   playerTwo: {fileID: 479246209}
   Board: {fileID: 1061751165}
---- !u!114 &1476250849609224226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476250849609224239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a91780fb32df13946a1242b44bd5856d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerPanel: {fileID: 0}
-  GhostsP1: []
 --- !u!222 &1476250849609224227
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1746,7 +1717,6 @@ GameObject:
   - component: {fileID: 1476250849609224227}
   - component: {fileID: 1476250849609224236}
   - component: {fileID: 1476250849609224237}
-  - component: {fileID: 1476250849609224226}
   m_Layer: 5
   m_Name: Player2
   m_TagString: Untagged
