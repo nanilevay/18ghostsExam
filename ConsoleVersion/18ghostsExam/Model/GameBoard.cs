@@ -230,8 +230,10 @@ namespace _18ghostsExam
                             Console.ForegroundColor = ConsoleColor.Yellow;
                         }
 
-
-                        Console.Write("|_" + positions[x, y].Character + "_|");
+                        if(positions[x, y] is IPortals)
+                            Console.Write("|_" + (char)(positions[x, y] as IPortals).CurrentRot + "_|");
+                        else
+                            Console.Write("|_" + positions[x, y].Character + "_|");
 
                     }
 

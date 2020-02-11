@@ -20,7 +20,6 @@ namespace _18ghostsExam
         /// </summary>
         public IGhostBase DeadGhost;
 
-
         /// <summary>
         /// To check what ghost died to rotate portals
         /// </summary>
@@ -43,11 +42,6 @@ namespace _18ghostsExam
         private int counter;
 
         /// <summary>
-        /// To check the order of play at the start
-        /// </summary>
-        private bool TwoHandicap = true;
-
-        /// <summary>
         /// To check whether a move is valid or not
         /// </summary>
         private bool CurrentMoveIsValid;
@@ -61,7 +55,7 @@ namespace _18ghostsExam
         {
             // check if current player is player A
             if (CurrentPlayer == PlayerOne)
-            { 
+            {
                 // Change current player
                 CurrentPlayer = PlayerTwo;
 
@@ -77,17 +71,10 @@ namespace _18ghostsExam
 
             else if (CurrentPlayer == PlayerTwo)
             {
-                //if (TwoHandicap)
-                //{
                 CurrentPlayer = PlayerOne;
                 counter++;
                 PlayDone = false;
-                //}
-
-                //TwoHandicap = false;
-
             }
-
         }
 
         /// <summary>
@@ -111,7 +98,7 @@ namespace _18ghostsExam
 
             PlayerTwo.EscapedGhosts = new List<IGhostBase>();
 
-            foreach(IGhostBase ghost in PlayerOne.StartGhosts)
+            foreach (IGhostBase ghost in PlayerOne.StartGhosts)
                 ghost.character = (char)Characters.ghost;
 
             foreach (IGhostBase ghost in PlayerTwo.StartGhosts)
@@ -122,13 +109,49 @@ namespace _18ghostsExam
             CurrentPlayer = PlayerOne;
 
             Texts text = Texts.Instance();
-            
+
             Console.WriteLine(text.IntroText());
 
             Console.ReadLine();
 
+            FirstPlay();
+        }
+
+        public void FirstPlay()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                board.BoardSetUp();
+
+                int a = 0;
+
+                foreach (IGhostBase ghost in CurrentPlayer.StartGhosts)
+                {
+                    Console.Write("ghost #" + a + ": ");
+                    if (ghost is BlueGhostPickable)
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    if (ghost is RedGhostPickable)
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    if (ghost is YellowGhostPickable)
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(ghost.character);
+                    Console.ResetColor();
+                    a++;
+                }
+
+                PlaceStartGhosts();
+                CurrentPlayer = PlayerTwo;
+                counter++;
+            }
+
+            CurrentPlayer = PlayerOne;
+
             Loop();
         }
+
+        public void MirrorTeleport()
+        { }
+
 
         public void Loop()
         {
@@ -137,7 +160,7 @@ namespace _18ghostsExam
                 board.BoardSetUp();
 
                 int i = 0;
-          
+
                 foreach (IGhostBase ghost in CurrentPlayer.StartGhosts)
                 {
                     Console.Write("ghost #" + i + ": ");
@@ -158,13 +181,17 @@ namespace _18ghostsExam
                 else
                 {
                     Console.WriteLine
-               (CurrentPlayer.Name + " , Make your move! You can either:");
+               (CurrentPlayer.Name + " , Make your move! " +
+               "You can either:");
                     Console.WriteLine
-                        ("- Move a ghost to any adjacent tile (besides portals) (enter)");
+                        ("- Move a ghost to any adjacent tile " +
+                        "(besides portals) (enter)");
                     Console.WriteLine
-                        ("- Remove a ghost from the dungeon (other player places it (r)");
+                        ("- Remove a ghost from the dungeon " +
+                        "(other player places it (r)");
                     Console.WriteLine
-                        ("- Fight a ghost in another tile by moving to its position (enter)");
+                        ("- Fight a ghost in another tile by " +
+                        "moving to its position (enter)");
 
                     Console.WriteLine("What will you do?");
 
@@ -185,9 +212,9 @@ namespace _18ghostsExam
                     PlayerTwo.start = false;
                 }
 
-                //board.CheckYellowSurrounding();
-                //board.CheckRedSurrounding();
-                //board.CheckBlueSurrounding();
+                CheckYellowSurrounding();
+                CheckRedSurrounding();
+                CheckBlueSurrounding();
 
                 if (CurrentPlayer.EscapedGhosts.OfType<RedGhostPickable>().Any()
                     && CurrentPlayer.EscapedGhosts.OfType<YellowGhostPickable>().Any()
@@ -270,7 +297,9 @@ namespace _18ghostsExam
             {
                 if (!CurrentPlayer.ChosenPiece.inDungeon)
                 {
-                    PreviousTile = board.positions[CurrentPlayer.ChosenPiece.Pos.X, CurrentPlayer.ChosenPiece.Pos.Y];
+                    PreviousTile = board.positions
+                        [CurrentPlayer.ChosenPiece.Pos.X, 
+                        CurrentPlayer.ChosenPiece.Pos.Y];
                     PreviousTile.PieceOnTile = null;
                 }
             }
@@ -321,41 +350,49 @@ namespace _18ghostsExam
 
         public virtual void PlacePiece(IMapElement ChosenTile)
         {
+            ///
+            /// if move valid
+            ///     if occupied fight right away
+            ///     if dungeon
+            ///     if mirror
+            ///     else
+            ///
             CurrentMoveIsValid = ValidMove(ChosenTile);
 
-            Console.WriteLine("DEBUG" + CurrentPlayer.ChosenPiece);
-
-            if (ChosenTile.PieceOnTile == null)
-            {
-                Console.WriteLine(CurrentPlayer);
-                Console.WriteLine(CurrentPlayer.ChosenPiece);
-
-                if (CurrentPlayer.ChosenPiece.OnMirror)
+            //if(CurrentMoveIsValid)
+            //{
+                if (!(ChosenTile.PieceOnTile == null))
                 {
-                    if (ChosenTile is Mirror)
-                    {
-                        PreviousTile.PieceOnTile = null;
+                    DeadGhost =
+                            CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
 
+                    if (!(DeadGhost == CurrentPlayer.ChosenPiece))
+                    {
+                        deadGhost = ChosenTile.PieceOnTile;
+                        
+                        PreviousTile.PieceOnTile = null;
+                        
                         ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
 
-                        CurrentPlayer.ChosenPiece.OnMirror = false;
+                        //CurrentPlayer.ChosenPiece.OnMirror = true;
 
-                        CurrentPlayer.ChosenPiece = null;
+                        //CurrentPlayer.ChosenPiece = null;
 
                         PlayDone = true;
+
+                        PreviousTile = ChosenTile;                 
                     }
 
                     else
                     {
-                        Console.WriteLine("You have to move to another mirror!");
+                     
+                        deadGhost = CurrentPlayer.ChosenPiece;
 
-                        CurrentPlayer.ChosenPiece = null;
-
-                        PreviousTile = null;
+                        PlayDone = true;
                     }
                 }
 
-                else if (CurrentPlayer.ChosenPiece.inDungeon || CurrentPlayer.start)
+                    if (CurrentPlayer.ChosenPiece.inDungeon || CurrentPlayer.start)
                 {
                     if (ChosenTile.colour == CurrentPlayer.ChosenPiece.colour)
                     {
@@ -383,115 +420,58 @@ namespace _18ghostsExam
                     }
                 }
 
+                if (ChosenTile is Mirror &&
+                    !CurrentPlayer.ChosenPiece.OnMirror)
+                {
+                    PreviousTile.PieceOnTile = null;
+
+                    CurrentPlayer.ChosenPiece.OnMirror = true;
+
+                    Console.WriteLine("You're on a mirror! You can" +
+                        "teleport.");
+
+                    PlacePiece(ChosenTile);
+
+                    ChosenTile.PieceOnTile = null;
+                }
 
                 else
-                {
-                    if (CurrentMoveIsValid)
-                    {
-                        if (ChosenTile is Mirror &&
-                        !CurrentPlayer.ChosenPiece.OnMirror)
-                        {
-                            PreviousTile.PieceOnTile = null;
-
-                            CurrentPlayer.ChosenPiece.OnMirror = true;
-
-                            Console.WriteLine("You're on a mirror! You can" +
-                                "teleport.");
-
-                            PlacePiece(ChosenTile);
-
-                            ChosenTile.PieceOnTile = null;
-                        }
-
-                        else
-                        {
-                            PreviousTile.PieceOnTile = null;
-
-                            ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
-
-                            PreviousTile = ChosenTile;
-
-                            CurrentPlayer.ChosenPiece = null;
-
-                            PlayDone = true;
-                        }
-                    }
-                }
-            }
-
-
-            else
             {
-                if (CurrentMoveIsValid)
-                {
-                    if (ChosenTile is Mirror)
-                    {
-                        PreviousTile.PieceOnTile = null;
+                PreviousTile.PieceOnTile = null;
 
-                        ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+                ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
 
-                        DeadGhost =
-                            CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
-
-                        if (!(DeadGhost == CurrentPlayer.ChosenPiece))
-                        {
-                            PreviousTile.PieceOnTile = null;
-                            ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
-
-                            CurrentPlayer.ChosenPiece.OnMirror = true;
-
-                            CurrentPlayer.ChosenPiece = null;
-
-                            PlayDone = true;
-
-                            PreviousTile = ChosenTile;
-
-                            deadGhost = ChosenTile.PieceOnTile;
-                        }
-
-                        else
-                        {
-                            CurrentPlayer.ChosenPiece = null;
-                            deadGhost = CurrentPlayer.ChosenPiece;
-
-                            PlayDone = true;
-                        }
-
-                    }
-
-
-
-                    else
-                    {
-
-                        DeadGhost = CurrentPlayer.ChosenPiece.Fight(ChosenTile.PieceOnTile);
-
-                        if (!(DeadGhost == CurrentPlayer.ChosenPiece))
-                        {
-                            deadGhost = ChosenTile.PieceOnTile;
-                            ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
-
-                            CurrentPlayer.ChosenPiece.OnMirror = true;
-
-                            CurrentPlayer.ChosenPiece = null;
-
-                            PlayDone = true;
-
-                            PreviousTile = ChosenTile;
-                        }
-                        
-                        ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
-
-                        PlayDone = true;         
-                    }
-                }
-
-                else
-                    Console.WriteLine("Any tile that isn't a portal!");
-
-            
+                
+                PlayDone = true;
             }
+           // }
+
+            //if (CurrentPlayer.ChosenPiece.OnMirror)
+            //{
+            //    if (ChosenTile is Mirror)
+            //    {
+            //        PreviousTile.PieceOnTile = null;
+
+            //        ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
+
+            //        CurrentPlayer.ChosenPiece.OnMirror = false;
+
+            //        CurrentPlayer.ChosenPiece = null;
+
+            //        PlayDone = true;
+            //    }
+
+            //    else
+            //    {
+            //        Console.WriteLine("You have to move to another mirror!");
+
+            //        CurrentPlayer.ChosenPiece = null;
+
+            //        PreviousTile = null;
+            //    }
+            //}
         }
+
         public void SendToDungeon(IGhostBase dungeonGhost)
         {
             foreach (DungeonSlot slot in board.DungeonSlots)
@@ -506,7 +486,7 @@ namespace _18ghostsExam
             }          
         }
 
-        void CheckRedSurrounding(IPlayer CurrentPlayer)
+        void CheckRedSurrounding()
         {
             if (board.positions[0, 1].PieceOnTile is RedGhostPickable &&
                board.redPortal.CurrentRot == PortalDir.left)
@@ -527,8 +507,7 @@ namespace _18ghostsExam
             }
         }
 
-
-        void CheckYellowSurrounding(IPlayer CurrentPlayer)
+        void CheckYellowSurrounding()
         {
             if (board.positions[1, 4].PieceOnTile is YellowGhostPickable &&
                 board.yellowPortal.CurrentRot == PortalDir.up)
@@ -549,7 +528,7 @@ namespace _18ghostsExam
             }
         }
 
-        void CheckBlueSurrounding(IPlayer CurrentPlayer)
+        void CheckBlueSurrounding()
         {
             if (board.positions[4, 2].PieceOnTile is BlueGhostPickable &&
                 board.bluePortal.CurrentRot == PortalDir.left)
@@ -586,8 +565,6 @@ namespace _18ghostsExam
 
                 CurrentPlayer.ChosenPiece = CurrentPlayer.StartGhosts[validInput];
 
-                //CurrentPlayer.ChosenPiece.character = (char)Characters.ghost1;
-
                 Console.WriteLine(CurrentPlayer.ChosenPiece.colour);
 
                 CurrentPlayer.StartGhosts.RemoveAt(validInput);
@@ -599,11 +576,15 @@ namespace _18ghostsExam
                 PlaceStartGhosts();
         }
 
-        public void MoveGhosts()
-        {
-           
-            Console.WriteLine("Write the (x,y) coordinates to select piece");
 
+        /*
+        IMapElement InputProcess()
+        {
+
+        }
+        */
+        IMapElement inputProcess()
+        {
             string input = Console.ReadLine();
 
             string[] inputSplit = input.Split(",");
@@ -614,16 +595,28 @@ namespace _18ghostsExam
             bool InputIsValidOne = Int32.TryParse(inputSplit[0], out validInputOne);
             bool InputIsValidTwo = Int32.TryParse(inputSplit[1], out validInputTwo);
 
-            PreviousTile = board.positions[validInputOne, validInputTwo];
+            if (InputIsValidOne && InputIsValidTwo)
+                return board.positions[validInputOne, validInputTwo];
 
-            if (InputIsValidOne && InputIsValidTwo && 
-                CurrentPlayer.Ghosts.Contains(PreviousTile.PieceOnTile))
-            {          
-                CurrentPlayer.ChosenPiece = PreviousTile.PieceOnTile;             
-            }
+            else
+                return null;
+
+        }
+
+        public void MoveGhosts()
+        {        
+            Console.WriteLine("Write the (x,y) coordinates to select piece");
+
+            if (PreviousTile != null)
+                  PreviousTile = inputProcess();
 
             else
                 MoveGhosts();
+
+            if (CurrentPlayer.Ghosts.Contains(PreviousTile.PieceOnTile))
+            {          
+                CurrentPlayer.ChosenPiece = PreviousTile.PieceOnTile;             
+            }
 
             Console.WriteLine("Selected" + CurrentPlayer.ChosenPiece.colour + "ghost");
 

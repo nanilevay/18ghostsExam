@@ -20,6 +20,9 @@ public class YellowGhostPickable : Pickable
         }
     }
 
+    /// <summary>
+    /// This constructor lets us set the colour of the piece
+    /// </summary>
     public YellowGhostPickable()
     {
         colour = Colours.yellow;
