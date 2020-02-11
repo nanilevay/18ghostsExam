@@ -297,5 +297,75 @@ namespace _18ghostsExam
             }
         }
 
+        public bool CheckRedSurrounding()
+        {
+            if (positions[0, 1].PieceOnTile is RedGhostPickable &&
+               redPortal.CurrentRot == PortalDir.left)
+            {
+                return true;
+            }
+
+            if (positions[0, 3].PieceOnTile is BlueGhostPickable &&
+                redPortal.CurrentRot == PortalDir.right)
+            {
+                return true;
+            }
+
+            if (positions[1, 2].PieceOnTile is RedGhostPickable &&
+                redPortal.CurrentRot == PortalDir.down)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool CheckBlueSurrounding()
+        {
+            if (positions[4, 2].PieceOnTile is BlueGhostPickable &&
+                bluePortal.CurrentRot == PortalDir.left)
+            {
+                return true;
+            }
+
+            if (positions[3, 2].PieceOnTile is BlueGhostPickable &&
+                 bluePortal.CurrentRot == PortalDir.up)
+            {
+                return true;
+            }
+
+            if (positions[1, 4].PieceOnTile is BlueGhostPickable &&
+                bluePortal.CurrentRot == PortalDir.right)
+            {
+                    return true;
+            }
+
+                return false;
+        }
+
+        public bool CheckYellowSurrounding()
+        {
+
+            if (positions[1, 4].PieceOnTile is YellowGhostPickable &&
+                yellowPortal.CurrentRot == PortalDir.up)
+            {
+                return true;
+            }
+
+            if (positions[2, 3].PieceOnTile is YellowGhostPickable &&
+                yellowPortal.CurrentRot == PortalDir.left)
+            {
+                return true;
+            }
+
+            if (positions[3, 4].PieceOnTile is YellowGhostPickable &&
+                yellowPortal.CurrentRot == PortalDir.down)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }
