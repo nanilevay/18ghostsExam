@@ -52,6 +52,8 @@ Referenced the first lp2 project for the document structures, found at: <https:/
 
 For the UML:
 
+https://yuml.me/
+
 For the general logic of the game, the presentation slides from the LPII class resources were also used.
 
 The .NET API as well as the UNITY API were constantly referenced as well, in order to make sure everything was working accordingly.
