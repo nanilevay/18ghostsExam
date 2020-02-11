@@ -12,7 +12,7 @@ namespace _18ghostsExam
     /// <summary>
     /// Set the dungeonslot to inherit monobehaviour and be instantiated
     /// </summary>
-    public class DungeonSlot : MonoBehaviour
+    public class DungeonSlot : MonoBehaviour, IDungeonSlot
     {
         /// <summary>
         /// Check if slot is empty

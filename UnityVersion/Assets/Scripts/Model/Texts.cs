@@ -14,12 +14,12 @@ namespace _18ghostsExam
 
         protected Texts()
         {
-           
+
         }
 
         public static Texts Instance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new Texts();
             }
@@ -54,7 +54,7 @@ namespace _18ghostsExam
                 "this can only be done" + "if there's an available tile" +
                 " matching the colour of your chosen ghost" +
                 "and the other player will be the one to set it.";
-            
+
         }
 
         /// <summary>
@@ -63,8 +63,8 @@ namespace _18ghostsExam
         public string HoldingPieceText(IGhostBase Piece)
         {
 
-           return "holding " + Piece.colour + " piece" +
-                "\n Place on a tile of its same colour!";
+            return "holding " + Piece.colour + " piece" +
+                 "\n Place on a tile of its same colour!";
         }
 
 
@@ -97,6 +97,17 @@ namespace _18ghostsExam
         public string MovementError()
         {
             return "Move to a tile of your colour that isn't a portal!";
+        }
+
+        public string WrongTurn()
+        {
+            return "Not your turn!";
+        }
+
+        public string VictoryText(IPlayer Player)
+
+        {
+            return "Congratulations! Player " + Player.Name + "won!";
         }
     }
 }

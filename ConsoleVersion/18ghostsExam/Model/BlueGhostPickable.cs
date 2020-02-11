@@ -43,6 +43,7 @@ public class BlueGhostPickable : Pickable
             GhostDied = this;
         }
 
+        // send the ghost that lost the fight
         return GhostDied;
     }
 }

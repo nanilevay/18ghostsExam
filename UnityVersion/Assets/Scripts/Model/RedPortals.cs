@@ -17,5 +17,3 @@ public class RedPortals : PortalBase
         CurrentRot = PortalDir.up;
     }
 }
-
-

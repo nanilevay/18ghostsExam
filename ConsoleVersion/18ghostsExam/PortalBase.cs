@@ -54,14 +54,6 @@ public class PortalBase : IPortals, IMapElement
     public PortalDir CurrentRot { get; set; }
 
     /// <summary>
-    /// ///////////////////////////////////////////////////////
-    /// </summary>
-    void Update()
-    {
-        UpdateDir();
-    }
-    
-    /// <summary>
     /// Text displaying the direction being faced
     /// </summary>
     public string Direction;

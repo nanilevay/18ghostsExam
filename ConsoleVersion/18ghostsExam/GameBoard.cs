@@ -67,8 +67,6 @@ namespace _18ghostsExam
         /// <summary>
         /// This method allows us to set each player's ghosts list
         /// </summary>
-
-
         public void SetUpScene()
         {
             positions = new IMapElement[MaxX, MaxY];

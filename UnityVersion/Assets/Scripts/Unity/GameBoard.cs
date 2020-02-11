@@ -9,7 +9,6 @@ using _18ghostsExam;
 /// </summary>
 public class GameBoard : MonoBehaviour, IBoardSetup
 {
-
     /// <summary>
     /// Mirror prefab to instantiate
     /// </summary>

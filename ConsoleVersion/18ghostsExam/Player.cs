@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using _18ghostsExam;
 
-/// <summary>
-/// This class allows us to set our players for the game, by giving them their
-/// ghost pieces and checking what action is being done in each state of the
-/// game in the main loop
-/// </summary>
-/// 
 namespace _18ghostsExam
 {
+    /// <summary>
+    /// This class allows us to set our players for the game, by giving them their
+    /// ghost pieces and checking what action is being done in each state of the
+    /// game in the main loop
+    /// </summary>
     public class Player : IPlayer
     {
         /// <summary>
@@ -28,6 +27,9 @@ namespace _18ghostsExam
         /// </summary>
         public bool start { get; set; }
 
+        /// <summary>
+        /// Ghosts at the start of the game
+        /// </summary>
         public List<IGhostBase> StartGhosts { get; set; }
         /// <summary>
         /// The list of ghosts belonging to the player
@@ -44,11 +46,16 @@ namespace _18ghostsExam
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// This constructor allows us to set our ghosts
+        /// </summary>
         public Player()
         {
+            // Create lists for our ghosts
             Ghosts = new List<IGhostBase>();
             StartGhosts = new List<IGhostBase>();
 
+            // Add 9 ghosts to player's lists
             for (int i = 0; i < 3; i++)
             {
                 IGhostBase instantiateBlueGhost = new BlueGhostPickable();
@@ -64,6 +71,11 @@ namespace _18ghostsExam
                 StartGhosts.Add(instantiateYellowGhost);
 
             }
+        }
+
+        public void SetGhosts()
+        {
+
         }
     }
 }

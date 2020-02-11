@@ -35,7 +35,7 @@ public class RedGhostPickable : Pickable
         if (other.colour == Colours.blue)
         {
             // Send the other ghost to the dungeon
-    
+
             GhostDied = other;
         }
 

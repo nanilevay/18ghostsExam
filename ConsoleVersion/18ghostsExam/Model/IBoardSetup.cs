@@ -42,18 +42,42 @@ namespace _18ghostsExam
         /// </summary>
         DungeonSlot[,] DungeonSlots { get; set; }
 
+        /// <summary>
+        /// To Setup the main scene for the game
+        /// </summary>
         void SetUpScene();
 
+        /// <summary>
+        /// To set the board's initial state
+        /// </summary>
         void InitialiseBoard();
 
+        /// <summary>
+        /// To assign tiles according to board setup and print
+        /// </summary>
         void BoardSetUp();
 
+        /// <summary>
+        /// To setup the dungeonslots
+        /// </summary>
         void SetUpDungeon();
 
+        /// <summary>
+        /// To check the ghosts that have escaped through red portal
+        /// </summary>
+        /// <returns>true if ghost escaped</returns>
         bool CheckRedSurrounding();
 
+        /// <summary>
+        /// To check the ghosts that have escaped through blue portal
+        /// </summary>
+        /// <returns>true if ghost escaped</returns>
         bool CheckBlueSurrounding();
 
+        /// <summary>
+        /// To check the ghosts that have escaped through yellow portal
+        /// </summary>
+        /// <returns>true if ghost escaped</returns>
         bool CheckYellowSurrounding();
     }
 }

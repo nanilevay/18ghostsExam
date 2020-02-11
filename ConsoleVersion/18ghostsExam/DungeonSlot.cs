@@ -4,7 +4,7 @@
 /// This class allows us to define a dungeon slot and determine whether it's
 /// Empty or not
 /// </summary>
-public class DungeonSlot
+public class DungeonSlot : IDungeonSlot
 {
     /// <summary>
     /// Dungeon slot is empty by default
@@ -19,5 +19,5 @@ public class DungeonSlot
     /// <summary>
     /// To check what ghost is on the slot
     /// </summary>
-    public IGhostBase GhostInSlot;
+    public IGhostBase GhostInSlot { get; set; }
 }

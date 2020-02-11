@@ -10,52 +10,37 @@ namespace _18ghostsExam
     /// </summary>
     interface IGameController
     {
-        // The board
+        // The  game board
         GameBoard board { get; set; }
 
+        // The player whose turn is currently active
         IPlayer CurrentPlayer { get; set; }
 
+        // First player
         IPlayer PlayerOne { get; set; }
 
+        // Second player
         IPlayer PlayerTwo { get; set; }
 
+        // Previous tile for checking inputs
         IMapElement PreviousTile { get; set; }
 
-        IMapElement NextTile { get; set; }
-
+        // To switch between players
         void Play();
 
+        // To setup game
         void Start();
 
-        void FirstPlay();
-
-        void MirrorTeleport();
-
-        void DisplayGhosts();
-
-        void DisplayActions();
-
+        // For the gameLoop
         void Update();
 
-        void DungeonCheck();
-
-        void WinCheck();
-
-        void PickFromDungeon();
-
-        void PickPiece();
-
+        // Check if a move is valid
         bool ValidMove(IMapElement NextTile);
 
+        // Place Piece on the board
         void PlacePiece(IMapElement ChosenTile);
 
+        // Send piece to dungeon
         void SendToDungeon(IGhostBase dungeonGhos);
-
-        void PlaceStartGhosts();
-
-        void MoveGhosts();
-
-
-
     }
 }

@@ -24,33 +24,33 @@ public class Mirror : Tiles
         }
     }
 
-        /// <summary>
-        /// Type of tile
-        /// </summary>
-        public string Type { get; set; }
+    /// <summary>
+    /// Type of tile
+    /// </summary>
+    public string Type { get; set; }
 
-        /// <summary>
-        /// Colour of the tile
-        /// </summary>
-        public Colours colour { get; set; }
+    /// <summary>
+    /// Colour of the tile
+    /// </summary>
+    public Colours colour { get; set; }
 
-        /// <summary>
-        /// Position of the tile on the map
-        /// </summary>
-        public Positions Pos { get; set; }
+    /// <summary>
+    /// Position of the tile on the map
+    /// </summary>
+    public Positions Pos { get; set; }
 
-        /// <summary>
-        /// checking if the tile is empty or occupied
-        /// </summary>
-        public bool empty { get; set; }
+    /// <summary>
+    /// checking if the tile is empty or occupied
+    /// </summary>
+    public bool empty { get; set; }
 
-        /// <summary>
-        /// Gets the ghost contained in the tile if any
-        /// </summary>
-        public IGhostBase PieceOnTile { get; set; }
+    /// <summary>
+    /// Gets the ghost contained in the tile if any
+    /// </summary>
+    public IGhostBase PieceOnTile { get; set; }
 
-        /// <summary>
-        /// To set the colours in the unity version of the game
-        /// </summary>
-        
-    }
+    /// <summary>
+    /// To set the colours in the unity version of the game
+    /// </summary>
+
+}
