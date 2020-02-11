@@ -9,7 +9,7 @@
         {
             // Start gameloop class
             GameLoop gameLoop = new GameLoop();
-            
+
             // Start actual game
             gameLoop.Start();
         }

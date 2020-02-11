@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using _18ghostsExam;
+//using _18ghostsExam;
 using UnityEngine.UI;
 
 namespace _18ghostsExam

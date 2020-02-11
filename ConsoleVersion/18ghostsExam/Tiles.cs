@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using _18ghostsExam;
-
-namespace _18ghostsExam
+﻿namespace _18ghostsExam
 {
     /// <summary>
     /// This class lets us set the different tiles in the map, implementing the

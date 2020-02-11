@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using _18ghostsExam;
+//using _18ghostsExam;
 
-/// <summary>
-/// this class allows us to define a yellow portal with its initial rotation
-/// and colour
-/// </summary>
-public class YellowPortals : PortalBase
+namespace _18ghostsExam
 {
     /// <summary>
-    /// sets the portal with the initial direction facing right
+    /// this class allows us to define a yellow portal with its initial rotation
+    /// and colour
     /// </summary>
-    public YellowPortals()
+    public class YellowPortals : PortalBase
     {
-        // current starting rotation of the portal
-        CurrentRot = PortalDir.right;
+        /// <summary>
+        /// sets the portal with the initial direction facing right
+        /// </summary>
+        public YellowPortals()
+        {
+            // current starting rotation of the portal
+            CurrentRot = PortalDir.right;
+        }
     }
 }

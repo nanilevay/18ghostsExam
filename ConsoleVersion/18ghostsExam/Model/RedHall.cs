@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using _18ghostsExam;
+//using _18ghostsExam;
 
-/// <summary>
-/// This class allows us to set a red tile with the default colour being red
-/// </summary>
-public class RedHall : Tiles
+namespace _18ghostsExam
 {
     /// <summary>
-    /// Constructor to set the tile colour
+    /// This class allows us to set a red tile with the default colour being red
     /// </summary>
-    public RedHall()
+    public class RedHall : Tiles
     {
-        // colour of tile is red to be displayed
-        colour = Colours.red;
+        /// <summary>
+        /// Constructor to set the tile colour
+        /// </summary>
+        public RedHall()
+        {
+            // colour of tile is red to be displayed
+            colour = Colours.red;
+        }
     }
 }

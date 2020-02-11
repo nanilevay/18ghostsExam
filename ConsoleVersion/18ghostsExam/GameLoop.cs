@@ -119,7 +119,7 @@ namespace _18ghostsExam
 
             // Change the first player's ghosts characters
             foreach (IGhostBase ghost in PlayerOne.StartGhosts)
-                    ghost.character = (char)Characters.ghost;
+                ghost.character = (char)Characters.ghost;
 
             // Change the second player's ghosts characters
             foreach (IGhostBase ghost in PlayerTwo.StartGhosts)
@@ -198,13 +198,13 @@ namespace _18ghostsExam
         /// to one
         /// </summary>
         public void MirrorTeleport()
-        {   
+        {
             // get player's input to move
             Console.WriteLine("choose tile to move to");
 
             IMapElement ChosenTile = inputProcess();
 
-            if(ChosenTile is Mirror)
+            if (ChosenTile is Mirror)
                 ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
         }
 
@@ -276,7 +276,7 @@ namespace _18ghostsExam
                 // If player is in-game
                 else
                     DisplayActions();
-                
+
                 // If player has finished move
                 if (PlayDone)
                     Play();
@@ -537,7 +537,7 @@ namespace _18ghostsExam
                     }
 
                     else
-                    { 
+                    {
                         Console.WriteLine(CurrentPlayer.ChosenPiece);
 
                         Console.WriteLine(ChosenTile.PieceOnTile);
@@ -546,7 +546,7 @@ namespace _18ghostsExam
 
                         DungeonCheck();
 
-                        PreviousTile.PieceOnTile = null;             
+                        PreviousTile.PieceOnTile = null;
 
                         PlayDone = true;
 
@@ -573,7 +573,7 @@ namespace _18ghostsExam
                 else if (!PlayDone)
                 {
                     Console.WriteLine("DEBUG");
-                    
+
                     PreviousTile.PieceOnTile = null;
 
                     ChosenTile.PieceOnTile = CurrentPlayer.ChosenPiece;
@@ -680,7 +680,8 @@ namespace _18ghostsExam
                 CurrentPlayer.ChosenPiece = PreviousTile.PieceOnTile;
             }
 
-            Console.WriteLine("Selected" + CurrentPlayer.ChosenPiece.colour + "ghost");
+            Console.WriteLine("Selected" + CurrentPlayer.ChosenPiece.colour 
+                + "ghost");
 
             Console.WriteLine("Input coordinates to move to");
 

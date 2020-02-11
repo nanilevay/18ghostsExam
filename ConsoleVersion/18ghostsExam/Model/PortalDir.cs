@@ -18,5 +18,4 @@ namespace _18ghostsExam
         // Portal facing right
         right = 'r'
     }
-
 }

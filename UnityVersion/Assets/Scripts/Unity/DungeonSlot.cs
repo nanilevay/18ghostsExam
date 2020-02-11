@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using _18ghostsExam;
+//using _18ghostsExam;
 
-/// <summary>
-/// This class allows us to define a dungeon slot and determine whether it's
-/// Empty or not
-/// </summary>
 namespace _18ghostsExam
 {
     /// <summary>
-    /// Set the dungeonslot to inherit monobehaviour and be instantiated
+    /// This class allows us to define a dungeon slot and determine whether it's
+    /// Empty or not
     /// </summary>
     public class DungeonSlot : MonoBehaviour, IDungeonSlot
     {

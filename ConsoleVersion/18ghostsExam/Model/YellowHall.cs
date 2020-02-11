@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using _18ghostsExam;
+//using _18ghostsExam;
 
-/// <summary>
-/// This class lets us set a tile with its colour being yellow
-/// </summary>
-public class YellowHall : Tiles
+namespace _18ghostsExam
 {
     /// <summary>
-    /// set the tile's colour
+    /// This class lets us set a tile with its colour being yellow
     /// </summary>
-    public YellowHall()
+    public class YellowHall : Tiles
     {
-        // set colour to yellow
-        colour = Colours.yellow;
+        /// <summary>
+        /// set the tile's colour
+        /// </summary>
+        public YellowHall()
+        {
+            // set colour to yellow
+            colour = Colours.yellow;
+        }
     }
 }

@@ -78,7 +78,8 @@ namespace _18ghostsExam
         }
 
         /// <summary>
-        /// This method allows us to set the main map with all the given positions
+        /// This method allows us to set the main map with all 
+        /// the given positions
         /// </summary>
         public void InitialiseBoard()
         {
@@ -187,7 +188,8 @@ namespace _18ghostsExam
                             Console.ForegroundColor = ConsoleColor.Blue;
                         }
 
-                        Console.Write("|_" + positions[x, y].PieceOnTile.character + "_|");
+                        Console.Write("|_" + positions[x, y].
+                            PieceOnTile.character + "_|");
                     }
 
                     else
@@ -227,10 +229,13 @@ namespace _18ghostsExam
                             Console.ForegroundColor = ConsoleColor.Yellow;
                         }
 
-                        if(positions[x, y] is IPortals)
-                            Console.Write("|_" + (char)(positions[x, y] as IPortals).CurrentRot + "_|");
+                        if (positions[x, y] is IPortals)
+                            Console.Write("|_" +
+                                (char)(positions[x, y] as IPortals)
+                                .CurrentRot + "_|");
                         else
-                            Console.Write("|_" + positions[x, y].Character + "_|");
+                            Console.Write("|_" + positions[x, y].
+                                Character + "_|");
 
                     }
 
@@ -266,7 +271,8 @@ namespace _18ghostsExam
                             Console.ForegroundColor = ConsoleColor.Blue;
                         }
 
-                        Console.Write("|_" + DungeonSlots[a, b].GhostInSlot.character + "_|");
+                        Console.Write("|_" + DungeonSlots[a, b].
+                            GhostInSlot.character + "_|");
 
                         Console.ResetColor();
                     }
@@ -334,10 +340,10 @@ namespace _18ghostsExam
             if (positions[1, 4].PieceOnTile is BlueGhostPickable &&
                 bluePortal.CurrentRot == PortalDir.right)
             {
-                    return true;
+                return true;
             }
 
-                return false;
+            return false;
         }
 
         public bool CheckYellowSurrounding()
@@ -363,6 +369,5 @@ namespace _18ghostsExam
 
             return false;
         }
-
     }
 }

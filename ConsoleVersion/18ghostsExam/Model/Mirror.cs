@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using _18ghostsExam;
+//using _18ghostsExam;
 
-/// <summary>
-/// This class allows us to set the mirror tiles
-/// </summary>
-public class Mirror : Tiles
+namespace _18ghostsExam
 {
     /// <summary>
-    /// Character to represent the tile
+    /// This class allows us to set the mirror tiles
     /// </summary>
-    public char Character
+    public class Mirror : Tiles
     {
-        get
+        /// <summary>
+        /// Character to represent the tile
+        /// </summary>
+        public char Character
         {
-            return (char)Characters.mirror;
-        }
+            get
+            {
+                return (char)Characters.mirror;
+            }
 
-        set
-        {
+            set
+            {
 
+            }
         }
-    }
 
         /// <summary>
         /// Type of tile
@@ -52,5 +54,6 @@ public class Mirror : Tiles
         /// <summary>
         /// To set the colours in the unity version of the game
         /// </summary>
-        
+
     }
+}

@@ -1,19 +1,22 @@
-﻿using _18ghostsExam;
+﻿//using _18ghostsExam;
 
-/// <summary>
-/// This class allows us to define a blue portal with the colour and rotation
-/// </summary>
-public class BluePortals : PortalBase
+namespace _18ghostsExam
 {
     /// <summary>
-    /// This constructor lets us set the portal's colour and direction
+    /// This class allows us to define a blue portal with the colour and rotation
     /// </summary>
-    public BluePortals()
+    public class BluePortals : PortalBase
     {
-        // colour of the portal
-        colour = Colours.blue;
+        /// <summary>
+        /// This constructor lets us set the portal's colour and direction
+        /// </summary>
+        public BluePortals()
+        {
+            // colour of the portal
+            colour = Colours.blue;
 
-        // direction the portal is facing
-        CurrentRot = PortalDir.down;
+            // direction the portal is facing
+            CurrentRot = PortalDir.down;
+        }
     }
 }

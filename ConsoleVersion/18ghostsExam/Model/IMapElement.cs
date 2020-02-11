@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using _18ghostsExam;
 
+namespace _18ghostsExam
+{
     /// <summary>
     /// This interface lets us define a generic map element in order to know its
     /// state during the game and assign its values
@@ -28,7 +30,7 @@ using _18ghostsExam;
         /// Position of tile in map
         /// </summary>
         Positions Pos { get; set; }
-        
+
         /// <summary>
         /// Colour of tile
         /// </summary>
@@ -39,6 +41,4 @@ using _18ghostsExam;
         /// </summary>
         IGhostBase PieceOnTile { get; set; }
     }
-
-
-
+}

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using _18ghostsExam;
+//using _18ghostsExam;
 using UnityEngine.UI;
 
 namespace _18ghostsExam
-{  
+{
     /// <summary>
     /// This class lets us set the different tiles in the map, implementing the
     /// IMapElement interface in order to have all its properties and always
@@ -47,7 +47,7 @@ namespace _18ghostsExam
         /// To set the colours in the unity version of the game
         /// </summary>
         void Awake()
-        { 
+        {
             // If the tile is white set the sprite colour to white
             if (this is Mirror)
                 this.GetComponent<Image>().color = Color.white;
