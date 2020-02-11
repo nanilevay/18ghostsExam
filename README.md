@@ -83,6 +83,9 @@ Due to time constraints, the loop in the console version sometimes shows some
 bugs at some points that couldn't be fully fixed in time for delivery, but 
 the game is functional when the input is correct.
 
+Due to time constraints, the branch "newBoard" was set as the master branch
+in github as to not delay the delivery of the project due to merge conflicts.
+
 ### UML Diagram
 
 This diagram shows the main class structure found in the programs as well as 
