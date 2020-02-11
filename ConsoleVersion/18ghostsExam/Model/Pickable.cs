@@ -23,10 +23,15 @@ public class Pickable : IGhostBase
 
     public char character
     {
-        get
-        {
-            return (char)Characters.ghost;
-        }
+        get;
+
+        //return (char)Characters.ghost;
+
+
+        set;
+        
+
+        
     }
 
     public Positions Pos { get; set; }

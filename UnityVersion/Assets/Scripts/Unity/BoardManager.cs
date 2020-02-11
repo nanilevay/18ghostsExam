@@ -340,13 +340,6 @@ public class BoardManager : MonoBehaviour
                     else
                     {
                         PreviousTile.PieceOnTile = null;
-                        /*
-                        PlayerActionsTexts.text = "placed" 
-                            + ChosenTile.PieceOnTile.colour +
-                            "piece on " + ChosenTile.colour + 
-                            "tile (" + ChosenTile.Pos.X +
-                            "," + ChosenTile.Pos.Y + ")";
-                            */
 
                         (CurrentPlayer.ChosenPiece as MonoBehaviour).transform.position =
                             (ChosenTile as MonoBehaviour).transform.position;
@@ -368,8 +361,6 @@ public class BoardManager : MonoBehaviour
 
         else
         {
-
-
             if (CurrentMoveIsValid)
             {
                 if (ChosenTile is Mirror)

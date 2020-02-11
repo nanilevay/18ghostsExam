@@ -279,8 +279,6 @@ namespace _18ghostsExam
                 }
                 Console.WriteLine();
             }
-
-
         }
 
         /// <summary>
